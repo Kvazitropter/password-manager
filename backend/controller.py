@@ -1,4 +1,6 @@
+from backend import connection
 
 
 def main():
-    pass
+    ##connection.get_accounts()
+    print(connection.get_accounts())

@@ -8,7 +8,7 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import res_rc #Добавлено вручную
+import res_rc # Добавлено вручную
 
 
 class Ui_dialog_create_new_storage(object):
@@ -30,7 +30,18 @@ class Ui_dialog_create_new_storage(object):
         self.widget_container.setObjectName("widget_container")
         self.btn_submit_new_master_key = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_submit_new_master_key.setGeometry(QtCore.QRect(215, 165, 150, 30))
-        self.btn_submit_new_master_key.setStyleSheet("background-color: #CDCDCD;")
+        self.btn_submit_new_master_key.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_submit_new_master_key.setStyleSheet("QPushButton {\n"
+"background-color: #CDCDCD;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(205, 205, 205, 0.4);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(205, 205, 205, 0.1);\n"
+"}")
         self.btn_submit_new_master_key.setObjectName("btn_submit_new_master_key")
         self.input_new_master_key = QtWidgets.QLineEdit(parent=self.widget_container)
         self.input_new_master_key.setGeometry(QtCore.QRect(35, 55, 330, 40))

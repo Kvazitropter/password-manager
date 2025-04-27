@@ -8,7 +8,7 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import res_rc #Добавлено вручную
+import res_rc # Добавлено вручную
 
 
 class Ui_main_window(object):
@@ -18,6 +18,7 @@ class Ui_main_window(object):
         main_window.setStyleSheet("background-color: #324D64;\n"
 "font: normal bold 12px/15px \'Inter\', sans-serif;\n"
 "color: #000000;\n"
+"\n"
 "")
         self.centralwidget = QtWidgets.QWidget(parent=main_window)
         self.centralwidget.setObjectName("centralwidget")
@@ -31,9 +32,22 @@ class Ui_main_window(object):
         self.widget_container.setObjectName("widget_container")
         self.btn_add_new_entry = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_add_new_entry.setGeometry(QtCore.QRect(335, 550, 140, 30))
-        self.btn_add_new_entry.setStyleSheet("background-color: #CDCDCD;")
+        self.btn_add_new_entry.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_add_new_entry.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
+        self.btn_add_new_entry.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
+        self.btn_add_new_entry.setStyleSheet("QPushButton {\n"
+"background-color: #fff;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(255, 255, 255, 0.8);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(255, 255, 255, 0.45);\n"
+"}")
         self.btn_add_new_entry.setObjectName("btn_add_new_entry")
-        self.table_entries = QtWidgets.QTableWidget(parent=self.widget_container)
+        self.table_entries = QtWidgets.QTableView(parent=self.widget_container)
         self.table_entries.setGeometry(QtCore.QRect(25, 25, 450, 510))
         self.table_entries.setStyleSheet("QTableView {\n"
 "background-color: #CDCDCD;\n"
@@ -43,23 +57,23 @@ class Ui_main_window(object):
 "QTableView::section {\n"
 "background-color: #fff;\n"
 "height: 35px;\n"
-"width: 415px;\n"
 "}\n"
 "\n"
 "QTableView::item {\n"
 "border-style: none;\n"
 "border-bottom: #9A9A9A;\n"
+"width: 415px;\n"
 "}\n"
 "\n"
 "QTableView::item:selected {\n"
 "border: none;\n"
 "background-color: rgba(50, 77, 100, 50);\n"
 "}")
-        self.table_entries.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
-        self.table_entries.setShowGrid(False)
+        self.table_entries.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.table_entries.setShowGrid(True)
         self.table_entries.setObjectName("table_entries")
-        self.table_entries.setColumnCount(0)
-        self.table_entries.setRowCount(0)
+        self.table_entries.horizontalHeader().setVisible(False)
+        self.table_entries.verticalHeader().setVisible(False)
         self.key_image = QtWidgets.QLabel(parent=self.centralwidget)
         self.key_image.setGeometry(QtCore.QRect(0, 0, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"

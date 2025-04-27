@@ -17,6 +17,7 @@
    <string notr="true">background-color: #324D64;
 font: normal bold 12px/15px 'Inter', sans-serif;
 color: #000000;
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -45,14 +46,33 @@ border-left-color: #fff;
        <height>30</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::NoContextMenu</enum>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #CDCDCD;</string>
+      <string notr="true">QPushButton {
+background-color: #fff;
+}
+
+QPushButton::hover {
+background-color: rgba(255, 255, 255, 0.8);
+}
+
+QPushButton::pressed {
+background-color: rgba(255, 255, 255, 0.45);
+}</string>
      </property>
      <property name="text">
       <string>Добавить</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="table_entries">
+    <widget class="QTableView" name="table_entries">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -70,12 +90,12 @@ font-weight: normal;
 QTableView::section {
 background-color: #fff;
 height: 35px;
-width: 415px;
 }
 
 QTableView::item {
 border-style: none;
 border-bottom: #9A9A9A;
+width: 415px;
 }
 
 QTableView::item:selected {
@@ -84,11 +104,17 @@ background-color: rgba(50, 77, 100, 50);
 }</string>
      </property>
      <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAsNeeded</enum>
+      <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
      <property name="showGrid">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </widget>
    <widget class="QLabel" name="key_image">

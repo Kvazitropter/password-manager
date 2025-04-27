@@ -45,8 +45,21 @@ border-left-color: #fff;
       <height>30</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #CDCDCD;</string>
+     <string notr="true">QPushButton {
+background-color: #CDCDCD;
+}
+
+QPushButton::hover {
+background-color: rgba(205, 205, 205, 0.4);
+}
+
+QPushButton::pressed {
+background-color: rgba(205, 205, 205, 0.1);
+}</string>
     </property>
     <property name="text">
      <string>Войти</string>

@@ -8,7 +8,7 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import res_rc #Добавлено вручную
+import res_rc # Добавлено вручную
 
 
 class Ui_dialog_start(object):
@@ -30,11 +30,33 @@ class Ui_dialog_start(object):
         self.widget_container.setObjectName("widget_container")
         self.btn_login = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_login.setGeometry(QtCore.QRect(75, 55, 250, 40))
-        self.btn_login.setStyleSheet("background-color: #CDCDCD;")
+        self.btn_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_login.setStyleSheet("QPushButton {\n"
+"background-color: #CDCDCD;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(205, 205, 205, 0.4);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(205, 205, 205, 0.1);\n"
+"}")
         self.btn_login.setObjectName("btn_login")
         self.btn_create_new_storage = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_create_new_storage.setGeometry(QtCore.QRect(75, 135, 250, 40))
-        self.btn_create_new_storage.setStyleSheet("background-color: #CDCDCD;")
+        self.btn_create_new_storage.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_create_new_storage.setStyleSheet("QPushButton {\n"
+"background-color: #CDCDCD;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(205, 205, 205, 0.4);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(205, 205, 205, 0.1);\n"
+"}")
         self.btn_create_new_storage.setObjectName("btn_create_new_storage")
         self.key_image = QtWidgets.QLabel(parent=dialog_start)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))

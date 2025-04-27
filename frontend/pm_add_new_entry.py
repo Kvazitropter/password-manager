@@ -8,7 +8,7 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import res_rc #Добавлено вручную
+import res_rc # Добавлено вручную
 
 
 class Ui_dialog_add_new_entry(object):
@@ -30,7 +30,18 @@ class Ui_dialog_add_new_entry(object):
         self.widget_container.setObjectName("widget_container")
         self.btn_submit_entry = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_submit_entry.setGeometry(QtCore.QRect(215, 180, 150, 30))
-        self.btn_submit_entry.setStyleSheet("background-color: #CDCDCD;")
+        self.btn_submit_entry.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_submit_entry.setStyleSheet("QPushButton {\n"
+"background-color: #CDCDCD;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(205, 205, 205, 0.4);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(205, 205, 205, 0.1);\n"
+"}")
         self.btn_submit_entry.setObjectName("btn_submit_entry")
         self.input_service_name = QtWidgets.QLineEdit(parent=self.widget_container)
         self.input_service_name.setGeometry(QtCore.QRect(35, 35, 330, 30))
@@ -58,7 +69,18 @@ class Ui_dialog_add_new_entry(object):
         self.input_password.setObjectName("input_password")
         self.btn_generate_password = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_generate_password.setGeometry(QtCore.QRect(35, 180, 150, 30))
-        self.btn_generate_password.setStyleSheet("background-color: #CDCDCD;")
+        self.btn_generate_password.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_generate_password.setStyleSheet("QPushButton {\n"
+"background-color: #CDCDCD;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(205, 205, 205, 0.4);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(205, 205, 205, 0.1);\n"
+"}")
         self.btn_generate_password.setObjectName("btn_generate_password")
         self.key_image = QtWidgets.QLabel(parent=dialog_add_new_entry)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))

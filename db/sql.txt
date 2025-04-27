@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS master_key;
 
 CREATE TABLE master_key(
 	id SERIAL PRIMARY KEY,
+	encrypted_control_string TEXT,
 	salt TEXT
 );
 
@@ -13,5 +14,3 @@ CREATE TABLE account_details(
 	login TEXT,
 	encrypted_password TEXT
 );
-
-INSERT INTO account_details VALUES (1, NULL, 'google', 'login', 'secret_passwd');

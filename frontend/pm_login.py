@@ -8,8 +8,6 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import res_rc # Добавлено вручную
-
 
 class Ui_dialog_login(object):
     def setupUi(self, dialog_login):
@@ -51,6 +49,16 @@ class Ui_dialog_login(object):
 "font-style: italic;\n"
 "}")
         self.input_master_key.setObjectName("input_master_key")
+        self.feedback_label = QtWidgets.QLabel(parent=self.widget_container)
+        self.feedback_label.setGeometry(QtCore.QRect(35, 100, 330, 16))
+        self.feedback_label.setStyleSheet("QLabel {\n"
+"color: #f54021;\n"
+"font-size: 12px;\n"
+"font-weight: light;\n"
+"border: none;\n"
+"}")
+        self.feedback_label.setText("")
+        self.feedback_label.setObjectName("feedback_label")
         self.key_image = QtWidgets.QLabel(parent=dialog_login)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"

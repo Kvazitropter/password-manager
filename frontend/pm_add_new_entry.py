@@ -8,8 +8,6 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import res_rc # Добавлено вручную
-
 
 class Ui_dialog_add_new_entry(object):
     def setupUi(self, dialog_add_new_entry):
@@ -29,7 +27,7 @@ class Ui_dialog_add_new_entry(object):
 "")
         self.widget_container.setObjectName("widget_container")
         self.btn_submit_entry = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_submit_entry.setGeometry(QtCore.QRect(215, 180, 150, 30))
+        self.btn_submit_entry.setGeometry(QtCore.QRect(215, 185, 150, 30))
         self.btn_submit_entry.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_submit_entry.setStyleSheet("QPushButton {\n"
 "background-color: #CDCDCD;\n"
@@ -44,7 +42,7 @@ class Ui_dialog_add_new_entry(object):
 "}")
         self.btn_submit_entry.setObjectName("btn_submit_entry")
         self.input_service_name = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_service_name.setGeometry(QtCore.QRect(35, 35, 330, 30))
+        self.input_service_name.setGeometry(QtCore.QRect(35, 30, 330, 30))
         self.input_service_name.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
 "border: 1px solid #000;\n"
@@ -52,7 +50,7 @@ class Ui_dialog_add_new_entry(object):
 "}")
         self.input_service_name.setObjectName("input_service_name")
         self.input_login = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_login.setGeometry(QtCore.QRect(35, 80, 330, 30))
+        self.input_login.setGeometry(QtCore.QRect(35, 75, 330, 30))
         self.input_login.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
 "border: 1px solid #000;\n"
@@ -60,7 +58,7 @@ class Ui_dialog_add_new_entry(object):
 "}")
         self.input_login.setObjectName("input_login")
         self.input_password = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_password.setGeometry(QtCore.QRect(35, 125, 330, 30))
+        self.input_password.setGeometry(QtCore.QRect(35, 120, 330, 30))
         self.input_password.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
 "border: 1px solid #000;\n"
@@ -68,7 +66,7 @@ class Ui_dialog_add_new_entry(object):
 "}")
         self.input_password.setObjectName("input_password")
         self.btn_generate_password = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_generate_password.setGeometry(QtCore.QRect(35, 180, 150, 30))
+        self.btn_generate_password.setGeometry(QtCore.QRect(35, 185, 150, 30))
         self.btn_generate_password.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_generate_password.setStyleSheet("QPushButton {\n"
 "background-color: #CDCDCD;\n"
@@ -82,6 +80,16 @@ class Ui_dialog_add_new_entry(object):
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
         self.btn_generate_password.setObjectName("btn_generate_password")
+        self.feedback_label = QtWidgets.QLabel(parent=self.widget_container)
+        self.feedback_label.setGeometry(QtCore.QRect(35, 160, 330, 16))
+        self.feedback_label.setStyleSheet("QLabel {\n"
+"color: #f54021;\n"
+"font-size: 12px;\n"
+"font-weight: light;\n"
+"border: none;\n"
+"}")
+        self.feedback_label.setText("")
+        self.feedback_label.setObjectName("feedback_label")
         self.key_image = QtWidgets.QLabel(parent=dialog_add_new_entry)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"

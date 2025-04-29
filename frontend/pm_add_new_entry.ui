@@ -40,7 +40,7 @@ border-left-color: #fff;
     <property name="geometry">
      <rect>
       <x>215</x>
-      <y>180</y>
+      <y>185</y>
       <width>150</width>
       <height>30</height>
      </rect>
@@ -69,7 +69,7 @@ background-color: rgba(205, 205, 205, 0.1);
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>35</y>
+      <y>30</y>
       <width>330</width>
       <height>30</height>
      </rect>
@@ -89,7 +89,7 @@ font-style: italic;
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>80</y>
+      <y>75</y>
       <width>330</width>
       <height>30</height>
      </rect>
@@ -109,7 +109,7 @@ font-style: italic;
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>125</y>
+      <y>120</y>
       <width>330</width>
       <height>30</height>
      </rect>
@@ -129,7 +129,7 @@ font-style: italic;
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>180</y>
+      <y>185</y>
       <width>150</width>
       <height>30</height>
      </rect>
@@ -152,6 +152,27 @@ background-color: rgba(205, 205, 205, 0.1);
     </property>
     <property name="text">
      <string>Сгенерировать пароль</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="feedback_label">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>160</y>
+      <width>330</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+color: #f54021;
+font-size: 12px;
+font-weight: light;
+border: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

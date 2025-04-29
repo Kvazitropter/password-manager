@@ -8,8 +8,6 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-import res_rc # Добавлено вручную
-
 
 class Ui_dialog_start(object):
     def setupUi(self, dialog_start):

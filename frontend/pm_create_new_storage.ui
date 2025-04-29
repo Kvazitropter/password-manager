@@ -85,6 +85,27 @@ font-style: italic;
      <string>Придумайте мастер-пароль...</string>
     </property>
    </widget>
+   <widget class="QLabel" name="feedback_label">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>100</y>
+      <width>330</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+color: #f54021;
+font-size: 12px;
+font-weight: light;
+border: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QLabel" name="key_image">
    <property name="geometry">

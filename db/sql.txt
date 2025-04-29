@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS master_key;
 
 CREATE TABLE master_key(
 	id SERIAL PRIMARY KEY,
-	encrypted_control_string TEXT,
-	salt TEXT
+	encrypted_control_string BYTEA,
+	salt BYTEA
 );
 
 CREATE TABLE account_details(
@@ -12,5 +12,5 @@ CREATE TABLE account_details(
 	master_key_id INTEGER REFERENCES master_key(id),
 	site_name TEXT,
 	login TEXT,
-	encrypted_password TEXT
+	encrypted_password BYTEA
 );

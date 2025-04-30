@@ -1,19 +1,38 @@
-# from backend import connection
-from backend import mk_funcs
+from backend.encrypting.encrypt import encrypt
+from backend.encrypting.decrypt import decrypt
+from backend.custom_errors import IncorrectMasterKey, NonexistingLogin, ExistingLogin
 
 
-class Main():
-    def has_master_key(self, master_key):
-        return mk_funcs.has_mk(master_key)
-    
-    def create_new_account(self, master_key):
-        is_existed_master_key = self.has_master_key(master_key)
+class Controller():
+    def __init__(self, repository):
+        self.repository = repository    
 
-        if is_existed_master_key:
-            raise Exception('Такой мастер ключ уже существует.')
+
+    def is_existing_login(self, login):
+        return self.repository.has_login_query(login)
+
+    def login(self, login, entered_master_key):
+        self.is_existing_login(login)
         
-        try:
-            mk_funcs.add_new_mk(master_key)
-            return True
-        except:
-            raise Exception('Что-то пошло не так. Повторите попытку')
+        is_correct_login = self.is_existing_login(login)
+
+        if not is_correct_login:
+            raise NonexistingLogin()
+
+        memory_mk_and_salt = self.repository.get_memory_mk_and_salt_query(login)
+        salt, encrypted_master_key = (bytes(m) for m in memory_mk_and_salt)
+        control_string = decrypt(entered_master_key, encrypted_master_key, salt)
+        print(f'!{control_string}!')
+
+        if control_string != 'control':
+            raise IncorrectMasterKey()
+
+
+    def create_new_account(self, login, master_key):
+        is_existing_login = self.is_existing_login(login)
+        
+        if is_existing_login:
+            raise ExistingLogin()
+        
+        encrypted_master_key, salt = encrypt(master_key)
+        self.repository.add_new_account_query(login, encrypted_master_key, salt)

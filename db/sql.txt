@@ -13,6 +13,6 @@ CREATE TABLE account_details(
 	master_key_id INTEGER REFERENCES master_key(id),
 	site_name TEXT,
 	login TEXT,
-	encrypted_password BYTEA
+	encrypted_password BYTEA,
 	salt BYTEA
 );

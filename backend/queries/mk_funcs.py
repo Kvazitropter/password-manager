@@ -1,12 +1,12 @@
 import psycopg2
 
-from backend import connection
+from backend import repository
 from backend.encrypting.decrypt import decrypt
 from backend.encrypting.encrypt import encrypt
 
 
 def is_mk(mk):
-    con = connection.__get_connection()
+    con = repository.__get_connection()
     cur = con.cursor()
     cur.execute('''SELECT encrypted_control_string, salt 
                 FROM master_key WHERE id = 1''')  
@@ -26,7 +26,7 @@ def is_mk(mk):
 
     
 def add_new_mk(mk):
-    con = connection.__get_connection()
+    con = repository.__get_connection()
     cur = con.cursor()
     encrypted_control_string, salt = encrypt(mk)
     try:

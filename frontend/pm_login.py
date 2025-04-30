@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_login.ui'
+# Form implementation generated from reading ui file 'frontend/pm_login.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -14,7 +14,7 @@ class Ui_dialog_login(object):
         dialog_login.setObjectName("dialog_login")
         dialog_login.resize(600, 400)
         dialog_login.setStyleSheet("background-color: #324D64;\n"
-"font: normal bold 12px/15px \'Inter\', sans-serif;\n"
+"font: normal bold 12px/15px \'Segoe\', sans-serif;\n"
 "color: #000000;\n"
 "\n"
 "")
@@ -27,7 +27,7 @@ class Ui_dialog_login(object):
 "")
         self.widget_container.setObjectName("widget_container")
         self.btn_submit_master_key = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_submit_master_key.setGeometry(QtCore.QRect(215, 165, 150, 30))
+        self.btn_submit_master_key.setGeometry(QtCore.QRect(215, 180, 150, 30))
         self.btn_submit_master_key.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_submit_master_key.setStyleSheet("QPushButton {\n"
 "background-color: #CDCDCD;\n"
@@ -41,24 +41,60 @@ class Ui_dialog_login(object):
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
         self.btn_submit_master_key.setObjectName("btn_submit_master_key")
+        self.input_login = QtWidgets.QLineEdit(parent=self.widget_container)
+        self.input_login.setGeometry(QtCore.QRect(35, 30, 330, 40))
+        self.input_login.setStyleSheet("QLineEdit {\n"
+"background-color: #fff;\n"
+"border: 1px solid #000;\n"
+"font-style: italic;\n"
+"}")
+        self.input_login.setClearButtonEnabled(True)
+        self.input_login.setObjectName("input_login")
+        self.label_feedback_login = QtWidgets.QLabel(parent=self.widget_container)
+        self.label_feedback_login.setGeometry(QtCore.QRect(35, 70, 330, 16))
+        self.label_feedback_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.label_feedback_login.setStyleSheet("QLabel {\n"
+"color: #f54021;\n"
+"font-size: 12px;\n"
+"font-weight: light;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QToolTip {\n"
+"background-color: #CDCDCD;\n"
+"border: none;\n"
+"}")
+        self.label_feedback_login.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.label_feedback_login.setText("")
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setObjectName("label_feedback_login")
         self.input_master_key = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_master_key.setGeometry(QtCore.QRect(35, 55, 330, 40))
+        self.input_master_key.setGeometry(QtCore.QRect(35, 95, 330, 40))
         self.input_master_key.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
 "border: 1px solid #000;\n"
 "font-style: italic;\n"
 "}")
+        self.input_master_key.setClearButtonEnabled(True)
         self.input_master_key.setObjectName("input_master_key")
-        self.feedback_label = QtWidgets.QLabel(parent=self.widget_container)
-        self.feedback_label.setGeometry(QtCore.QRect(35, 100, 330, 16))
-        self.feedback_label.setStyleSheet("QLabel {\n"
+        self.label_feedback_master_key = QtWidgets.QLabel(parent=self.widget_container)
+        self.label_feedback_master_key.setGeometry(QtCore.QRect(35, 135, 330, 16))
+        self.label_feedback_master_key.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.label_feedback_master_key.setToolTip("")
+        self.label_feedback_master_key.setStyleSheet("QLabel {\n"
 "color: #f54021;\n"
 "font-size: 12px;\n"
 "font-weight: light;\n"
 "border: none;\n"
+"}\n"
+"\n"
+"QToolTip {\n"
+"background-color: #CDCDCD;\n"
+"border: none;\n"
 "}")
-        self.feedback_label.setText("")
-        self.feedback_label.setObjectName("feedback_label")
+        self.label_feedback_master_key.setText("")
+        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_master_key.setObjectName("label_feedback_master_key")
         self.key_image = QtWidgets.QLabel(parent=dialog_login)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"
@@ -74,15 +110,6 @@ class Ui_dialog_login(object):
         _translate = QtCore.QCoreApplication.translate
         dialog_login.setWindowTitle(_translate("dialog_login", "Password Manager"))
         self.btn_submit_master_key.setText(_translate("dialog_login", "Войти"))
+        self.input_login.setPlaceholderText(_translate("dialog_login", "Введите логин..."))
         self.input_master_key.setPlaceholderText(_translate("dialog_login", "Введите мастер-пароль..."))
         self.key_image.setText(_translate("dialog_login", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_login = QtWidgets.QDialog()
-    ui = Ui_dialog_login()
-    ui.setupUi(dialog_login)
-    dialog_login.show()
-    sys.exit(app.exec())

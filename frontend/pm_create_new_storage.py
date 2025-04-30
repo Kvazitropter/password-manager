@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_create_new_storage.ui'
+# Form implementation generated from reading ui file 'frontend/pm_create_new_storage.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -27,7 +27,7 @@ class Ui_dialog_create_new_storage(object):
 "")
         self.widget_container.setObjectName("widget_container")
         self.btn_submit_new_master_key = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_submit_new_master_key.setGeometry(QtCore.QRect(215, 165, 150, 30))
+        self.btn_submit_new_master_key.setGeometry(QtCore.QRect(215, 180, 150, 30))
         self.btn_submit_new_master_key.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_submit_new_master_key.setStyleSheet("QPushButton {\n"
 "background-color: #CDCDCD;\n"
@@ -42,23 +42,51 @@ class Ui_dialog_create_new_storage(object):
 "}")
         self.btn_submit_new_master_key.setObjectName("btn_submit_new_master_key")
         self.input_new_master_key = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_new_master_key.setGeometry(QtCore.QRect(35, 55, 330, 40))
+        self.input_new_master_key.setGeometry(QtCore.QRect(35, 95, 330, 40))
         self.input_new_master_key.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
 "border: 1px solid #000;\n"
 "font-style: italic;\n"
 "}")
+        self.input_new_master_key.setClearButtonEnabled(True)
         self.input_new_master_key.setObjectName("input_new_master_key")
-        self.feedback_label = QtWidgets.QLabel(parent=self.widget_container)
-        self.feedback_label.setGeometry(QtCore.QRect(35, 100, 330, 16))
-        self.feedback_label.setStyleSheet("QLabel {\n"
+        self.label_feedback_master_key = QtWidgets.QLabel(parent=self.widget_container)
+        self.label_feedback_master_key.setGeometry(QtCore.QRect(35, 135, 330, 16))
+        self.label_feedback_master_key.setStyleSheet("QLabel {\n"
 "color: #f54021;\n"
 "font-size: 12px;\n"
 "font-weight: light;\n"
 "border: none;\n"
 "}")
-        self.feedback_label.setText("")
-        self.feedback_label.setObjectName("feedback_label")
+        self.label_feedback_master_key.setText("")
+        self.label_feedback_master_key.setObjectName("label_feedback_master_key")
+        self.input_new_login = QtWidgets.QLineEdit(parent=self.widget_container)
+        self.input_new_login.setGeometry(QtCore.QRect(35, 30, 330, 40))
+        self.input_new_login.setStyleSheet("QLineEdit {\n"
+"background-color: #fff;\n"
+"border: 1px solid #000;\n"
+"font-style: italic;\n"
+"}")
+        self.input_new_login.setClearButtonEnabled(True)
+        self.input_new_login.setObjectName("input_new_login")
+        self.label_feedback_login = QtWidgets.QLabel(parent=self.widget_container)
+        self.label_feedback_login.setGeometry(QtCore.QRect(35, 70, 330, 16))
+        self.label_feedback_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.label_feedback_login.setStyleSheet("QLabel {\n"
+"color: #f54021;\n"
+"font-size: 12px;\n"
+"font-weight: light;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QToolTip {\n"
+"background-color: #CDCDCD;\n"
+"border: none;\n"
+"}")
+        self.label_feedback_login.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.label_feedback_login.setText("")
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setObjectName("label_feedback_login")
         self.key_image = QtWidgets.QLabel(parent=dialog_create_new_storage)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"
@@ -75,14 +103,5 @@ class Ui_dialog_create_new_storage(object):
         dialog_create_new_storage.setWindowTitle(_translate("dialog_create_new_storage", "Password Manager"))
         self.btn_submit_new_master_key.setText(_translate("dialog_create_new_storage", "Создать"))
         self.input_new_master_key.setPlaceholderText(_translate("dialog_create_new_storage", "Придумайте мастер-пароль..."))
+        self.input_new_login.setPlaceholderText(_translate("dialog_create_new_storage", "Придумайте логин..."))
         self.key_image.setText(_translate("dialog_create_new_storage", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_create_new_storage = QtWidgets.QDialog()
-    ui = Ui_dialog_create_new_storage()
-    ui.setupUi(dialog_create_new_storage)
-    dialog_create_new_storage.show()
-    sys.exit(app.exec())

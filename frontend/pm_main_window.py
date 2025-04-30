@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_main_window.ui'
+# Form implementation generated from reading ui file 'frontend/pm_main_window.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -45,8 +45,9 @@ class Ui_main_window(object):
 "background-color: rgba(255, 255, 255, 0.45);\n"
 "}")
         self.btn_add_new_entry.setObjectName("btn_add_new_entry")
-        self.table_entries = QtWidgets.QTableView(parent=self.widget_container)
+        self.table_entries = QtWidgets.QTableWidget(parent=self.widget_container)
         self.table_entries.setGeometry(QtCore.QRect(25, 25, 450, 510))
+        self.table_entries.setMinimumSize(QtCore.QSize(450, 0))
         self.table_entries.setStyleSheet("QTableView {\n"
 "background-color: #CDCDCD;\n"
 "font-weight: normal;\n"
@@ -69,8 +70,19 @@ class Ui_main_window(object):
 "}")
         self.table_entries.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.table_entries.setShowGrid(True)
+        self.table_entries.setRowCount(0)
+        self.table_entries.setColumnCount(4)
         self.table_entries.setObjectName("table_entries")
-        self.table_entries.horizontalHeader().setVisible(False)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_entries.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_entries.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_entries.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_entries.setHorizontalHeaderItem(3, item)
+        self.table_entries.horizontalHeader().setDefaultSectionSize(112)
+        self.table_entries.horizontalHeader().setSortIndicatorShown(False)
         self.table_entries.verticalHeader().setVisible(False)
         self.key_image = QtWidgets.QLabel(parent=self.centralwidget)
         self.key_image.setGeometry(QtCore.QRect(0, 0, 100, 156))
@@ -88,14 +100,12 @@ class Ui_main_window(object):
         _translate = QtCore.QCoreApplication.translate
         main_window.setWindowTitle(_translate("main_window", "Password Manager"))
         self.btn_add_new_entry.setText(_translate("main_window", "Добавить"))
+        item = self.table_entries.horizontalHeaderItem(0)
+        item.setText(_translate("main_window", "Сервис"))
+        item = self.table_entries.horizontalHeaderItem(1)
+        item.setText(_translate("main_window", "Логин"))
+        item = self.table_entries.horizontalHeaderItem(2)
+        item.setText(_translate("main_window", "Пароль"))
+        item = self.table_entries.horizontalHeaderItem(3)
+        item.setText(_translate("main_window", " "))
         self.key_image.setText(_translate("main_window", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    main_window = QtWidgets.QMainWindow()
-    ui = Ui_main_window()
-    ui.setupUi(main_window)
-    main_window.show()
-    sys.exit(app.exec())

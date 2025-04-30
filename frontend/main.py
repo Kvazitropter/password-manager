@@ -9,6 +9,7 @@ from pm_login import Ui_dialog_login
 from pm_main_window import Ui_main_window
 from pm_start import Ui_dialog_start
 from PyQt6 import QtWidgets
+from PyQt6.QtGui import QCursor
 from PyQt6.QtCore import QPoint, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
@@ -85,18 +86,22 @@ class PasswordManager(QMainWindow):
         else:
             if not is_valid_master_key:
                 # Фидбек пользователю что пароль неправильный
-                self.ui_window.label_feedback_master_key.setText('Данный мастер ключ не найден. Повторите попытку')
+                self.ui_window.label_feedback_master_key.setText(
+                    'Данный мастер ключ не найден. Повторите попытку'
+                    )
                 self.ui_window.input_master_key.setText('')
             if not is_valid_login:
-                self.ui_window.label_feedback_login.setText('Данный логин не найден. Повторите попытку')
+                self.ui_window.label_feedback_login.setText(
+                    'Данный логин не найден. Повторите попытку'
+                    )
                 self.ui_window.input_login.setText('')
                 
         # try:
             # функция входа?
         # except ошибкаНеНайденЛогин as e:
         # except ошибкаНеверныйМастер as e:
-        # или вообще не обрабатывать отдельно, просто исключение общая ошибка входа 
-               
+        # или вообще не обрабатывать отдельно
+        # просто исключение общая ошибка входа        
 
     def create_new_storage(self):
         new_master_key = self.ui_window.input_new_master_key.text()
@@ -114,6 +119,7 @@ class PasswordManager(QMainWindow):
         # except ошибкаЛогинУжеСущесвует as e:
            # self.ui_window.label_feedback_login.setText(str(e))
         #  либо просто одна общая ошибка регистрации
+
     def add_new_entry(self):
         service_name = self.ui_window.input_service_name.text()
         login = self.ui_window.input_login.text()
@@ -134,8 +140,33 @@ class PasswordManager(QMainWindow):
         self.ui_window.input_password.setText(generated_password)        
 
     def view_entries(self):
+        # self.ui.table_entries.setRowCount(0)      
         # entries = controller.fetch_entries(self.master_key)
+        for row_num, (site_name, site_login, password) in enumerate(entries):
+            self.ui.table_entries.insertRow(row_num)
+            self.ui.table_entries.setItem(row_num, 0, QtWidgets.QTableWidgetItem(site_name))
+            self.ui.table_entries.setItem(row_num, 1, QtWidgets.QTableWidgetItem(site_login))
+
+            show_paswd = QtWidgets.QPushButton('Показать')
+            show_paswd.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+            show_paswd.clicked.connect(lambda: print('показываем пароль'))
+            self.ui.table_entries.setCellWidget(row_num, 2, show_paswd)
+
+            delete_entry_button = QtWidgets.QPushButton('Удалить')
+            delete_entry_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+            delete_entry_button.clicked.connect(self.delete_entry)
+            self.ui.table_entries.setCellWidget(row_num, 3, delete_entry_button)
+
+    def show_password(self):
+        # controller.show_passwd(?self.master_key?, passwd, salt)
         pass
+    
+    def delete_entry(self):
+        button = self.sender()
+        if button:
+            row = self.ui.table_entries.indexAt(button.pos()).row()
+            self.ui.table_entries.removeRow(row)
+            # так же удаляем из бд
 
 
 if __name__ == '__main__':

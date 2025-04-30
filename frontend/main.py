@@ -70,31 +70,50 @@ class PasswordManager(QMainWindow):
 
     def login(self):
         master_key = self.ui_window.input_master_key.text()
-        
+        user_login = self.ui_window.input_login.text()
+    
         is_valid_master_key = self.controller.has_master_key(master_key)
+        is_valid_login = self.controller.has_login(user_login)
         
-        if is_valid_master_key:
-            self.ui_window.feedback_label.setText('')
+        if is_valid_master_key and is_valid_login:
+            self.ui_window.label_feedback_master_key.setText('')
+            self.ui_window.label_feedback_login.setText('')
             self.master_key = master_key
+            self.user_login = user_login
             self.login_window.close()
             self.open_main_window()
         else:
-            # Фидбек пользователю что пароль неправильный
-            self.ui_window.feedback_label.setText('Данный мастер ключ не найден. Повторите попытку')
-            self.ui_window.input_master_key.setText('')
+            if not is_valid_master_key:
+                # Фидбек пользователю что пароль неправильный
+                self.ui_window.label_feedback_master_key.setText('Данный мастер ключ не найден. Повторите попытку')
+                self.ui_window.input_master_key.setText('')
+            if not is_valid_login:
+                self.ui_window.label_feedback_login.setText('Данный логин не найден. Повторите попытку')
+                self.ui_window.input_login.setText('')
+                
+        # try:
+            # функция входа?
+        # except ошибкаНеНайденЛогин as e:
+        # except ошибкаНеверныйМастер as e:
+        # или вообще не обрабатывать отдельно, просто исключение общая ошибка входа 
+               
 
     def create_new_storage(self):
         new_master_key = self.ui_window.input_new_master_key.text()
+        new_login = self.ui_window.input_new_login.text()
         
         try:
-            self.controller.create_new_account(new_master_key)
+            self.controller.create_new_account(new_master_key, new_login)
             self.master_key = new_master_key
+            self.user_login = new_login
             self.create_new_storage_window.close()
             self.open_main_window()
         except Exception as e:
             # Фидбек пользователю что пароль неправильный
-            self.ui_window.feedback_label.setText(str(e))
-            
+            self.ui_window.label_feedback_master_key.setText(str(e))
+        # except ошибкаЛогинУжеСущесвует as e:
+           # self.ui_window.label_feedback_login.setText(str(e))
+        #  либо просто одна общая ошибка регистрации
     def add_new_entry(self):
         service_name = self.ui_window.input_service_name.text()
         login = self.ui_window.input_login.text()

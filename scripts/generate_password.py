@@ -1,6 +1,7 @@
 import secrets
 
-from load_json import load_json
+from scripts.custom_errors import NotEnoughUniqSymbols, SmallPasswordLength
+from scripts.load_json import load_json
 
 default_password_config = load_json('scripts/default_password_config.json')
 symbols = load_json('scripts/symbols.json')
@@ -15,21 +16,16 @@ class PasswordGenerator():
         self.config = {**self.config, **new_config}
         
     def generate(self):
-        length, *rest_settings, custom_symbols = self.config.values()
-        uniq_custom_symbols = ''.join(set(custom_symbols))
         (
-            use_lowercase, use_uppercase, use_digits, use_special_symbols
-        ) = rest_settings
-        
-        # if length < min_password_length:
-        #     raise Exception('Слишком короткий пароль.')
-    
-        # if (not any(rest_settings)
-        #         and len(uniq_custom_symbols) < min_uniq_symbols_count):
-        #     raise Exception('Недостаточно символов для генерации')
-        
-        chars = uniq_custom_symbols
-        
+            min_password_length, min_uniq_symbols_count, length, use_lowercase,
+            use_uppercase, use_digits, use_special_symbols, custom_symbols,
+        ) = self.config.values()
+
+        if length < min_password_length:
+            raise SmallPasswordLength(min_password_length)
+
+        chars = ''.join(set(custom_symbols))
+
         if use_lowercase:
             chars += self.symbols['lowercase_letters']
     
@@ -41,6 +37,8 @@ class PasswordGenerator():
             
         if use_special_symbols:
             chars += self.symbols['special_symbols']
-        print(chars)
-        
+            
+        if len(chars) < min_uniq_symbols_count:
+            raise NotEnoughUniqSymbols(min_uniq_symbols_count)
+
         return ''.join(secrets.choice(chars) for _ in range(length))

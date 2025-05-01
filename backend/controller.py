@@ -3,7 +3,7 @@ from backend.custom_errors import (
     IncorrectMasterKey,
     NonexistingLogin,
 )
-from scripts.encryption import encrypt, decrypt
+from scripts.encryption import decrypt, encrypt
 
 
 class Controller():

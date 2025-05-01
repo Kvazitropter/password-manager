@@ -9,7 +9,7 @@ from pm_login import Ui_dialog_login
 from pm_main_window import Ui_main_window
 from pm_start import Ui_dialog_start
 from PyQt6 import QtWidgets
-from PyQt6.QtGui import QCursor
+from PyQt6.QtGui import QCursor, QIcon
 from PyQt6.QtCore import QPoint, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
@@ -142,14 +142,20 @@ class PasswordManager(QMainWindow):
     def view_entries(self):
         # self.ui.table_entries.setRowCount(0)      
         # entries = controller.fetch_entries(self.master_key)
-        for row_num, (site_name, site_login, password) in enumerate(entries):
+        for row_num, (site_name, site_login, password) in enumerate(entries):  # passwd, salt
             self.ui.table_entries.insertRow(row_num)
-            self.ui.table_entries.setItem(row_num, 0, QtWidgets.QTableWidgetItem(site_name))
-            self.ui.table_entries.setItem(row_num, 1, QtWidgets.QTableWidgetItem(site_login))
+            self.ui.table_entries.setItem(
+                row_num, 0, QtWidgets.QTableWidgetItem(site_name)
+                )
+            self.ui.table_entries.setItem(
+                row_num, 1, QtWidgets.QTableWidgetItem(site_login)
+                )
 
             show_paswd = QtWidgets.QPushButton('Показать')
             show_paswd.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-            show_paswd.clicked.connect(lambda: print('показываем пароль'))
+            show_paswd.clicked.connect(
+                lambda _, passwd=password: self.show_password(passwd)
+                )  # , salt
             self.ui.table_entries.setCellWidget(row_num, 2, show_paswd)
 
             delete_entry_button = QtWidgets.QPushButton('Удалить')
@@ -157,10 +163,32 @@ class PasswordManager(QMainWindow):
             delete_entry_button.clicked.connect(self.delete_entry)
             self.ui.table_entries.setCellWidget(row_num, 3, delete_entry_button)
 
-    def show_password(self):
-        # controller.show_passwd(?self.master_key?, passwd, salt)
-        pass
-    
+    def show_password(self, password):  # salt
+        # controller.get_decrypted(self.master_key, passwd, salt)
+        passwd_window = QtWidgets.QDialog()
+        passwd_line = QtWidgets.QLineEdit()
+        passwd_line.setText(password)
+        passwd_line.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+        passwd_line.setReadOnly(True)
+        layout = QtWidgets.QHBoxLayout(passwd_window)
+        copy = QtWidgets.QToolButton()
+        copy.setIcon(QIcon('frontend/images/copy.png'))
+        copy.clicked.connect(
+            lambda: QApplication.clipboard().setText(passwd_line.text())
+            )
+        show = QtWidgets.QToolButton()
+        show.setIcon(QIcon('frontend/images/show.png'))
+        show.clicked.connect(lambda: passwd_line.setEchoMode(
+                                QtWidgets.QLineEdit.EchoMode.Normal if 
+                                passwd_line.echoMode() ==
+                                QtWidgets.QLineEdit.EchoMode.Password 
+                                else QtWidgets.QLineEdit.EchoMode.Password
+                            ))
+        layout.addWidget(passwd_line)
+        layout.addWidget(show)
+        layout.addWidget(copy)
+        passwd_window.exec()
+ 
     def delete_entry(self):
         button = self.sender()
         if button:

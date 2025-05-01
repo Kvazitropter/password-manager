@@ -1,17 +1,17 @@
-DROP TABLE IF EXISTS account_details;
-DROP TABLE IF EXISTS master_key;
+DROP TABLE IF EXISTS user_account;
+DROP TABLE IF EXISTS account_entry;
 
-CREATE TABLE master_key(
+CREATE TABLE user_account (
 	id SERIAL PRIMARY KEY,
-	login TEXT,
+	login TEXT UNIQUE,
 	encrypted_control_string BYTEA,
 	salt BYTEA
 );
 
-CREATE TABLE account_details(
+CREATE TABLE account_entry(
 	id SERIAL PRIMARY KEY,
-	master_key_id INTEGER REFERENCES master_key(id),
-	site_name TEXT,
+	user_login TEXT REFERENCES user_account(login),
+	service_name TEXT,
 	login TEXT,
 	encrypted_password BYTEA,
 	salt BYTEA

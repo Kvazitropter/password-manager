@@ -2,4 +2,9 @@
   <qresource prefix="key">
     <file>images/key.png</file>
   </qresource>
+  <qresource prefix="icons">
+    <file>images/content_copy.png</file>
+    <file>images/eye_closed.png</file>
+    <file>images/eye_open.png</file>
+  </qresource>
 </RCC>

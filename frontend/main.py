@@ -53,8 +53,10 @@ class PasswordManager(QMainWindow):
         self.view_entries()
 
         point = QPoint()
-        point.setX(QApplication.primaryScreen().geometry().center().x() - self.width() // 2)
-        point.setY(QApplication.primaryScreen().geometry().center().y() - self.height() // 2)
+        point.setX(QApplication.primaryScreen().geometry().center()
+                   .x() - self.width() // 2)
+        point.setY(QApplication.primaryScreen().geometry().center()
+                   .y() - self.height() // 2)
         self.move(point)
         
         self.ui.btn_add_new_entry.clicked.connect(self.open_add_new_entry_window)
@@ -65,9 +67,18 @@ class PasswordManager(QMainWindow):
         self.ui_window.setupUi(self.add_new_entry_window)
         self.add_new_entry_window.setWindowModality(Qt.WindowModality.ApplicationModal)
         self.add_new_entry_window.show()
-
+        self.ui_window.input_password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.ui_window.btn_generate_password.clicked.connect(self.generate_and_insert_password)
         self.ui_window.btn_submit_entry.clicked.connect(self.add_new_entry)
+        self.ui_window.btn_show.clicked.connect(
+                            lambda: self.ui_window.input_password.setEchoMode(
+                                QtWidgets.QLineEdit.EchoMode.Normal if 
+                                self.ui_window.input_password.echoMode() ==
+                                QtWidgets.QLineEdit.EchoMode.Password 
+                                else QtWidgets.QLineEdit.EchoMode.Password
+                            ))
+        self.ui_window.btn_copy.clicked.connect(lambda: QApplication.clipboard()
+                                                .setText(self.ui_window.input_password.text()))
 
     def login(self):
         master_key = self.ui_window.input_master_key.text()
@@ -140,22 +151,20 @@ class PasswordManager(QMainWindow):
         self.ui_window.input_password.setText(generated_password)        
 
     def view_entries(self):
-        # self.ui.table_entries.setRowCount(0)      
-        # entries = controller.fetch_entries(self.master_key)
-        for row_num, (site_name, site_login, password) in enumerate(entries):  # passwd, salt
+        self.ui.table_entries.setRowCount(0)  
+        entries = controller.get_entries(self.user_login)
+        for row_num, (id, service_name, login) in enumerate(entries):
             self.ui.table_entries.insertRow(row_num)
             self.ui.table_entries.setItem(
-                row_num, 0, QtWidgets.QTableWidgetItem(site_name)
-                )
+                row_num, 0, QtWidgets.QTableWidgetItem(service_name))
             self.ui.table_entries.setItem(
-                row_num, 1, QtWidgets.QTableWidgetItem(site_login)
-                )
+                row_num, 1, QtWidgets.QTableWidgetItem(login))
 
             show_paswd = QtWidgets.QPushButton('Показать')
             show_paswd.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
             show_paswd.clicked.connect(
-                lambda _, passwd=password: self.show_password(passwd)
-                )  # , salt
+                lambda _, service_name=service_name, login=login, id=id: 
+                    self.show_password(service_name, login, id))
             self.ui.table_entries.setCellWidget(row_num, 2, show_paswd)
 
             delete_entry_button = QtWidgets.QPushButton('Удалить')
@@ -163,38 +172,19 @@ class PasswordManager(QMainWindow):
             delete_entry_button.clicked.connect(self.delete_entry)
             self.ui.table_entries.setCellWidget(row_num, 3, delete_entry_button)
 
-    def show_password(self, password):  # salt
-        # controller.get_decrypted(self.master_key, passwd, salt)
-        passwd_window = QtWidgets.QDialog()
-        passwd_line = QtWidgets.QLineEdit()
-        passwd_line.setText(password)
-        passwd_line.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
-        passwd_line.setReadOnly(True)
-        layout = QtWidgets.QHBoxLayout(passwd_window)
-        copy = QtWidgets.QToolButton()
-        copy.setIcon(QIcon('frontend/images/copy.png'))
-        copy.clicked.connect(
-            lambda: QApplication.clipboard().setText(passwd_line.text())
-            )
-        show = QtWidgets.QToolButton()
-        show.setIcon(QIcon('frontend/images/show.png'))
-        show.clicked.connect(lambda: passwd_line.setEchoMode(
-                                QtWidgets.QLineEdit.EchoMode.Normal if 
-                                passwd_line.echoMode() ==
-                                QtWidgets.QLineEdit.EchoMode.Password 
-                                else QtWidgets.QLineEdit.EchoMode.Password
-                            ))
-        layout.addWidget(passwd_line)
-        layout.addWidget(show)
-        layout.addWidget(copy)
-        passwd_window.exec()
- 
-    def delete_entry(self):
-        button = self.sender()
-        if button:
-            row = self.ui.table_entries.indexAt(button.pos()).row()
-            self.ui.table_entries.removeRow(row)
-            # так же удаляем из бд
+    def show_password(self, service_name, login, id):
+        password = self.controller.get_password(self.master_key, id)
+        self.open_add_new_entry_window()
+        self.ui_window.input_service_name.setText(service_name)
+        self.ui_window.input_service_name.setReadOnly(True)
+        self.ui_window.input_login.setText(login)
+        self.ui_window.input_login.setReadOnly(True)
+        self.ui_window.input_password.setText(password)
+        self.ui_window.input_password.setReadOnly(True)
+    
+    def delete_entry(self, id):
+        self.controller.delete_entry(id)
+        self.view_entries()
 
 
 if __name__ == '__main__':

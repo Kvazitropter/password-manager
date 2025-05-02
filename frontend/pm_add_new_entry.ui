@@ -62,7 +62,7 @@ background-color: rgba(205, 205, 205, 0.1);
 }</string>
     </property>
     <property name="text">
-     <string>Создать</string>
+     <string>Подтвердить</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="input_service_name">
@@ -173,6 +173,54 @@ border: none;
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_show">
+    <property name="geometry">
+     <rect>
+      <x>309</x>
+      <y>124</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/eye_open.png</normaloff>images/eye_open.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_copy">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>123</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/content_copy.png</normaloff>images/content_copy.png</iconset>
     </property>
    </widget>
   </widget>

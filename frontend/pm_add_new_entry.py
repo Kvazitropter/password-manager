@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_add_new_entry.ui'
+# Form implementation generated from reading ui file 'frontend/pm_add_new_entry.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -90,6 +90,26 @@ class Ui_dialog_add_new_entry(object):
 "}")
         self.feedback_label.setText("")
         self.feedback_label.setObjectName("feedback_label")
+        self.btn_show = QtWidgets.QPushButton(parent=self.widget_container)
+        self.btn_show.setGeometry(QtCore.QRect(309, 124, 25, 25))
+        self.btn_show.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_show.setStyleSheet("background-color: transparent;\n"
+"border: none;")
+        self.btn_show.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("frontend/images/eye_open.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btn_show.setIcon(icon)
+        self.btn_show.setObjectName("btn_show")
+        self.btn_copy = QtWidgets.QPushButton(parent=self.widget_container)
+        self.btn_copy.setGeometry(QtCore.QRect(340, 123, 25, 25))
+        self.btn_copy.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_copy.setStyleSheet("background-color: transparent;\n"
+"border: none;")
+        self.btn_copy.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("frontend/images/content_copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btn_copy.setIcon(icon1)
+        self.btn_copy.setObjectName("btn_copy")
         self.key_image = QtWidgets.QLabel(parent=dialog_add_new_entry)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"
@@ -104,19 +124,9 @@ class Ui_dialog_add_new_entry(object):
     def retranslateUi(self, dialog_add_new_entry):
         _translate = QtCore.QCoreApplication.translate
         dialog_add_new_entry.setWindowTitle(_translate("dialog_add_new_entry", "Password Manager"))
-        self.btn_submit_entry.setText(_translate("dialog_add_new_entry", "Создать"))
+        self.btn_submit_entry.setText(_translate("dialog_add_new_entry", "Подтвердить"))
         self.input_service_name.setPlaceholderText(_translate("dialog_add_new_entry", "Введите название сайта..."))
         self.input_login.setPlaceholderText(_translate("dialog_add_new_entry", "Введите логин..."))
         self.input_password.setPlaceholderText(_translate("dialog_add_new_entry", "Введите пароль..."))
         self.btn_generate_password.setText(_translate("dialog_add_new_entry", "Сгенерировать пароль"))
         self.key_image.setText(_translate("dialog_add_new_entry", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_add_new_entry = QtWidgets.QDialog()
-    ui = Ui_dialog_add_new_entry()
-    ui.setupUi(dialog_add_new_entry)
-    dialog_add_new_entry.show()
-    sys.exit(app.exec())

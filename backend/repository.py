@@ -23,7 +23,7 @@ class Repository:
 
         cur.execute(
             'SELECT EXISTS(SELECT 1 FROM account WHERE login = (%s))',
-            (login)
+            (login,)
         )
         result = cur.fetchone()[0]
 
@@ -35,9 +35,9 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            '''SELECT (salt, encrypted_control_string) FROM account 
+            '''SELECT encrypted_control_string, salt FROM account 
 WHERE login = (%s)''',
-            (login)
+            (login,)
         )
         result = cur.fetchone()
 
@@ -62,8 +62,8 @@ VALUES (%s, %s, %s)''',
         cur = con.cursor()
 
         cur.execute(
-            'SELECT (id, service_name, login) FROM entry WHERE user_login = %s',
-            (user_login)
+            'SELECT id, service_name, login FROM entry WHERE user_login = %s',
+            (user_login,)
         )
         result = cur.fetchall()
 
@@ -75,8 +75,8 @@ VALUES (%s, %s, %s)''',
         cur = con.cursor()
         
         cur.execute(
-            'SELECT (encrypted_password, salt) FROM entry WHERE id = %s',
-            (id)
+            'SELECT encrypted_password, salt FROM entry WHERE id = %s',
+            (id,)
         )
         result = cur.fetchone()
         
@@ -105,7 +105,7 @@ WHERE (user_login, service_name, login) = (%s, %s, %s))''',
 
         cur.execute(
             '''INSERT INTO entry (user_login, service_name, login, 
-encrypted_password, salt) VALUES (%s, %s, %s, %s)''',
+encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)''',
             (user_login, service_name, login, encrypted_password, salt)
         )
         con.commit()
@@ -131,7 +131,7 @@ encrypted_password, salt) VALUES (%s, %s, %s, %s)''',
         con = self.__get_connection()
         cur = con.cursor()
 
-        cur.execute('DELETE FROM entry WHERE id = %s', (entry_id))
+        cur.execute('DELETE FROM entry WHERE id = %s', (entry_id,))
         con.commit()
 
         self.__close_connection(con, cur)

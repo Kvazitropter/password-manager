@@ -15,27 +15,27 @@ class Controller():
         return self.repository.has_account_query(login)
 
     def login(self, login, entered_master_key):
-        is_correct_login = self.is_existing_account(login)
+        is_existing_login = self.is_existing_account(login)
 
-        if not is_correct_login:
-            raise NonExistingAccount()
+        if not is_existing_login:
+            raise NonExistingAccount
 
         memory_mk_and_salt = self.repository.get_memory_mk_and_salt_query(login)
-        salt, encrypted_master_key = (bytes(m) for m in memory_mk_and_salt)
-        control_string = decrypt(entered_master_key, encrypted_master_key, salt)
-        print(f'!{control_string}!')
+        encrypted_control_string, salt = (bytes(m) for m in memory_mk_and_salt)
 
-        if control_string != 'control':
-            raise IncorrectMasterKey()
+        try:
+            decrypt(entered_master_key, encrypted_control_string, salt)
+        except Exception:
+            raise IncorrectMasterKey
 
     def create_new_account(self, login, master_key):
         is_existing_account = self.is_existing_account(login)
 
         if is_existing_account:
-            raise ExistingAccount()
+            raise ExistingAccount
 
-        encrypted_master_key, salt = encrypt(master_key)
-        self.repository.add_new_account_query(login, encrypted_master_key, salt)
+        encrypted_control_string, salt = encrypt(master_key)
+        self.repository.add_new_account_query(login, encrypted_control_string, salt)
         
     def get_entries(self, login):
         return self.repository.get_all_entries_query(login)
@@ -57,7 +57,7 @@ class Controller():
         )
         
         if is_existing_entry:
-            raise ExistingEntry()
+            raise ExistingEntry
 
         encrypted_password, salt = encrypt(master_key, password)
         self.repository.add_new_entry_query(

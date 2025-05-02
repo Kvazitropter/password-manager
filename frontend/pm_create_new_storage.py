@@ -85,7 +85,7 @@ class Ui_dialog_create_new_storage(object):
 "}")
         self.label_feedback_login.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.label_feedback_login.setText("")
-        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_login.setObjectName("label_feedback_login")
         self.key_image = QtWidgets.QLabel(parent=dialog_create_new_storage)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))

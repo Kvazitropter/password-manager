@@ -1,5 +1,5 @@
 class IncorrectMasterKey(Exception):
-    def __init__(self, message):
+    def __init__(self, message=None):
         self.message = message or 'Введённый мастер пароль неверный.'
     
     def __str__(self):
@@ -7,7 +7,7 @@ class IncorrectMasterKey(Exception):
 
 
 class NonExistingAccount(Exception):
-    def __init__(self, message):
+    def __init__(self, message=None):
         self.message = message or 'Данный логин не найден.'
     
     def __str__(self):
@@ -15,7 +15,7 @@ class NonExistingAccount(Exception):
     
 
 class ExistingAccount(Exception):
-    def __init__(self, message):
+    def __init__(self, message=None):
         self.message = message or 'Аккаунт с таким логином уже существует.'
     
     def __str__(self):
@@ -23,7 +23,7 @@ class ExistingAccount(Exception):
 
 
 class ExistingEntry(Exception):
-    def __init__(self, message):
+    def __init__(self, message=None):
         self.message = (message
             or 'Запись с таким именем сервиса и логином уже существует.')
     

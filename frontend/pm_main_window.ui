@@ -147,7 +147,7 @@ background-color: rgba(50, 77, 100, 50);
      </column>
      <column>
       <property name="text">
-       <string> </string>
+       <string/>
       </property>
      </column>
     </widget>
@@ -169,8 +169,39 @@ background-color: rgba(50, 77, 100, 50);
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/key/images/key.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_exit">
+    <property name="geometry">
+     <rect>
+      <x>562</x>
+      <y>26</y>
+      <width>34</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/exit.png</normaloff>images/exit.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
    <zorder>key_image</zorder>
    <zorder>widget_container</zorder>
+   <zorder>btn_exit</zorder>
   </widget>
  </widget>
  <resources>

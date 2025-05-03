@@ -3,18 +3,18 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from PyQt6 import QtWidgets
+from PyQt6.QtGui import QCursor
+from PyQt6.QtCore import QPoint, Qt
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
+
 import res_rc
+
 from pm_add_new_entry import Ui_dialog_add_new_entry
 from pm_create_new_storage import Ui_dialog_create_new_storage
 from pm_login import Ui_dialog_login
 from pm_main_window import Ui_main_window
 from pm_start import Ui_dialog_start
-from PyQt6 import QtWidgets
-
-
-from PyQt6.QtGui import QCursor, QIcon
-from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 
 from backend.controller import Controller
 from backend.custom_errors import (
@@ -71,15 +71,18 @@ class PasswordManager(QMainWindow):
     def open_main_window(self):
         self.setup_main_window(Ui_main_window)
         self.view_entries()
+        self.ui.btn_exit.clicked.connect(self.logout)
         self.ui.btn_add_new_entry.clicked.connect(self.open_add_new_entry_window)
-    
+            
     def open_add_new_entry_window(self):
         self.add_new_entry_window = self.setup_dialog_window(
             Ui_dialog_add_new_entry
         )
         self.add_new_entry_window.show()
 
-        self.ui_window.btn_generate_password.clicked.connect(self.generate_and_insert_password)
+        self.ui_window.btn_generate_password.clicked.connect(
+            self.generate_and_insert_password
+            )
         self.ui_window.btn_submit_entry.clicked.connect(self.add_new_entry)
 
         self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
@@ -97,14 +100,17 @@ class PasswordManager(QMainWindow):
         self.ui_window.input_password.setText(password)
         self.edit_entry_window.show()
 
-        self.ui_window.btn_generate_password.clicked.connect(self.generate_and_insert_password)
-        self.ui_window.btn_submit_entry.clicked.connect(lambda: self.edit_entry(id))
+        self.ui_window.btn_generate_password.clicked.connect(
+            self.generate_and_insert_password)
+        self.ui_window.btn_submit_entry.clicked.connect(lambda: 
+            self.edit_entry(id))
 
         self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
         self.ui_window.btn_copy.clicked.connect(self.copy_password)
 
     def toggle_password_visibility(self, is_checked):
-        mode = QLineEdit.EchoMode.Normal if is_checked else QLineEdit.EchoMode.Password
+        mode = (QLineEdit.EchoMode.Normal if is_checked 
+                else QLineEdit.EchoMode.Password)
         self.ui_window.input_password.setEchoMode(mode)
             
     def copy_password(self):
@@ -129,6 +135,11 @@ class PasswordManager(QMainWindow):
         except Exception as e:
             self.ui_window.label_feedback_master_key.setText(str(e))
             self.ui_window.label_feedback_master_key.setToolTip(str(e))
+
+    def logout(self):
+        self.new_window = PasswordManager(controller, generator)
+        self.new_window.show()
+        self.close()
 
     def create_new_storage(self):
         new_login = self.ui_window.input_new_login.text()

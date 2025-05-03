@@ -60,7 +60,7 @@ class Ui_dialog_create_new_storage(object):
 "border: none;\n"
 "}")
         self.label_feedback_master_key.setText("")
-        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_master_key.setObjectName("label_feedback_master_key")
         self.input_new_login = QtWidgets.QLineEdit(parent=self.widget_container)
         self.input_new_login.setGeometry(QtCore.QRect(35, 30, 330, 40))
@@ -86,7 +86,7 @@ class Ui_dialog_create_new_storage(object):
 "border: none;\n"
 "}")
         self.label_feedback_login.setText("")
-        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_login.setObjectName("label_feedback_login")
         self.key_image = QtWidgets.QLabel(parent=dialog_create_new_storage)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))

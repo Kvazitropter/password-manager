@@ -14,11 +14,12 @@ from PyQt6 import QtWidgets
 
 from PyQt6.QtGui import QCursor, QIcon
 from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 
 from backend.controller import Controller
 from backend.custom_errors import (
     ExistingAccount,
+    ExistingEntry,
     NonExistingAccount,
 )
 from backend.repository import Repository
@@ -28,65 +29,87 @@ from scripts.generate_password import PasswordGenerator
 class PasswordManager(QMainWindow):
     def __init__(self, controller, generator):
         super(PasswordManager, self).__init__()
-        self.ui = Ui_dialog_start()
-        self.ui.setupUi(self)
-        
+        self.setup_main_window(Ui_dialog_start)
+
         self.controller = controller
         self.generator = generator
         
         self.ui.btn_login.clicked.connect(self.open_login_window)
         self.ui.btn_create_new_storage.clicked.connect(self.open_create_new_storage_window)
-
-    def open_login_window(self):
-        self.login_window = QtWidgets.QDialog()
-        self.ui_window = Ui_dialog_login()
-        self.ui_window.setupUi(self.login_window)
-        self.login_window.setWindowModality(Qt.WindowModality.ApplicationModal)
-        self.login_window.show()
-
-        self.ui_window.btn_submit_master_key.clicked.connect(self.login)
-
-    def open_create_new_storage_window(self):
-        self.create_new_storage_window = QtWidgets.QDialog()
-        self.ui_window = Ui_dialog_create_new_storage()
-        self.ui_window.setupUi(self.create_new_storage_window)
-        self.create_new_storage_window.setWindowModality(Qt.WindowModality.ApplicationModal)
-        self.create_new_storage_window.show()
-
-        self.ui_window.btn_submit_new_master_key.clicked.connect(self.create_new_storage)
-
-    def open_main_window(self):
-        self.ui = Ui_main_window()
+        
+    def setup_main_window(self, ui):
+        self.ui = ui()
         self.ui.setupUi(self)
-        self.view_entries()
-
+        self.center_window(self)
+        
         point = QPoint()
         point.setX(QApplication.primaryScreen().geometry().center()
                    .x() - self.width() // 2)
         point.setY(QApplication.primaryScreen().geometry().center()
                    .y() - self.height() // 2)
         self.move(point)
-        
+    
+    def setup_dialog_window(self, ui):
+        window = QtWidgets.QDialog()
+        self.ui_window = ui()
+        self.ui_window.setupUi(window)
+        window.setWindowModality(Qt.WindowModality.ApplicationModal)
+        return window
+
+    def open_login_window(self):
+        self.login_window = self.setup_dialog_window(Ui_dialog_login)
+        self.login_window.show()
+        self.ui_window.btn_submit_master_key.clicked.connect(self.login)
+
+    def open_create_new_storage_window(self):
+        self.create_new_storage_window = self.setup_dialog_window(
+            Ui_dialog_create_new_storage
+        )
+        self.create_new_storage_window.show()
+        self.ui_window.btn_submit_new_master_key.clicked.connect(self.create_new_storage)
+
+    def open_main_window(self):
+        self.setup_main_window(Ui_main_window)
+        self.view_entries()
         self.ui.btn_add_new_entry.clicked.connect(self.open_add_new_entry_window)
     
     def open_add_new_entry_window(self):
-        self.add_new_entry_window = QtWidgets.QDialog()
-        self.ui_window = Ui_dialog_add_new_entry()
-        self.ui_window.setupUi(self.add_new_entry_window)
-        self.add_new_entry_window.setWindowModality(Qt.WindowModality.ApplicationModal)
+        self.add_new_entry_window = self.setup_dialog_window(
+            Ui_dialog_add_new_entry
+        )
         self.add_new_entry_window.show()
-        self.ui_window.input_password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+
         self.ui_window.btn_generate_password.clicked.connect(self.generate_and_insert_password)
         self.ui_window.btn_submit_entry.clicked.connect(self.add_new_entry)
-        self.ui_window.btn_show.clicked.connect(
-                            lambda: self.ui_window.input_password.setEchoMode(
-                                QtWidgets.QLineEdit.EchoMode.Normal if 
-                                self.ui_window.input_password.echoMode() ==
-                                QtWidgets.QLineEdit.EchoMode.Password 
-                                else QtWidgets.QLineEdit.EchoMode.Password
-                            ))
-        self.ui_window.btn_copy.clicked.connect(lambda: QApplication.clipboard()
-                                                .setText(self.ui_window.input_password.text()))
+
+        self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
+        self.ui_window.btn_copy.clicked.connect(self.copy_password)
+
+    def open_edit_entry_window(self, service_name, login, id):
+        self.edit_entry_window = self.setup_dialog_window(
+            Ui_dialog_add_new_entry
+        )
+        password = self.controller.get_entry_password(id, self.master_key)
+        self.ui_window.input_service_name.setText(service_name)
+        self.ui_window.input_service_name.setReadOnly(True)
+        self.ui_window.input_login.setText(login)
+        self.ui_window.input_login.setReadOnly(True)
+        self.ui_window.input_password.setText(password)
+        self.edit_entry_window.show()
+
+        self.ui_window.btn_generate_password.clicked.connect(self.generate_and_insert_password)
+        self.ui_window.btn_submit_entry.clicked.connect(lambda: self.edit_entry(id))
+
+        self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
+        self.ui_window.btn_copy.clicked.connect(self.copy_password)
+
+    def toggle_password_visibility(self, is_checked):
+        mode = QLineEdit.EchoMode.Normal if is_checked else QLineEdit.EchoMode.Password
+        self.ui_window.input_password.setEchoMode(mode)
+            
+    def copy_password(self):
+        clipboard = QApplication.clipboard()
+        clipboard.setText(self.ui_window.input_password.text())
 
     def login(self):
         user_login = self.ui_window.input_login.text()
@@ -129,20 +152,20 @@ class PasswordManager(QMainWindow):
         login = self.ui_window.input_login.text()
         password = self.ui_window.input_password.text()
         
-        # try:
-        controller.add_new_entry(
-            self.user_login, self.master_key, service_name, login, password
-        )
-        self.view_entries()
-        self.add_new_entry_window.close()
-        # except ExistingEntry as e:
-        #     self.ui_window.label_feedback_service_name.setText(str(e))
-        #     self.ui_window.label_feedback_service_name.setToolTip(str(e))
-        #     self.ui_window.label_feedback_login.setText(str(e))
-        #     self.ui_window.label_feedback_login.setToolTip(str(e))
-        # except Exception as e:
-        #     self.ui_window.label_feedback_password.setText(str(e))
-        #     self.ui_window.label_feedback_password.setToolTip(str(e))
+        try:
+            controller.add_new_entry(
+                self.user_login, self.master_key, service_name, login, password
+            )
+            self.view_entries()
+            self.add_new_entry_window.close()
+        except ExistingEntry as e:
+            self.ui_window.label_feedback_service_name.setText(str(e))
+            self.ui_window.label_feedback_service_name.setToolTip(str(e))
+            self.ui_window.label_feedback_login.setText(str(e))
+            self.ui_window.label_feedback_login.setToolTip(str(e))
+        except Exception as e:
+            self.ui_window.label_feedback_password.setText(str(e))
+            self.ui_window.label_feedback_password.setToolTip(str(e))
 
     def generate_and_insert_password(self):
         generated_password = self.generator.generate()
@@ -158,27 +181,28 @@ class PasswordManager(QMainWindow):
             self.ui.table_entries.setItem(
                 row_num, 1, QtWidgets.QTableWidgetItem(login))
 
-            show_paswd = QtWidgets.QPushButton('Показать')
-            show_paswd.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-            show_paswd.clicked.connect(
-                lambda _, service_name=service_name, login=login, id=id: 
-                    self.show_password(service_name, login, id))
-            self.ui.table_entries.setCellWidget(row_num, 2, show_paswd)
+            edit_entry = QtWidgets.QPushButton('Показать')
+            edit_entry.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+            edit_entry.clicked.connect(
+                lambda: self.open_edit_entry_window(service_name, login, id)
+            )
+            self.ui.table_entries.setCellWidget(row_num, 2, edit_entry)
 
             delete_entry_button = QtWidgets.QPushButton('Удалить')
             delete_entry_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
             delete_entry_button.clicked.connect(lambda: self.delete_entry(id))
             self.ui.table_entries.setCellWidget(row_num, 3, delete_entry_button)
 
-    def show_password(self, service_name, login, id):
-        password = self.controller.get_password(self.master_key, id)
-        self.open_add_new_entry_window()
-        self.ui_window.input_service_name.setText(service_name)
-        self.ui_window.input_service_name.setReadOnly(True)
-        self.ui_window.input_login.setText(login)
-        self.ui_window.input_login.setReadOnly(True)
-        self.ui_window.input_password.setText(password)
-        self.ui_window.input_password.setReadOnly(True)
+    def edit_entry(self, id):
+        new_password = self.ui_window.input_password.text()
+
+        try:
+            controller.update_entry(self.master_key, id, new_password)
+            self.view_entries()
+            self.edit_entry_window.close()
+        except Exception as e:
+            self.ui_window.label_feedback.setText(str(e))
+            self.ui_window.label_feedback.setToolTip(str(e))
     
     def delete_entry(self, id):
         self.controller.delete_entry(id)

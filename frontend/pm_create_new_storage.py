@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'frontend/pm_create_new_storage.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_create_new_storage.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -52,6 +52,7 @@ class Ui_dialog_create_new_storage(object):
         self.input_new_master_key.setObjectName("input_new_master_key")
         self.label_feedback_master_key = QtWidgets.QLabel(parent=self.widget_container)
         self.label_feedback_master_key.setGeometry(QtCore.QRect(35, 135, 330, 16))
+        self.label_feedback_master_key.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
         self.label_feedback_master_key.setStyleSheet("QLabel {\n"
 "color: #f54021;\n"
 "font-size: 12px;\n"
@@ -59,6 +60,7 @@ class Ui_dialog_create_new_storage(object):
 "border: none;\n"
 "}")
         self.label_feedback_master_key.setText("")
+        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_master_key.setObjectName("label_feedback_master_key")
         self.input_new_login = QtWidgets.QLineEdit(parent=self.widget_container)
         self.input_new_login.setGeometry(QtCore.QRect(35, 30, 330, 40))
@@ -83,9 +85,8 @@ class Ui_dialog_create_new_storage(object):
 "background-color: #CDCDCD;\n"
 "border: none;\n"
 "}")
-        self.label_feedback_login.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.label_feedback_login.setText("")
-        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_login.setObjectName("label_feedback_login")
         self.key_image = QtWidgets.QLabel(parent=dialog_create_new_storage)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
@@ -105,3 +106,13 @@ class Ui_dialog_create_new_storage(object):
         self.input_new_master_key.setPlaceholderText(_translate("dialog_create_new_storage", "Придумайте мастер-пароль..."))
         self.input_new_login.setPlaceholderText(_translate("dialog_create_new_storage", "Придумайте логин..."))
         self.key_image.setText(_translate("dialog_create_new_storage", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    dialog_create_new_storage = QtWidgets.QDialog()
+    ui = Ui_dialog_create_new_storage()
+    ui.setupUi(dialog_create_new_storage)
+    dialog_create_new_storage.show()
+    sys.exit(app.exec())

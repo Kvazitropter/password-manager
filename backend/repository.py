@@ -113,15 +113,14 @@ encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)''',
         self.__close_connection(con, cur)
 
     def update_entry_query(
-        self, id, service_name, login, encrypted_password, salt
+        self, id, encrypted_password, salt
     ):
         con = self.__get_connection()
         cur = con.cursor()
         
         cur.execute(
-            '''UPDATE entry SET (service_name, login, encrypted_password, salt) 
-= (%s, %s, %s, %s) WHERE id = (%s)''',
-            (service_name, login, encrypted_password, salt, id)
+            'UPDATE entry SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
+            (encrypted_password, salt, id)
         )
         con.commit()
         

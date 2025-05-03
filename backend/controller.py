@@ -42,7 +42,7 @@ class Controller():
     
     def get_entry_password(self, id, master_key):
         memory_passwd_and_salt = self.repository.get_entry_password_query(id)
-        salt, encrypted_password = (bytes(m) for m in memory_passwd_and_salt)
+        encrypted_password, salt = (bytes(m) for m in memory_passwd_and_salt)
         password = decrypt(master_key, encrypted_password, salt)
         return password
     
@@ -64,12 +64,10 @@ class Controller():
             user_login, service_name, login, encrypted_password, salt
         )
     
-    def update_entry(
-        self, master_key, entry_id, service_name, login, password
-    ):
+    def update_entry(self, master_key, entry_id, password):  
         encrypted_password, salt = encrypt(master_key, password)
         self.repository.update_entry_query(
-            entry_id, service_name, login, encrypted_password, salt
+            entry_id, encrypted_password, salt
         )
 
     def delete_entry(self, entry_id):

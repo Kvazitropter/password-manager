@@ -92,7 +92,7 @@ class Ui_dialog_add_new_entry(object):
 "border: none;\n"
 "}")
         self.feedback_label.setText("")
-        self.feedback_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.feedback_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.feedback_label.setObjectName("feedback_label")
         self.btn_show = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_show.setGeometry(QtCore.QRect(310, 124, 25, 25))

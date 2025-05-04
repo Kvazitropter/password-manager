@@ -1,15 +1,14 @@
 import base64
+import secrets
 
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
-from scripts.generate_salt import generate_salt
-
 
 def encrypt(master_key, value_to_encrypt='control', salt=None):
     if not salt:
-        salt = generate_salt()
+        salt = secrets.token_bytes(16)
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,

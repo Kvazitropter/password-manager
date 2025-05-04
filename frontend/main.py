@@ -36,7 +36,6 @@ class PasswordManager(QMainWindow):
     def setup_main_window(self, ui):
         self.ui = ui()
         self.ui.setupUi(self)
-        # self.center_window(self)
         
         point = QPoint()
         point.setX(QApplication.primaryScreen().geometry().center()
@@ -186,8 +185,7 @@ class PasswordManager(QMainWindow):
 
     def view_entries(self):
         self.ui.table_entries.setRowCount(0)  
-        entries = [('www', 'wwwwwww', 'fdfvf')]
-        # entries = controller.get_entries(self.user_login)
+        entries = controller.get_entries(self.user_login)
         for row_num, (id, service_name, login) in enumerate(entries):
             self.ui.table_entries.insertRow(row_num)
             self.ui.table_entries.setItem(

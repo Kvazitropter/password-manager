@@ -1,13 +1,16 @@
-name: Testing
+name: Linting
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10"]
+        python-version: ["3.10", "3.11"]
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
@@ -15,6 +18,6 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      run: make setup-dev
-    - name: Testing the code
+      run: pip install uv && make setup-dev
+    - name: Run tests
       run: make test

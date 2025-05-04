@@ -29,18 +29,14 @@ from scripts.generate_password import PasswordGenerator
 class PasswordManager(QMainWindow):
     def __init__(self, controller, generator):
         super(PasswordManager, self).__init__()
-        self.setup_main_window(Ui_dialog_start)
-
         self.controller = controller
         self.generator = generator
-        
-        self.ui.btn_login.clicked.connect(self.open_login_window)
-        self.ui.btn_create_new_storage.clicked.connect(self.open_create_new_storage_window)
+        self.open_start_window()
         
     def setup_main_window(self, ui):
         self.ui = ui()
         self.ui.setupUi(self)
-        self.center_window(self)
+        # self.center_window(self)
         
         point = QPoint()
         point.setX(QApplication.primaryScreen().geometry().center()
@@ -55,6 +51,12 @@ class PasswordManager(QMainWindow):
         self.ui_window.setupUi(window)
         window.setWindowModality(Qt.WindowModality.ApplicationModal)
         return window
+    
+    def open_start_window(self):
+        self.setCentralWidget(None)
+        self.setup_main_window(Ui_dialog_start)
+        self.ui.btn_login.clicked.connect(self.open_login_window)
+        self.ui.btn_create_new_storage.clicked.connect(self.open_create_new_storage_window)
 
     def open_login_window(self):
         self.login_window = self.setup_dialog_window(Ui_dialog_login)
@@ -137,9 +139,9 @@ class PasswordManager(QMainWindow):
             self.ui_window.label_feedback_master_key.setToolTip(str(e))
 
     def logout(self):
-        self.new_window = PasswordManager(controller, generator)
-        self.new_window.show()
-        self.close()
+        self.master_key = None
+        self.user_login = None
+        self.open_start_window()
 
     def create_new_storage(self):
         new_login = self.ui_window.input_new_login.text()
@@ -184,7 +186,8 @@ class PasswordManager(QMainWindow):
 
     def view_entries(self):
         self.ui.table_entries.setRowCount(0)  
-        entries = controller.get_entries(self.user_login)
+        entries = [('www', 'wwwwwww', 'fdfvf')]
+        # entries = controller.get_entries(self.user_login)
         for row_num, (id, service_name, login) in enumerate(entries):
             self.ui.table_entries.insertRow(row_num)
             self.ui.table_entries.setItem(

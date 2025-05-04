@@ -1,20 +1,7 @@
-import json
-import os
-
 import pytest
 
 from scripts.custom_errors import NonExistingRule, NoSymbolsToGenerateFrom
 from scripts.generate_password import PasswordGenerator
-
-
-def get_full_path(filename):
-    return os.path.join(os.getcwd(), filename)
-
-
-def load_json_config(path):
-    with open(path, 'r', encoding='utf-8') as file:
-        json_string = file.read()
-        return json.loads(json_string)
 
 
 def has_intersection(str1, str2):
@@ -23,9 +10,14 @@ def has_intersection(str1, str2):
 
 @pytest.fixture
 def default_config():
-    return load_json_config(
-        get_full_path('scripts/default_password_config.json')
-    )
+    return {
+        'length': 12,
+        'use_lowercase': True,
+        'use_uppercase': True,
+        'use_digits': True,
+        'use_special_symbols': True,
+        'custom_symbols': ''
+    }
 
 
 @pytest.fixture

@@ -89,8 +89,20 @@ class Ui_main_window(object):
         self.key_image.setStyleSheet("background-color: none;\n"
 "")
         self.key_image.setObjectName("key_image")
+        self.btn_exit = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.btn_exit.setGeometry(QtCore.QRect(562, 26, 34, 30))
+        self.btn_exit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_exit.setStyleSheet("background-color: transparent;\n"
+"border: none;")
+        self.btn_exit.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("frontend/images/exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btn_exit.setIcon(icon)
+        self.btn_exit.setIconSize(QtCore.QSize(30, 30))
+        self.btn_exit.setObjectName("btn_exit")
         self.key_image.raise_()
         self.widget_container.raise_()
+        self.btn_exit.raise_()
         main_window.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(main_window)
@@ -106,6 +118,4 @@ class Ui_main_window(object):
         item.setText(_translate("main_window", "Логин"))
         item = self.table_entries.horizontalHeaderItem(2)
         item.setText(_translate("main_window", "Пароль"))
-        item = self.table_entries.horizontalHeaderItem(3)
-        item.setText(_translate("main_window", " "))
         self.key_image.setText(_translate("main_window", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))

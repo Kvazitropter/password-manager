@@ -35,8 +35,7 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            '''SELECT encrypted_control_string, salt FROM account 
-WHERE login = (%s)''',
+            'SELECT encrypted_control_string, salt FROM account WHERE login = (%s)',
             (login,)
         )
         result = cur.fetchone()
@@ -49,8 +48,7 @@ WHERE login = (%s)''',
         cur = con.cursor()
 
         cur.execute(
-            '''INSERT INTO account (login, encrypted_control_string, salt) 
-VALUES (%s, %s, %s)''',
+            'INSERT INTO account (login, encrypted_control_string, salt) VALUES (%s, %s, %s)',
             (login, encrypted_control_string, salt)
         )
         con.commit()
@@ -88,8 +86,7 @@ VALUES (%s, %s, %s)''',
         cur = con.cursor()
 
         cur.execute(
-            '''SELECT EXISTS(SELECT 1 FROM entry 
-WHERE (user_login, service_name, login) = (%s, %s, %s))''',
+            'SELECT EXISTS(SELECT 1 FROM entry WHERE (user_login, service_name, login) = (%s, %s, %s))',
             (user_login, service_name, login)
         )
         result = cur.fetchone()[0]
@@ -104,8 +101,7 @@ WHERE (user_login, service_name, login) = (%s, %s, %s))''',
         cur = con.cursor()
 
         cur.execute(
-            '''INSERT INTO entry (user_login, service_name, login, 
-encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)''',
+            'INSERT INTO entry (user_login, service_name, login, encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)',
             (user_login, service_name, login, encrypted_password, salt)
         )
         con.commit()
@@ -119,8 +115,7 @@ encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)''',
         cur = con.cursor()
         
         cur.execute(
-            '''UPDATE entry SET (encrypted_password, salt) = (%s, %s) 
-WHERE id = (%s)''',
+            'UPDATE entry SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
             (encrypted_password, salt, id)
         )
         con.commit()

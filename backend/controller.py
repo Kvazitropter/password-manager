@@ -49,7 +49,7 @@ class Controller():
         return password
     
     def is_existing_entry(self, user_login, service_name, login):
-        self.repository.has_entry_query(user_login, service_name, login)
+        return self.repository.has_entry_query(user_login, service_name, login)
 
     def add_new_entry(
         self, user_login, master_key, service_name, login, password

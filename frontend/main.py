@@ -3,18 +3,16 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from PyQt6 import QtWidgets
-from PyQt6.QtGui import QCursor
-from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
-
 import res_rc
-
 from pm_add_new_entry import Ui_dialog_add_new_entry
 from pm_create_new_storage import Ui_dialog_create_new_storage
 from pm_login import Ui_dialog_login
 from pm_main_window import Ui_main_window
 from pm_start import Ui_dialog_start
+from PyQt6 import QtWidgets
+from PyQt6.QtCore import QPoint, Qt
+from PyQt6.QtGui import QCursor
+from PyQt6.QtWidgets import QApplication, QLineEdit, QMainWindow
 
 from backend.controller import Controller
 from backend.custom_errors import (

@@ -1,58 +1,81 @@
+import json
+import re
 import secrets
 
-from scripts.load_json import load_json
-import re
+from scripts.custom_errors import NonExistingRule, NoSymbolsToGenerateFrom
 
 
 class PasswordGenerator():
-    def __init__(self, config=None, symbols=None):
-        self.config = config or load_json('scripts/default_password_config.json')
-        self.default_config = self.config
-        self.symbols = symbols or load_json('scripts/symbols.json')
-        self.setup_for_generating()
+    def __init__(self):
+        with open('scripts/default_password_config.json', 'r') as file:
+            self.default_config = json.loads(file.read())
+        self.config = self.default_config.copy()
+        self.__setup_for_generating()
 
-    def set_rule(self, rule, value):
+    def set_config_rule(self, rule, value):
+        if rule not in self.default_config:
+            raise NonExistingRule
+
         self.config[rule] = value
-        self.setup_for_generating()
+        self.__setup_for_generating()
+        
+    def get_config(self):
+        return self.config
+
+    def get_default_config(self):
+        return self.default_config
 
     def reset_default_config(self):
         self.config = self.default_config
-        self.setup_for_generating()
+        self.__setup_for_generating()
 
-    def setup_for_generating(self):
+    def __setup_for_generating(self):
         (
             _, use_lowercase, use_uppercase, use_digits,
             use_special_symbols, custom_symbols,
         ) = self.config.values()
-        chars = ''.join(set(custom_symbols))
-        regexp_groups = [f'[{chars}]+'] if chars else []
+        uniq_custom_symbols = ''.join(set(custom_symbols))
+
+        self.chars = ''
+        self.regexp_groups = []
 
         if use_lowercase:
-            chars += self.symbols['lowercase_letters']
-            regexp_groups.append('[a-z]+')
+            self.chars += 'abcdefghijklnopqrstuvwxyz'
+            self.regexp_groups.append('[a-z]+')
     
         if use_uppercase:
-            chars += self.symbols['uppercase_letters']
-            regexp_groups.append('[A-Z]+')
+            self.chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            self.regexp_groups.append('[A-Z]+')
         
         if use_digits:
-            chars += self.symbols['digits']
-            regexp_groups.append('[0-9]+')
+            self.chars += '1234567890'
+            self.regexp_groups.append('[0-9]+')
             
         if use_special_symbols:
-            chars += self.symbols['special_symbols']
-            regexp_groups.append('[!@#$%^&*?]+')
+            self.chars += '!@#$%^&*?'
+            self.regexp_groups.append('[!@#$%^&*?]+')
 
-        self.chars = chars
-        self.regexp_groups = regexp_groups
+        if uniq_custom_symbols:
+            self.chars += uniq_custom_symbols
+            self.regexp_groups.append(f'[{uniq_custom_symbols}]+')
     
-    def check_password(self, password):
-        print(self.regexp_groups, password)
-        return all(re.compile(regexp).search(password) for regexp in self.regexp_groups)
+    def __check_password(self, password):
+        return all(
+            re.compile(regexp).search(password) for regexp in self.regexp_groups
+        )
 
     def generate(self):
         length = self.config['length']
+
+        if length == 0:
+            return ''
+
+        if not self.chars:
+            raise NoSymbolsToGenerateFrom
+
         while True:
-            password = ''.join(secrets.choice(self.chars) for _ in range(length))
-            if self.check_password(password):
+            password = ''.join(
+                secrets.choice(self.chars) for _ in range(length)
+            )
+            if self.__check_password(password):
                 return password

@@ -119,7 +119,8 @@ encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)''',
         cur = con.cursor()
         
         cur.execute(
-            'UPDATE entry SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
+            '''UPDATE entry SET (encrypted_password, salt) = (%s, %s) 
+WHERE id = (%s)''',
             (encrypted_password, salt, id)
         )
         con.commit()

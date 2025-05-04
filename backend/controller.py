@@ -35,7 +35,9 @@ class Controller():
             raise ExistingAccount
 
         encrypted_control_string, salt = encrypt(master_key)
-        self.repository.add_new_account_query(login, encrypted_control_string, salt)
+        self.repository.add_new_account_query(
+            login, encrypted_control_string, salt
+        )
         
     def get_entries(self, login):
         return self.repository.get_all_entries_query(login)

@@ -1,6 +1,7 @@
 # Менеджер Паролей
 
-[![Pylint](https://github.com/Kvazitropter/password-manager/actions/workflows/pylint.yml/badge.svg)](https://github.com/Kvazitropter/password-manager/actions/workflows/pylint.yml)
+[![Linting](https://github.com/Kvazitropter/password-manager/actions/workflows/pylint.yml/badge.svg)](https://github.com/Kvazitropter/password-manager/actions/workflows/pylint.yml)
+[![Testing](https://github.com/Kvazitropter/password-manager/actions/workflows/pytests.yml/badge.svg)](https://github.com/Kvazitropter/password-manager/actions/workflows/pytests.yml)
 
 ---
 

@@ -70,7 +70,9 @@ def test_encryption_decrypt_with_wrong_mk(master_key, string_to_encrypt, salt):
         decrypt(wrong_mk, encrypted, salt)
 
 
-def test_encryption_decrypt_with_wrong_salt(master_key, string_to_encrypt, salt):
+def test_encryption_decrypt_with_wrong_salt(
+    master_key, string_to_encrypt, salt
+):
     encrypted, _ = encrypt(master_key, string_to_encrypt, salt)
     wrong_salt = os.urandom(16)
 
@@ -78,7 +80,9 @@ def test_encryption_decrypt_with_wrong_salt(master_key, string_to_encrypt, salt)
         decrypt(master_key, encrypted, wrong_salt)
 
 
-def test_encryption_decrypt_tampered_encrypted(master_key, string_to_encrypt, salt):
+def test_encryption_decrypt_tampered_encrypted(
+    master_key, string_to_encrypt, salt
+):
     encrypted, _ = encrypt(master_key, string_to_encrypt, salt)
     tampered = encrypted[:-1] + bytes([(encrypted[-1] + 1) % 256])
 

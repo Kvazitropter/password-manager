@@ -9,4 +9,4 @@ lint-fix:
 test:
 	uv run pytest -s
 run:
-	uv run .\frontend\main.py
+	uv run ./frontend/main.py

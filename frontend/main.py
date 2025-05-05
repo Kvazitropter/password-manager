@@ -66,16 +66,32 @@ class PasswordManager(QMainWindow):
     def open_login_window(self):
         self.login_window = self.setup_dialog_window(Ui_dialog_login)
         self.login_window.show()
-        self.ui_window.btn_submit_master_key.clicked.connect(self.login)
+        self.ui_window.btn_submit_master_key.clicked.connect(lambda:
+            self.check_inputs(self.login, 
+                              self.ui_window.input_login,
+                              self.ui_window.input_master_key))
 
+    def check_inputs(self, success_func, *inputs):
+        for input in inputs:  
+            if not input.text():
+                input.setStyleSheet('background-color: red')
+            else:
+                input.setStyleSheet('background-color: white')
+        if all(input.text() for input in inputs):
+            success_func()
+        
     def open_create_new_storage_window(self):
         self.create_new_storage_window = self.setup_dialog_window(
             Ui_dialog_create_new_storage
         )
         self.create_new_storage_window.show()
-        self.ui_window.btn_submit_new_master_key.clicked.connect(self.create_new_storage)
+        self.ui_window.btn_submit_new_master_key.clicked.connect(lambda:
+            self.check_inputs(self.create_new_storage,
+                              self.ui_window.input_new_master_key, 
+                              self.ui_window.input_new_login))
 
     def open_main_window(self):
+        # self.adjustSize()
         self.setup_main_window(Ui_main_window)
         self.view_entries()
         self.ui.btn_exit.clicked.connect(self.logout)
@@ -90,7 +106,12 @@ class PasswordManager(QMainWindow):
         self.ui_window.btn_generate_password.clicked.connect(
             self.generate_and_insert_password
             )
-        self.ui_window.btn_submit_entry.clicked.connect(self.add_new_entry)
+
+        self.ui_window.btn_submit_entry.clicked.connect(lambda:
+            self.check_inputs(self.add_new_entry,
+                              self.ui_window.input_service_name,
+                              self.ui_window.input_login,
+                              self.ui_window.input_password))
 
         self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
         self.ui_window.btn_copy.clicked.connect(self.copy_password)

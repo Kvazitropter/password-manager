@@ -1,28 +1,19 @@
-import os
-import sys
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-import res_rc
-from pm_add_new_entry import Ui_dialog_add_new_entry
-from pm_create_new_storage import Ui_dialog_create_new_storage
-from pm_generating_settings import Ui_Ui_generating_settings
-from pm_login import Ui_dialog_login
-from pm_main_window import Ui_main_window
-from pm_start import Ui_dialog_start
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import QPoint, Qt
 from PyQt6.QtGui import QCursor
 from PyQt6.QtWidgets import QApplication, QLineEdit, QMainWindow
 
-from backend.controller import Controller
 from backend.custom_errors import (
     ExistingAccount,
     ExistingEntry,
     NonExistingAccount,
 )
-from backend.repository import Repository
-from scripts.generate_password import PasswordGenerator
+from frontend.pm_add_new_entry import Ui_dialog_add_new_entry
+from frontend.pm_create_new_storage import Ui_dialog_create_new_storage
+from frontend.pm_generating_settings import Ui_Ui_generating_settings
+from frontend.pm_login import Ui_dialog_login
+from frontend.pm_main_window import Ui_main_window
+from frontend.pm_start import Ui_dialog_start
 
 
 class PasswordManager(QMainWindow):
@@ -177,7 +168,7 @@ class PasswordManager(QMainWindow):
         }
         
         try:
-            generator.set_config(new_config)
+            self.generator.set_config(new_config)
             self.generating_settings_window.close()
         except Exception as e:
             self.ui_window_settings.label_feedback.setText(str(e))
@@ -239,7 +230,7 @@ class PasswordManager(QMainWindow):
         password = self.ui_window.input_password.text()
         
         try:
-            controller.add_new_entry(
+            self.controller.add_new_entry(
                 self.user_login, self.master_key, service_name, login, password
             )
             self.view_entries()
@@ -259,7 +250,7 @@ class PasswordManager(QMainWindow):
 
     def view_entries(self):
         self.ui.table_entries.setRowCount(0)  
-        entries = controller.get_entries(self.user_login)
+        entries = self.controller.get_entries(self.user_login)
         for row_num, (id, service_name, login) in enumerate(entries):
             self.ui.table_entries.insertRow(row_num)
             self.ui.table_entries.setItem(
@@ -283,7 +274,7 @@ class PasswordManager(QMainWindow):
         new_password = self.ui_window.input_password.text()
 
         try:
-            controller.update_entry(self.master_key, id, new_password)
+            self.controller.update_entry(self.master_key, id, new_password)
             self.view_entries()
             self.edit_entry_window.close()
         except Exception as e:
@@ -293,16 +284,3 @@ class PasswordManager(QMainWindow):
     def delete_entry(self, id):
         self.controller.delete_entry(id)
         self.view_entries()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    res_rc.qInitResources()
-
-    controller = Controller(Repository())
-    generator = PasswordGenerator()
-
-    window = PasswordManager(controller, generator)
-    window.show()
-    
-    sys.exit(app.exec())

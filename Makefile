@@ -8,5 +8,7 @@ lint-fix:
 	uv run ruff check . --fix
 test:
 	uv run pytest -s
+test-coverage:
+	uv run pytest --cov=backend --cov=scripts --cov-report=xml:coverage.xml
 run:
-	uv run ./frontend/main.py
+	uv run app.py

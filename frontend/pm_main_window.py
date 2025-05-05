@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'frontend/pm_main_window.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_main_window.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -31,7 +31,7 @@ class Ui_main_window(object):
         self.btn_add_new_entry = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_add_new_entry.setGeometry(QtCore.QRect(335, 550, 140, 30))
         self.btn_add_new_entry.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_add_new_entry.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
+        self.btn_add_new_entry.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.btn_add_new_entry.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
         self.btn_add_new_entry.setStyleSheet("QPushButton {\n"
 "background-color: #fff;\n"
@@ -67,8 +67,16 @@ class Ui_main_window(object):
 "QTableView::item:selected {\n"
 "border: none;\n"
 "background-color: rgba(50, 77, 100, 50);\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(205, 205, 205, 0.4);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
-        self.table_entries.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.table_entries.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.table_entries.setShowGrid(True)
         self.table_entries.setRowCount(0)
         self.table_entries.setColumnCount(4)
@@ -96,7 +104,7 @@ class Ui_main_window(object):
 "border: none;")
         self.btn_exit.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("frontend/images/exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icons/images/exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btn_exit.setIcon(icon)
         self.btn_exit.setIconSize(QtCore.QSize(30, 30))
         self.btn_exit.setObjectName("btn_exit")

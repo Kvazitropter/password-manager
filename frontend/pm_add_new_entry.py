@@ -13,11 +13,22 @@ class Ui_dialog_add_new_entry(object):
     def setupUi(self, dialog_add_new_entry):
         dialog_add_new_entry.setObjectName("dialog_add_new_entry")
         dialog_add_new_entry.resize(600, 400)
-        dialog_add_new_entry.setStyleSheet("background-color: #324D64;\n"
+        dialog_add_new_entry.setStyleSheet("QDialog {\n"
+"background-color: #324D64;\n"
+"}\n"
+"\n"
+"* {\n"
 "font: normal bold 12px/15px \'Inter\', sans-serif;\n"
 "color: #000000;\n"
+"}\n"
 "\n"
-"")
+"QPushButton::hover {\n"
+"background-color: rgba(205, 205, 205, 0.4);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(205, 205, 205, 0.1);\n"
+"}")
         self.widget_container = QtWidgets.QWidget(parent=dialog_add_new_entry)
         self.widget_container.setGeometry(QtCore.QRect(100, 80, 400, 240))
         self.widget_container.setStyleSheet("background-color: #747474;\n"
@@ -118,6 +129,19 @@ class Ui_dialog_add_new_entry(object):
         icon1.addPixmap(QtGui.QPixmap(".\\frontend\\images/content_copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btn_copy.setIcon(icon1)
         self.btn_copy.setObjectName("btn_copy")
+        self.btn_settings = QtWidgets.QPushButton(parent=self.widget_container)
+        self.btn_settings.setGeometry(QtCore.QRect(7, 188, 25, 25))
+        self.btn_settings.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_settings.setStyleSheet("QPushButton {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"}")
+        self.btn_settings.setText("")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/icons/images/settings.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btn_settings.setIcon(icon2)
+        self.btn_settings.setCheckable(True)
+        self.btn_settings.setObjectName("btn_settings")
         self.key_image = QtWidgets.QLabel(parent=dialog_add_new_entry)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"
@@ -138,13 +162,3 @@ class Ui_dialog_add_new_entry(object):
         self.input_password.setPlaceholderText(_translate("dialog_add_new_entry", "Введите пароль..."))
         self.btn_generate_password.setText(_translate("dialog_add_new_entry", "Сгенерировать пароль"))
         self.key_image.setText(_translate("dialog_add_new_entry", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_add_new_entry = QtWidgets.QDialog()
-    ui = Ui_dialog_add_new_entry()
-    ui.setupUi(dialog_add_new_entry)
-    dialog_add_new_entry.show()
-    sys.exit(app.exec())

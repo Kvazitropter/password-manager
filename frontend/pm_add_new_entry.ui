@@ -14,11 +14,22 @@
    <string>Password Manager</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #324D64;
+   <string notr="true">QDialog {
+background-color: #324D64;
+}
+
+* {
 font: normal bold 12px/15px 'Inter', sans-serif;
 color: #000000;
+}
 
-</string>
+QPushButton::hover {
+background-color: rgba(205, 205, 205, 0.4);
+}
+
+QPushButton::pressed {
+background-color: rgba(205, 205, 205, 0.1);
+}</string>
   </property>
   <widget class="QWidget" name="widget_container" native="true">
    <property name="geometry">
@@ -239,6 +250,35 @@ border: none;</string>
     <property name="icon">
      <iconset>
       <normaloff>images/content_copy.png</normaloff>images/content_copy.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_settings">
+    <property name="geometry">
+     <rect>
+      <x>7</x>
+      <y>188</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background-color: transparent;
+	border: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res-rc.qrc">
+      <normaloff>:/icons/images/settings.png</normaloff>:/icons/images/settings.png</iconset>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

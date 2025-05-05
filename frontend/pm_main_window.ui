@@ -50,10 +50,10 @@ border-left-color: #fff;
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::StrongFocus</enum>
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+      <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
@@ -107,10 +107,18 @@ width: 415px;
 QTableView::item:selected {
 border: none;
 background-color: rgba(50, 77, 100, 50);
+}
+
+QPushButton::hover {
+background-color: rgba(205, 205, 205, 0.4);
+}
+
+QPushButton::pressed {
+background-color: rgba(205, 205, 205, 0.1);
 }</string>
      </property>
      <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+      <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
      <property name="showGrid">
       <bool>true</bool>
@@ -189,8 +197,8 @@ border: none;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>images/exit.png</normaloff>images/exit.png</iconset>
+     <iconset resource="res-rc.qrc">
+      <normaloff>:/icons/images/exit.png</normaloff>:/icons/images/exit.png</iconset>
     </property>
     <property name="iconSize">
      <size>

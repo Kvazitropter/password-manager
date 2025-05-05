@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import res_rc
 from pm_add_new_entry import Ui_dialog_add_new_entry
 from pm_create_new_storage import Ui_dialog_create_new_storage
+from pm_generating_settings import Ui_Ui_generating_settings
 from pm_login import Ui_dialog_login
 from pm_main_window import Ui_main_window
 from pm_start import Ui_dialog_start
@@ -49,6 +50,13 @@ class PasswordManager(QMainWindow):
         window.setWindowModality(Qt.WindowModality.ApplicationModal)
         return window
     
+    def setup_extra_window(self, ui):
+        window = QtWidgets.QDialog()
+        ui_window = ui()
+        ui_window.setupUi(window)
+        window.setWindowModality(Qt.WindowModality.ApplicationModal)
+        return window, ui_window
+    
     def open_start_window(self):
         self.setCentralWidget(None)
         self.setup_main_window(Ui_dialog_start)
@@ -86,6 +94,9 @@ class PasswordManager(QMainWindow):
 
         self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
         self.ui_window.btn_copy.clicked.connect(self.copy_password)
+        self.ui_window.btn_settings.clicked.connect(
+            self.open_generating_settings_window
+        )
 
     def open_edit_entry_window(self, service_name, login, id):
         self.edit_entry_window = self.setup_dialog_window(
@@ -106,7 +117,51 @@ class PasswordManager(QMainWindow):
 
         self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
         self.ui_window.btn_copy.clicked.connect(self.copy_password)
+        self.ui_window.btn_settings.clicked.connect(
+            self.open_generating_settings_window
+        )
 
+    def open_generating_settings_window(self):
+        window, ui_window = self.setup_extra_window(
+            Ui_Ui_generating_settings
+        )
+        self.generating_settings_window = window
+        self.ui_window_settings = ui_window
+        config = self.generator.get_config()
+        self.ui_window_settings.spinbox_length.setValue(config['length'])
+        self.ui_window_settings.checkbox_lcase.setChecked(config['use_lowercase'])
+        self.ui_window_settings.checkbox_upcase.setChecked(config['use_uppercase'])
+        self.ui_window_settings.checkbox_digits.setChecked(config['use_digits'])
+        self.ui_window_settings.checkbox_symbols.setChecked(config['use_special_symbols'])
+        self.ui_window_settings.input_custom.setText(config['custom_symbols'])
+        self.ui_window_settings.btn_submit_settings.clicked.connect(
+            self.generating_settings
+        )
+        self.generating_settings_window.show()
+        
+    def generating_settings(self):
+        length = self.ui_window_settings.spinbox_length.value()
+        use_lowercase = self.ui_window_settings.checkbox_lcase.isChecked()
+        use_uppercase = self.ui_window_settings.checkbox_upcase.isChecked()
+        use_digits = self.ui_window_settings.checkbox_digits.isChecked()
+        use_special = self.ui_window_settings.checkbox_symbols.isChecked()
+        custom = self.ui_window_settings.input_custom.text()
+        new_config = {
+            'length': length,
+            'use_lowercase': use_lowercase,
+            'use_uppercase': use_uppercase,
+            'use_digits': use_digits,
+            'use_special_symbols': use_special,
+            'custom_symbols': custom
+        }
+        
+        try:
+            generator.set_config(new_config)
+            self.generating_settings_window.close()
+        except Exception as e:
+            self.ui_window_settings.label_feedback.setText(str(e))
+            self.ui_window_settings.label_feedback.setToolTip(str(e))
+            
     def toggle_password_visibility(self, is_checked):
         mode = (QLineEdit.EchoMode.Normal if is_checked 
                 else QLineEdit.EchoMode.Password)

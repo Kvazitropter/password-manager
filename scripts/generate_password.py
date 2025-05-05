@@ -12,11 +12,13 @@ class PasswordGenerator():
         self.config = self.default_config.copy()
         self.__setup_for_generating()
 
-    def set_config_rule(self, rule, value):
-        if rule not in self.default_config:
-            raise NonExistingRule
+    def set_config(self, config):
+        rules = config.keys()
+        for rule in rules:
+            if rule not in self.default_config:
+                raise NonExistingRule       
 
-        self.config[rule] = value
+        self.config = {**self.config, **config}
         self.__setup_for_generating()
         
     def get_config(self):
@@ -58,6 +60,9 @@ class PasswordGenerator():
         if uniq_custom_symbols:
             self.chars += uniq_custom_symbols
             self.regexp_groups.append(f'[{uniq_custom_symbols}]+')
+        
+        if not self.chars:
+            raise NoSymbolsToGenerateFrom
     
     def __check_password(self, password):
         return all(
@@ -69,9 +74,6 @@ class PasswordGenerator():
 
         if length == 0:
             return ''
-
-        if not self.chars:
-            raise NoSymbolsToGenerateFrom
 
         while True:
             password = ''.join(

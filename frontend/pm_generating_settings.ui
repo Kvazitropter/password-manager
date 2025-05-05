@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Ui_generating_settings</class>
+ <widget class="QDialog" name="Ui_generating_settings">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Password Manager</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+background-color: #747474;
+border: 1px solid #000;
+}
+
+* {
+font: normal bold 12px/15px 'Inter', sans-serif;
+color: #000000;
+}
+
+QPushButton::hover {
+background-color: rgba(205, 205, 205, 0.4);
+}
+
+QPushButton::pressed {
+background-color: rgba(205, 205, 205, 0.1);
+}</string>
+  </property>
+  <widget class="QPushButton" name="btn_submit_settings">
+   <property name="geometry">
+    <rect>
+     <x>185</x>
+     <y>250</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: #CDCDCD;
+border: 1px solid #000;
+border-top-color: #fff;
+border-left-color: #fff;
+}
+
+QPushButton::hover {
+background-color: rgba(205, 205, 205, 0.4);
+}
+
+QPushButton::pressed {
+background-color: rgba(205, 205, 205, 0.1);
+}</string>
+   </property>
+   <property name="text">
+    <string>Применить</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>265</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_length">
+        <property name="text">
+         <string>Длина:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinbox_length"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkbox_lcase">
+      <property name="text">
+       <string>Использовать буквы в нижнем регистре</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkbox_upcase">
+      <property name="text">
+       <string>Использовать буквы в верхнем регистре</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkbox_digits">
+      <property name="text">
+       <string>Использовать цифры</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkbox_symbols">
+      <property name="text">
+       <string>Использовать специальные символы</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_text">
+        <property name="text">
+         <string>Добавить символы:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="input_custom">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+background-color: #fff;
+border: 1px solid #000;
+font-style: italic;
+}</string>
+        </property>
+        <property name="placeholderText">
+         <string>Введите символы...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_feedback">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+color: #f54021;
+font-size: 12px;
+font-weight: light;
+border: none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

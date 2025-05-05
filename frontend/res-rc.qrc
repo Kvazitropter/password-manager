@@ -3,6 +3,8 @@
     <file>images/key.png</file>
   </qresource>
   <qresource prefix="icons">
+    <file>images/settings.png</file>
+    <file>images/exit.png</file>
     <file>images/content_copy.png</file>
     <file>images/eye_closed.png</file>
     <file>images/eye_open.png</file>

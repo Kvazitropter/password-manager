@@ -42,7 +42,7 @@ def test_generator_with_default_params(default_config, special_symbols):
 
 def test_generator_set_length():
     generator = PasswordGenerator()
-    generator.set_config_rule('length', 20)
+    generator.set_config({'length': 20})
     config = generator.get_config()
     password = generator.generate()
 
@@ -52,7 +52,7 @@ def test_generator_set_length():
 
 def test_generator_disable_use_lowercase():
     generator = PasswordGenerator()
-    generator.set_config_rule('use_lowercase', False)
+    generator.set_config({'use_lowercase': False})
     config = generator.get_config()
     password = generator.generate()
 
@@ -62,7 +62,7 @@ def test_generator_disable_use_lowercase():
 
 def test_generator_disable_use_uppercase():
     generator = PasswordGenerator()
-    generator.set_config_rule('use_uppercase', False)
+    generator.set_config({'use_uppercase': False})
     config = generator.get_config()
     password = generator.generate()
 
@@ -72,7 +72,7 @@ def test_generator_disable_use_uppercase():
 
 def test_generator_disable_use_digits():
     generator = PasswordGenerator()
-    generator.set_config_rule('use_digits', False)
+    generator.set_config({'use_digits': False})
     config = generator.get_config()
     password = generator.generate()
 
@@ -82,7 +82,7 @@ def test_generator_disable_use_digits():
 
 def test_generator_disable_use_special(special_symbols):
     generator = PasswordGenerator()
-    generator.set_config_rule('use_special_symbols', False)
+    generator.set_config({'use_special_symbols': False})
     config = generator.get_config()
     password = generator.generate()
 
@@ -93,7 +93,7 @@ def test_generator_disable_use_special(special_symbols):
 def test_generator_set_custom_symbols():
     custom_symbols = ':_)'
     generator = PasswordGenerator()
-    generator.set_config_rule('custom_symbols', custom_symbols)
+    generator.set_config({'custom_symbols': custom_symbols})
     config = generator.get_config()
     password = generator.generate()
 
@@ -105,7 +105,7 @@ def test_generator_set_nonexist_rule():
     generator = PasswordGenerator()
     
     with pytest.raises(NonExistingRule):
-        generator.set_config_rule('some_rule', True)
+        generator.set_config({'some_rule': True})
 
 
 def test_generator_reset_config(default_config):
@@ -120,12 +120,7 @@ def test_generator_reset_config(default_config):
     length, use_lc, use_uc, use_d, use_ss, cs = changed_config.values()
 
     generator = PasswordGenerator()
-    generator.set_config_rule('length', length)
-    generator.set_config_rule('use_lowercase', use_lc)
-    generator.set_config_rule('use_uppercase', use_uc)
-    generator.set_config_rule('use_digits', use_d)
-    generator.set_config_rule('use_special_symbols', use_ss)
-    generator.set_config_rule('custom_symbols', cs)
+    generator.set_config(changed_config)
 
     assert generator.get_config() == changed_config
     generator.reset_default_config()
@@ -134,19 +129,27 @@ def test_generator_reset_config(default_config):
 
 def test_generator_all_rules_disabled():
     generator = PasswordGenerator()
-    generator.set_config_rule('use_lowercase', False)
-    generator.set_config_rule('use_uppercase', False)
-    generator.set_config_rule('use_digits', False)
-    generator.set_config_rule('use_special_symbols', False)
-    generator.set_config_rule('custom_symbols', '')
+    all_rules_disabled_config = {
+        'use_lowercase': False,
+        'use_uppercase': False,
+        'use_digits': False,
+        'use_special_symbols': False,
+    }
 
     with pytest.raises(NoSymbolsToGenerateFrom):
-        generator.generate()
+        generator.set_config(all_rules_disabled_config)
+
+
+def test_generator_set_empty_config(default_config):
+    generator = PasswordGenerator()
+    generator.set_config({})
+    
+    assert generator.get_config() == default_config
 
 
 def test_generator_zero_length():
     generator = PasswordGenerator()
-    generator.set_config_rule('length', 0)
+    generator.set_config({'length': 0})
     password = generator.generate()
 
     assert password == ''
@@ -155,7 +158,7 @@ def test_generator_zero_length():
 def test_generator_large_length():
     generator = PasswordGenerator()
     large_length = 100000
-    generator.set_config_rule('length', large_length)
+    generator.set_config({'length': large_length})
     password = generator.generate()
 
     assert len(password) == large_length

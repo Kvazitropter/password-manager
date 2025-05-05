@@ -9,6 +9,6 @@ lint-fix:
 test:
 	uv run pytest -s
 test-coverage:
-	uv run pytest --cov
+	uv run pytest --cov=backend --cov=scripts --cov-report=xml:coverage.xml
 run:
 	uv run app.py

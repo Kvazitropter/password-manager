@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'frontend/pm_new_entry.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_new_entry.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -62,7 +62,7 @@ class Ui_dialog_new_entry(object):
         self.input_service_name.setClearButtonEnabled(True)
         self.input_service_name.setObjectName("input_service_name")
         self.input_login = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_login.setGeometry(QtCore.QRect(35, 75, 330, 30))
+        self.input_login.setGeometry(QtCore.QRect(35, 78, 330, 30))
         self.input_login.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
 "border: 1px solid #000;\n"
@@ -71,7 +71,7 @@ class Ui_dialog_new_entry(object):
         self.input_login.setClearButtonEnabled(True)
         self.input_login.setObjectName("input_login")
         self.input_password = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_password.setGeometry(QtCore.QRect(35, 120, 330, 30))
+        self.input_password.setGeometry(QtCore.QRect(35, 126, 330, 30))
         self.input_password.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
 "border: 1px solid #000;\n"
@@ -79,7 +79,7 @@ class Ui_dialog_new_entry(object):
 "}")
         self.input_password.setText("")
         self.input_password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
-        self.input_password.setClearButtonEnabled(True)
+        self.input_password.setClearButtonEnabled(False)
         self.input_password.setObjectName("input_password")
         self.btn_generate_password = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_generate_password.setGeometry(QtCore.QRect(35, 185, 150, 30))
@@ -96,23 +96,23 @@ class Ui_dialog_new_entry(object):
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
         self.btn_generate_password.setObjectName("btn_generate_password")
-        self.feedback_label = QtWidgets.QLabel(parent=self.widget_container)
-        self.feedback_label.setGeometry(QtCore.QRect(35, 160, 330, 16))
-        self.feedback_label.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
-        self.feedback_label.setStyleSheet("QLabel {\n"
+        self.label_feedback_password = QtWidgets.QLabel(parent=self.widget_container)
+        self.label_feedback_password.setGeometry(QtCore.QRect(35, 156, 330, 16))
+        self.label_feedback_password.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.label_feedback_password.setStyleSheet("QLabel {\n"
 "color: #f54021;\n"
 "font-size: 12px;\n"
 "font-weight: light;\n"
 "border: none;\n"
 "}")
-        self.feedback_label.setText("")
-        self.feedback_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
-        self.feedback_label.setObjectName("feedback_label")
+        self.label_feedback_password.setText("")
+        self.label_feedback_password.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
+        self.label_feedback_password.setObjectName("label_feedback_password")
         self.btn_show = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_show.setGeometry(QtCore.QRect(310, 124, 25, 25))
+        self.btn_show.setGeometry(QtCore.QRect(312, 129, 25, 25))
         self.btn_show.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_show.setStyleSheet("QPushButton {\n"
-"    background-color: transparent;\n"
+"    background-color: white;\n"
 "    border: none;\n"
 "}")
         self.btn_show.setText("")
@@ -123,13 +123,13 @@ class Ui_dialog_new_entry(object):
         self.btn_show.setCheckable(True)
         self.btn_show.setObjectName("btn_show")
         self.btn_copy = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_copy.setGeometry(QtCore.QRect(335, 123, 25, 25))
+        self.btn_copy.setGeometry(QtCore.QRect(337, 129, 25, 25))
         self.btn_copy.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_copy.setStyleSheet("background-color: transparent;\n"
+        self.btn_copy.setStyleSheet("background-color: white;\n"
 "border: none;")
         self.btn_copy.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("frontend/images/content_copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/icons/images/content_copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btn_copy.setIcon(icon1)
         self.btn_copy.setObjectName("btn_copy")
         self.btn_settings = QtWidgets.QPushButton(parent=self.widget_container)
@@ -145,6 +145,30 @@ class Ui_dialog_new_entry(object):
         self.btn_settings.setIcon(icon2)
         self.btn_settings.setCheckable(True)
         self.btn_settings.setObjectName("btn_settings")
+        self.label_feedback_s_name = QtWidgets.QLabel(parent=self.widget_container)
+        self.label_feedback_s_name.setGeometry(QtCore.QRect(35, 60, 330, 16))
+        self.label_feedback_s_name.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.label_feedback_s_name.setStyleSheet("QLabel {\n"
+"color: #f54021;\n"
+"font-size: 12px;\n"
+"font-weight: light;\n"
+"border: none;\n"
+"}")
+        self.label_feedback_s_name.setText("")
+        self.label_feedback_s_name.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
+        self.label_feedback_s_name.setObjectName("label_feedback_s_name")
+        self.label_feedback_login = QtWidgets.QLabel(parent=self.widget_container)
+        self.label_feedback_login.setGeometry(QtCore.QRect(35, 108, 330, 16))
+        self.label_feedback_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.label_feedback_login.setStyleSheet("QLabel {\n"
+"color: #f54021;\n"
+"font-size: 12px;\n"
+"font-weight: light;\n"
+"border: none;\n"
+"}")
+        self.label_feedback_login.setText("")
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
+        self.label_feedback_login.setObjectName("label_feedback_login")
         self.key_image = QtWidgets.QLabel(parent=dialog_new_entry)
         self.key_image.setGeometry(QtCore.QRect(15, 18, 71, 111))
         self.key_image.setStyleSheet("background-color: none;\n"

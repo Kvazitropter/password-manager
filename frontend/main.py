@@ -47,7 +47,7 @@ class PasswordManager(QMainWindow):
         ui_window.setupUi(window)
         window.setWindowModality(Qt.WindowModality.ApplicationModal)
         return window, ui_window
-    
+
     def open_start_window(self):
         self.setCentralWidget(None)
         self.setup_main_window(Ui_dialog_start)
@@ -63,16 +63,6 @@ class PasswordManager(QMainWindow):
                               self.ui_window.input_login,
                               self.ui_window.input_master_key))
 
-    def check_inputs(self, success_func, *inputs):
-        for input in inputs:
-            base_style = 'font-style: italic; background-color: white; '
-            if not input.text():
-                input.setStyleSheet(base_style + 'border-color: #f54021')
-            else:
-                input.setStyleSheet(base_style + 'border-color: #000')
-        if all(input.text() for input in inputs):
-            success_func()
-        
     def open_signup_window(self):
         self.signup_window = self.setup_dialog_window(
             Ui_dialog_signup
@@ -156,38 +146,6 @@ class PasswordManager(QMainWindow):
             self.password_settings
         )
         self.password_settings_window.show()
-        
-    def password_settings(self):
-        length = self.ui_window_settings.spinbox_length.value()
-        use_lowercase = self.ui_window_settings.checkbox_lcase.isChecked()
-        use_uppercase = self.ui_window_settings.checkbox_upcase.isChecked()
-        use_digits = self.ui_window_settings.checkbox_digits.isChecked()
-        use_special = self.ui_window_settings.checkbox_symbols.isChecked()
-        custom = self.ui_window_settings.input_custom.text()
-        new_config = {
-            'length': length,
-            'use_lowercase': use_lowercase,
-            'use_uppercase': use_uppercase,
-            'use_digits': use_digits,
-            'use_special_symbols': use_special,
-            'custom_symbols': custom
-        }
-        
-        try:
-            self.generator.set_config(new_config)
-            self.password_settings_window.close()
-        except Exception as e:
-            self.ui_window_settings.label_feedback.setText(str(e))
-            self.ui_window_settings.label_feedback.setToolTip(str(e))
-            
-    def toggle_password_visibility(self, is_checked):
-        mode = (QLineEdit.EchoMode.Normal if is_checked 
-                else QLineEdit.EchoMode.Password)
-        self.ui_window.input_password.setEchoMode(mode)
-            
-    def copy_password(self):
-        clipboard = QApplication.clipboard()
-        clipboard.setText(self.ui_window.input_password.text())
 
     def login(self):
         user_login = self.ui_window.input_login.text()
@@ -202,16 +160,13 @@ class PasswordManager(QMainWindow):
             self.login_window.close()
             self.open_main_window()
         except NonExistingAccount as e:
-            self.ui_window.label_feedback_login.setText(str(e))
-            self.ui_window.label_feedback_login.setToolTip(str(e))
+            self.set_feedback_message(
+                self.ui_window.label_feedback_login, str(e)
+            )
         except Exception as e:
-            self.ui_window.label_feedback_master_key.setText(str(e))
-            self.ui_window.label_feedback_master_key.setToolTip(str(e))
-
-    def logout(self):
-        self.master_key = None
-        self.user_login = None
-        self.open_start_window()
+            self.set_feedback_message(
+                self.ui_window.label_feedback_master_key, str(e)
+            )
 
     def signup(self):
         new_login = self.ui_window.input_new_login.text()
@@ -224,35 +179,13 @@ class PasswordManager(QMainWindow):
             self.signup_window.close()
             self.open_main_window()
         except ExistingAccount as e:
-            self.ui_window.label_feedback_login.setText(str(e))
-            self.ui_window.label_feedback_login.setToolTip(str(e))
-        except Exception as e:
-            self.ui_window.label_feedback_master_key.setText(str(e))
-            self.ui_window.label_feedback_master_key.setToolTip(str(e))
-
-    def new_entry(self):
-        service_name = self.ui_window.input_service_name.text()
-        login = self.ui_window.input_login.text()
-        password = self.ui_window.input_password.text()
-        
-        try:
-            self.controller_new_entry(
-                self.user_login, self.master_key, service_name, login, password
+            self.set_feedback_message(
+                self.ui_window.label_feedback_login, str(e)
             )
-            self.view_entries()
-            self.new_entry_window.close()
-        except ExistingEntry as e:
-            self.ui_window.label_feedback_service_name.setText(str(e))
-            self.ui_window.label_feedback_service_name.setToolTip(str(e))
-            self.ui_window.label_feedback_login.setText(str(e))
-            self.ui_window.label_feedback_login.setToolTip(str(e))
         except Exception as e:
-            self.ui_window.label_feedback_password.setText(str(e))
-            self.ui_window.label_feedback_password.setToolTip(str(e))
-
-    def generate_and_insert_password(self):
-        generated_password = self.generator.generate()
-        self.ui_window.input_password.setText(generated_password)        
+            self.set_feedback_message(
+                self.ui_window.label_feedback_master_key, str(e)
+            )
 
     def view_entries(self):
         self.ui.table_entries.setRowCount(0)
@@ -276,6 +209,29 @@ class PasswordManager(QMainWindow):
             delete_entry_button.clicked.connect(lambda: self.delete_entry(id))
             self.ui.table_entries.setCellWidget(row_num, 3, delete_entry_button)
 
+    def new_entry(self):
+        service_name = self.ui_window.input_service_name.text()
+        login = self.ui_window.input_login.text()
+        password = self.ui_window.input_password.text()
+        
+        try:
+            self.controller.add_new_entry(
+                self.user_login, self.master_key, service_name, login, password
+            )
+            self.view_entries()
+            self.new_entry_window.close()
+        except ExistingEntry as e:
+            self.set_feedback_message(
+                self.ui_window.label_feedback_s_name, str(e)
+            )
+            self.set_feedback_message(
+                self.ui_window.label_feedback_login, str(e)
+            )
+        except Exception as e:
+            self.set_feedback_message(
+                self.ui_window.label_feedback_password, str(e)
+            )
+
     def edit_entry(self, id):
         new_password = self.ui_window.input_password.text()
 
@@ -290,3 +246,75 @@ class PasswordManager(QMainWindow):
     def delete_entry(self, id):
         self.controller.delete_entry(id)
         self.view_entries()
+
+    def logout(self):
+        self.master_key = None
+        self.user_login = None
+        self.open_start_window()
+
+    def password_settings(self):
+        length = self.ui_window_settings.spinbox_length.value()
+        use_lowercase = self.ui_window_settings.checkbox_lcase.isChecked()
+        use_uppercase = self.ui_window_settings.checkbox_upcase.isChecked()
+        use_digits = self.ui_window_settings.checkbox_digits.isChecked()
+        use_special = self.ui_window_settings.checkbox_symbols.isChecked()
+        custom = self.ui_window_settings.input_custom.text()
+        new_config = {
+            'length': length,
+            'use_lowercase': use_lowercase,
+            'use_uppercase': use_uppercase,
+            'use_digits': use_digits,
+            'use_special_symbols': use_special,
+            'custom_symbols': custom
+        }
+        
+        try:
+            self.generator.set_config(new_config)
+            self.password_settings_window.close()
+        except Exception as e:
+            self.ui_window_settings.label_feedback.setText(str(e))
+            self.ui_window_settings.label_feedback.setToolTip(str(e))
+
+    def check_inputs(self, success_func, *inputs):
+        for input in inputs:
+            base_style = 'font-style: italic; background-color: white; '
+            if not input.text():
+                input.setStyleSheet(base_style + 'border-color: #f54021')
+            else:
+                input.setStyleSheet(base_style + 'border-color: #000')
+        if all(input.text() for input in inputs):
+            success_func()
+
+    def toggle_password_visibility(self, is_checked):
+        mode = (QLineEdit.EchoMode.Normal if is_checked 
+                else QLineEdit.EchoMode.Password)
+        self.ui_window.input_password.setEchoMode(mode)
+            
+    def copy_password(self):
+        clipboard = QApplication.clipboard()
+        clipboard.setText(self.ui_window.input_password.text())
+
+    def generate_and_insert_password(self):
+        generated_password = self.generator.generate()
+        self.ui_window.input_password.setText(generated_password)
+     
+    def show_invalid_input(self, input):
+        original_ss = input.styleSheet()
+        black = 'border: 1px solid #000;'
+        red = 'border: 1px solid #f54021;'
+        invalid_ss = original_ss.replace(black, red)
+        input.setStyleSheet(invalid_ss)
+    
+    def remove_invalid_input(self, input):
+        invalid_ss = input.styleSheet()
+        red = 'border: 1px solid #f54021;'
+        black = 'border: 1px solid #000;'
+        input.setStyleSheet(invalid_ss.replace(red, black))
+
+    def set_feedback_message(self, label, text):
+        label.setText(text)
+        label.setToolTip(text)
+    
+    def clear_feedback(self, label):
+        label.setText('')
+        label.setToolTip('')

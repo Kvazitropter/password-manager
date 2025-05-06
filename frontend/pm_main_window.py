@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_main_window.ui'
+# Form implementation generated from reading ui file 'frontend/pm_main_window.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -21,19 +21,19 @@ class Ui_main_window(object):
         self.centralwidget = QtWidgets.QWidget(parent=main_window)
         self.centralwidget.setObjectName("centralwidget")
         self.widget_container = QtWidgets.QWidget(parent=self.centralwidget)
-        self.widget_container.setGeometry(QtCore.QRect(70, 80, 500, 600))
+        self.widget_container.setGeometry(QtCore.QRect(66, 55, 489, 593))
         self.widget_container.setStyleSheet("background-color: #747474;\n"
 "border: 1px solid #000;\n"
 "border-top-color: #fff;\n"
 "border-left-color: #fff;\n"
 "")
         self.widget_container.setObjectName("widget_container")
-        self.btn_add_new_entry = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_add_new_entry.setGeometry(QtCore.QRect(335, 550, 140, 30))
-        self.btn_add_new_entry.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_add_new_entry.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
-        self.btn_add_new_entry.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
-        self.btn_add_new_entry.setStyleSheet("QPushButton {\n"
+        self.btn_new_entry = QtWidgets.QPushButton(parent=self.widget_container)
+        self.btn_new_entry.setGeometry(QtCore.QRect(333, 548, 140, 30))
+        self.btn_new_entry.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_new_entry.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+        self.btn_new_entry.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
+        self.btn_new_entry.setStyleSheet("QPushButton {\n"
 "background-color: #fff;\n"
 "}\n"
 "\n"
@@ -44,9 +44,9 @@ class Ui_main_window(object):
 "QPushButton::pressed {\n"
 "background-color: rgba(255, 255, 255, 0.45);\n"
 "}")
-        self.btn_add_new_entry.setObjectName("btn_add_new_entry")
+        self.btn_new_entry.setObjectName("btn_new_entry")
         self.table_entries = QtWidgets.QTableWidget(parent=self.widget_container)
-        self.table_entries.setGeometry(QtCore.QRect(25, 25, 450, 510))
+        self.table_entries.setGeometry(QtCore.QRect(19, 21, 453, 507))
         self.table_entries.setMinimumSize(QtCore.QSize(450, 0))
         self.table_entries.setStyleSheet("QTableView {\n"
 "background-color: #CDCDCD;\n"
@@ -93,12 +93,15 @@ class Ui_main_window(object):
         self.table_entries.horizontalHeader().setSortIndicatorShown(False)
         self.table_entries.verticalHeader().setVisible(False)
         self.key_image = QtWidgets.QLabel(parent=self.centralwidget)
-        self.key_image.setGeometry(QtCore.QRect(0, 0, 100, 156))
+        self.key_image.setGeometry(QtCore.QRect(15, 18, 71, 111))
         self.key_image.setStyleSheet("background-color: none;\n"
 "")
+        self.key_image.setText("")
+        self.key_image.setPixmap(QtGui.QPixmap(":/key/images/key.png"))
+        self.key_image.setScaledContents(True)
         self.key_image.setObjectName("key_image")
         self.btn_exit = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.btn_exit.setGeometry(QtCore.QRect(562, 26, 34, 30))
+        self.btn_exit.setGeometry(QtCore.QRect(562, 18, 34, 30))
         self.btn_exit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_exit.setStyleSheet("background-color: transparent;\n"
 "border: none;")
@@ -119,11 +122,10 @@ class Ui_main_window(object):
     def retranslateUi(self, main_window):
         _translate = QtCore.QCoreApplication.translate
         main_window.setWindowTitle(_translate("main_window", "Password Manager"))
-        self.btn_add_new_entry.setText(_translate("main_window", "Добавить"))
+        self.btn_new_entry.setText(_translate("main_window", "Добавить"))
         item = self.table_entries.horizontalHeaderItem(0)
         item.setText(_translate("main_window", "Сервис"))
         item = self.table_entries.horizontalHeaderItem(1)
         item.setText(_translate("main_window", "Логин"))
         item = self.table_entries.horizontalHeaderItem(2)
         item.setText(_translate("main_window", "Пароль"))
-        self.key_image.setText(_translate("main_window", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))

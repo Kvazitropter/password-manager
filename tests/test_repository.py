@@ -50,7 +50,9 @@ def test_get_memory_mk_and_salt_query(repository, mock_cursor):
 def test_add_new_account_query(repository, mock_conn, mock_cursor):
     repository.add_new_account_query('new_user', b'encrypted', b'salt')
     mock_cursor.execute.assert_called_once_with(
-        'INSERT INTO account (login, encrypted_control_string, salt) VALUES (%s, %s, %s)',
+        'INSERT INTO account (login, encrypted_control_string, '
+        'salt) '
+        'VALUES (%s, %s, %s)',
         ('new_user', b'encrypted', b'salt')
     )
     mock_conn.commit.assert_called_once()
@@ -85,15 +87,20 @@ def test_has_entry_query(repository, mock_cursor):
 
     assert repository.has_entry_query('test_user', 's_name', 'login')
     mock_cursor.execute.assert_called_once_with(
-        'SELECT EXISTS(SELECT 1 FROM entry WHERE (user_login, service_name, login) = (%s, %s, %s))',
+        'SELECT EXISTS(SELECT 1 FROM entry '
+        'WHERE (user_login, service_name, login) = (%s, %s, %s))',
         ('test_user', 's_name', 'login')
     )
 
 
 def test_add_new_entry_query(repository, mock_conn, mock_cursor):
-    repository.add_new_entry_query('user_login', 's_name', 'login', b'encrypted', b'salt')
+    repository.add_new_entry_query(
+        'user_login', 's_name', 'login', b'encrypted', b'salt'
+    )
     mock_cursor.execute.assert_called_once_with(
-        'INSERT INTO entry (user_login, service_name, login, encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)',
+        'INSERT INTO entry (user_login, service_name, login, '
+        'encrypted_password, salt) '
+        'VALUES (%s, %s, %s, %s, %s)',
         ('user_login', 's_name', 'login', b'encrypted', b'salt')
     )
     mock_conn.commit.assert_called_once()

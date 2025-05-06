@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>530</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,8 +23,8 @@ color: #000000;
   <widget class="QWidget" name="widget_container" native="true">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>80</y>
+     <x>66</x>
+     <y>55</y>
      <width>400</width>
      <height>240</height>
     </rect>
@@ -112,7 +112,7 @@ border: none;
      <string/>
     </property>
     <property name="textInteractionFlags">
-     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+     <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="input_new_login">
@@ -167,17 +167,17 @@ border: none;
      <string/>
     </property>
     <property name="textInteractionFlags">
-     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+     <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
     </property>
    </widget>
   </widget>
   <widget class="QLabel" name="key_image">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>100</width>
-     <height>156</height>
+     <x>15</x>
+     <y>18</y>
+     <width>71</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -185,7 +185,13 @@ border: none;
 </string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/key/images/key.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res-rc.qrc">:/key/images/key.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <zorder>key_image</zorder>

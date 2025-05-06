@@ -7,3 +7,8 @@ line-length = 85
 [lint]
 preview = true
 select = ["E", "F", "I", "C90"]
+
+exclude = [
+  "frontend/pm*.py",
+  "res_rc.py"
+]

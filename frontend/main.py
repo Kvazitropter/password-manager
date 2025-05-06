@@ -1,6 +1,6 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtGui import QCursor, QPainter, QColor
+from PyQt6.QtGui import QCursor
 from PyQt6.QtWidgets import QApplication, QLineEdit, QMainWindow
 
 from backend.custom_errors import (
@@ -8,11 +8,11 @@ from backend.custom_errors import (
     ExistingEntry,
     NonExistingAccount,
 )
-from frontend.pm_new_entry import Ui_dialog_new_entry
-from frontend.pm_signup import Ui_dialog_signup
-from frontend.pm_password_settings import Ui_password_settings
 from frontend.pm_login import Ui_dialog_login
 from frontend.pm_main_window import Ui_main_window
+from frontend.pm_new_entry import Ui_dialog_new_entry
+from frontend.pm_password_settings import Ui_password_settings
+from frontend.pm_signup import Ui_dialog_signup
 from frontend.pm_start import Ui_dialog_start
 
 
@@ -57,7 +57,8 @@ class PasswordManager(QMainWindow):
     def open_login_window(self):
         self.login_window = self.setup_dialog_window(Ui_dialog_login)
         self.login_window.show()
-        self.ui_window.btn_submit_master_key.clicked.connect(lambda:
+        self.ui_window.btn_submit_master_key.clicked.connect(
+            lambda:
             self.check_inputs(self.login, 
                               self.ui_window.input_login,
                               self.ui_window.input_master_key))
@@ -101,8 +102,8 @@ class PasswordManager(QMainWindow):
             self.generate_and_insert_password
         )
 
-        self.ui_window.btn_submit_entry.clicked.connect(lambda:
-            self.check_inputs(self.new_entry,
+        self.ui_window.btn_submit_entry.clicked.connect(
+            lambda: self.check_inputs(self.new_entry,
                               self.ui_window.input_service_name,
                               self.ui_window.input_login,
                               self.ui_window.input_password))
@@ -254,7 +255,7 @@ class PasswordManager(QMainWindow):
         self.ui_window.input_password.setText(generated_password)        
 
     def view_entries(self):
-        self.ui.table_entries.setRowCount(0)  
+        self.ui.table_entries.setRowCount(0)
         entries = self.controller.get_entries(self.user_login)
         for row_num, (id, service_name, login) in enumerate(entries):
             self.ui.table_entries.insertRow(row_num)

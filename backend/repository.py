@@ -48,7 +48,8 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'INSERT INTO account (login, encrypted_control_string, salt) VALUES (%s, %s, %s)',
+            'INSERT INTO account (login, encrypted_control_string, salt) '
+            'VALUES (%s, %s, %s)',
             (login, encrypted_control_string, salt)
         )
         con.commit()
@@ -86,7 +87,8 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'SELECT EXISTS(SELECT 1 FROM entry WHERE (user_login, service_name, login) = (%s, %s, %s))',
+            'SELECT EXISTS(SELECT 1 FROM entry '
+            'WHERE (user_login, service_name, login) = (%s, %s, %s))',
             (user_login, service_name, login)
         )
         result = cur.fetchone()[0]
@@ -101,7 +103,8 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'INSERT INTO entry (user_login, service_name, login, encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)',
+            'INSERT INTO entry (user_login, service_name, login, '
+            'encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)',
             (user_login, service_name, login, encrypted_password, salt)
         )
         con.commit()

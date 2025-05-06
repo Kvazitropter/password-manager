@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_start.ui'
+# Form implementation generated from reading ui file 'frontend/pm_start.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -12,22 +12,47 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_dialog_start(object):
     def setupUi(self, dialog_start):
         dialog_start.setObjectName("dialog_start")
-        dialog_start.resize(600, 400)
+        dialog_start.resize(530, 350)
         dialog_start.setStyleSheet("background-color: #324D64;\n"
 "font: normal bold 12px/15px \'Inter\', sans-serif;\n"
 "color: #000000;\n"
 "\n"
 "")
+        self.key_image = QtWidgets.QLabel(parent=dialog_start)
+        self.key_image.setGeometry(QtCore.QRect(15, 18, 71, 111))
+        self.key_image.setStyleSheet("background-color: none;\n"
+"")
+        self.key_image.setText("")
+        self.key_image.setPixmap(QtGui.QPixmap(":/key/images/key.png"))
+        self.key_image.setScaledContents(True)
+        self.key_image.setObjectName("key_image")
         self.widget_container = QtWidgets.QWidget(parent=dialog_start)
-        self.widget_container.setGeometry(QtCore.QRect(100, 80, 400, 240))
+        self.widget_container.setGeometry(QtCore.QRect(66, 55, 400, 240))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget_container.sizePolicy().hasHeightForWidth())
+        self.widget_container.setSizePolicy(sizePolicy)
+        self.widget_container.setMinimumSize(QtCore.QSize(400, 240))
         self.widget_container.setStyleSheet("background-color: #747474;\n"
 "border: 1px solid #000;\n"
 "border-top-color: #fff;\n"
 "border-left-color: #fff;\n"
 "")
         self.widget_container.setObjectName("widget_container")
-        self.btn_login = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_login.setGeometry(QtCore.QRect(75, 55, 250, 40))
+        self.gridLayoutWidget = QtWidgets.QWidget(parent=self.widget_container)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 401, 241))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout_2.setContentsMargins(4, 4, 4, 4)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.btn_login = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_login.sizePolicy().hasHeightForWidth())
+        self.btn_login.setSizePolicy(sizePolicy)
+        self.btn_login.setMinimumSize(QtCore.QSize(250, 40))
         self.btn_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_login.setStyleSheet("QPushButton {\n"
 "background-color: #CDCDCD;\n"
@@ -41,8 +66,14 @@ class Ui_dialog_start(object):
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
         self.btn_login.setObjectName("btn_login")
-        self.btn_signup = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_signup.setGeometry(QtCore.QRect(75, 135, 250, 40))
+        self.gridLayout_2.addWidget(self.btn_login, 0, 0, 1, 1)
+        self.btn_signup = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_signup.sizePolicy().hasHeightForWidth())
+        self.btn_signup.setSizePolicy(sizePolicy)
+        self.btn_signup.setMinimumSize(QtCore.QSize(250, 40))
         self.btn_signup.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_signup.setStyleSheet("QPushButton {\n"
 "background-color: #CDCDCD;\n"
@@ -56,13 +87,7 @@ class Ui_dialog_start(object):
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
         self.btn_signup.setObjectName("btn_signup")
-        self.key_image = QtWidgets.QLabel(parent=dialog_start)
-        self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
-        self.key_image.setStyleSheet("background-color: none;\n"
-"")
-        self.key_image.setObjectName("key_image")
-        self.key_image.raise_()
-        self.widget_container.raise_()
+        self.gridLayout_2.addWidget(self.btn_signup, 1, 0, 1, 1)
 
         self.retranslateUi(dialog_start)
         QtCore.QMetaObject.connectSlotsByName(dialog_start)
@@ -72,4 +97,3 @@ class Ui_dialog_start(object):
         dialog_start.setWindowTitle(_translate("dialog_start", "Password Manager"))
         self.btn_login.setText(_translate("dialog_start", "Войти в Менеджер Паролей"))
         self.btn_signup.setText(_translate("dialog_start", "Создать новое хранилище"))
-        self.key_image.setText(_translate("dialog_start", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))

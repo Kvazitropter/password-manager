@@ -110,7 +110,9 @@ def test_get_entry_password(controller, mock_repo):
 def test_is_existing_entry_true(controller, mock_repo):
     mock_repo.has_entry_query.return_value = True
     assert controller.is_existing_entry('user_login', 's_name', 'login')
-    mock_repo.has_entry_query.assert_called_once_with('user_login', 's_name', 'login')
+    mock_repo.has_entry_query.assert_called_once_with(
+        'user_login', 's_name', 'login'
+    )
 
 
 def test_is_existing_entry_false(controller, mock_repo):
@@ -125,7 +127,9 @@ def test_add_new_entry_success(controller, mock_repo):
             'user_login', 'master_key', 's_name', 'login', 'password'
         )
     
-    mock_repo.has_entry_query.assert_called_once_with('user_login', 's_name', 'login')
+    mock_repo.has_entry_query.assert_called_once_with(
+        'user_login', 's_name', 'login'
+    )
     mock_repo.add_new_entry_query.assert_called_once_with(
         'user_login', 's_name', 'login', b'encrypted', b'salt'
     )

@@ -24,10 +24,10 @@ color: #000000;
    <widget class="QWidget" name="widget_container" native="true">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>80</y>
-      <width>500</width>
-      <height>600</height>
+      <x>66</x>
+      <y>55</y>
+      <width>489</width>
+      <height>593</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -37,11 +37,11 @@ border-top-color: #fff;
 border-left-color: #fff;
 </string>
     </property>
-    <widget class="QPushButton" name="btn_add_new_entry">
+    <widget class="QPushButton" name="btn_new_entry">
      <property name="geometry">
       <rect>
-       <x>335</x>
-       <y>550</y>
+       <x>333</x>
+       <y>548</y>
        <width>140</width>
        <height>30</height>
       </rect>
@@ -50,10 +50,10 @@ border-left-color: #fff;
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
+      <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
@@ -75,10 +75,10 @@ background-color: rgba(255, 255, 255, 0.45);
     <widget class="QTableWidget" name="table_entries">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>25</y>
-       <width>450</width>
-       <height>510</height>
+       <x>19</x>
+       <y>21</y>
+       <width>453</width>
+       <height>507</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -118,7 +118,7 @@ background-color: rgba(205, 205, 205, 0.1);
 }</string>
      </property>
      <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAsNeeded</enum>
+      <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
      </property>
      <property name="showGrid">
       <bool>true</bool>
@@ -163,10 +163,10 @@ background-color: rgba(205, 205, 205, 0.1);
    <widget class="QLabel" name="key_image">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>100</width>
-      <height>156</height>
+      <x>15</x>
+      <y>18</y>
+      <width>71</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -174,14 +174,20 @@ background-color: rgba(205, 205, 205, 0.1);
 </string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/key/images/key.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res-rc.qrc">:/key/images/key.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_exit">
     <property name="geometry">
      <rect>
       <x>562</x>
-      <y>26</y>
+      <y>18</y>
       <width>34</width>
       <height>30</height>
      </rect>

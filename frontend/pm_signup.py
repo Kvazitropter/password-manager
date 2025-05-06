@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_signup.ui'
+# Form implementation generated from reading ui file 'frontend/pm_signup.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -12,14 +12,14 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_dialog_signup(object):
     def setupUi(self, dialog_signup):
         dialog_signup.setObjectName("dialog_signup")
-        dialog_signup.resize(600, 400)
+        dialog_signup.resize(530, 350)
         dialog_signup.setStyleSheet("background-color: #324D64;\n"
 "font: normal bold 12px/15px \'Inter\', sans-serif;\n"
 "color: #000000;\n"
 "\n"
 "")
         self.widget_container = QtWidgets.QWidget(parent=dialog_signup)
-        self.widget_container.setGeometry(QtCore.QRect(100, 80, 400, 240))
+        self.widget_container.setGeometry(QtCore.QRect(66, 55, 400, 240))
         self.widget_container.setStyleSheet("background-color: #747474;\n"
 "border: 1px solid #000;\n"
 "border-top-color: #fff;\n"
@@ -89,9 +89,12 @@ class Ui_dialog_signup(object):
         self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_login.setObjectName("label_feedback_login")
         self.key_image = QtWidgets.QLabel(parent=dialog_signup)
-        self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
+        self.key_image.setGeometry(QtCore.QRect(15, 18, 71, 111))
         self.key_image.setStyleSheet("background-color: none;\n"
 "")
+        self.key_image.setText("")
+        self.key_image.setPixmap(QtGui.QPixmap(":/key/images/key.png"))
+        self.key_image.setScaledContents(True)
         self.key_image.setObjectName("key_image")
         self.key_image.raise_()
         self.widget_container.raise_()
@@ -105,4 +108,3 @@ class Ui_dialog_signup(object):
         self.btn_submit_new_master_key.setText(_translate("dialog_signup", "Создать"))
         self.input_new_master_key.setPlaceholderText(_translate("dialog_signup", "Придумайте мастер-пароль..."))
         self.input_new_login.setPlaceholderText(_translate("dialog_signup", "Придумайте логин..."))
-        self.key_image.setText(_translate("dialog_signup", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))

@@ -16,6 +16,7 @@
 ```
 git clone https://github.com/Kvazitropter/password-manager.git
 make setup
+make run
 ```
 
 ---

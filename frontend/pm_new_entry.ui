@@ -103,7 +103,7 @@ font-style: italic;
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>75</y>
+      <y>78</y>
       <width>330</width>
       <height>30</height>
      </rect>
@@ -126,7 +126,7 @@ font-style: italic;
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>120</y>
+      <y>126</y>
       <width>330</width>
       <height>30</height>
      </rect>
@@ -142,13 +142,13 @@ font-style: italic;
      <string/>
     </property>
     <property name="echoMode">
-     <enum>QLineEdit::EchoMode::Password</enum>
+     <enum>QLineEdit::Password</enum>
     </property>
     <property name="placeholderText">
      <string>Введите пароль...</string>
     </property>
     <property name="clearButtonEnabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_generate_password">
@@ -180,11 +180,11 @@ background-color: rgba(205, 205, 205, 0.1);
      <string>Сгенерировать пароль</string>
     </property>
    </widget>
-   <widget class="QLabel" name="feedback_label">
+   <widget class="QLabel" name="label_feedback_password">
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>160</y>
+      <y>156</y>
       <width>330</width>
       <height>16</height>
      </rect>
@@ -204,14 +204,14 @@ border: none;
      <string/>
     </property>
     <property name="textInteractionFlags">
-     <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+     <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_show">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>124</y>
+      <x>312</x>
+      <y>129</y>
       <width>25</width>
       <height>25</height>
      </rect>
@@ -221,7 +221,7 @@ border: none;
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-	background-color: transparent;
+	background-color: white;
 	border: none;
 }</string>
     </property>
@@ -240,8 +240,8 @@ border: none;
    <widget class="QPushButton" name="btn_copy">
     <property name="geometry">
      <rect>
-      <x>335</x>
-      <y>123</y>
+      <x>337</x>
+      <y>129</y>
       <width>25</width>
       <height>25</height>
      </rect>
@@ -250,15 +250,15 @@ border: none;
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;
+     <string notr="true">background-color: white;
 border: none;</string>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>images/content_copy.png</normaloff>images/content_copy.png</iconset>
+     <iconset resource="res-rc.qrc">
+      <normaloff>:/icons/images/content_copy.png</normaloff>:/icons/images/content_copy.png</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_settings">
@@ -288,6 +288,60 @@ border: none;</string>
     </property>
     <property name="checkable">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_feedback_s_name">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>60</y>
+      <width>330</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+color: #f54021;
+font-size: 12px;
+font-weight: light;
+border: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::NoTextInteraction</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_feedback_login">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>108</y>
+      <width>330</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+color: #f54021;
+font-size: 12px;
+font-weight: light;
+border: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
   </widget>

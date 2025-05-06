@@ -41,10 +41,10 @@ class Ui_dialog_start(object):
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
         self.btn_login.setObjectName("btn_login")
-        self.btn_create_new_storage = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_create_new_storage.setGeometry(QtCore.QRect(75, 135, 250, 40))
-        self.btn_create_new_storage.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_create_new_storage.setStyleSheet("QPushButton {\n"
+        self.btn_signup = QtWidgets.QPushButton(parent=self.widget_container)
+        self.btn_signup.setGeometry(QtCore.QRect(75, 135, 250, 40))
+        self.btn_signup.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_signup.setStyleSheet("QPushButton {\n"
 "background-color: #CDCDCD;\n"
 "}\n"
 "\n"
@@ -55,7 +55,7 @@ class Ui_dialog_start(object):
 "QPushButton::pressed {\n"
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
-        self.btn_create_new_storage.setObjectName("btn_create_new_storage")
+        self.btn_signup.setObjectName("btn_signup")
         self.key_image = QtWidgets.QLabel(parent=dialog_start)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"
@@ -71,15 +71,5 @@ class Ui_dialog_start(object):
         _translate = QtCore.QCoreApplication.translate
         dialog_start.setWindowTitle(_translate("dialog_start", "Password Manager"))
         self.btn_login.setText(_translate("dialog_start", "Войти в Менеджер Паролей"))
-        self.btn_create_new_storage.setText(_translate("dialog_start", "Создать новое хранилище"))
+        self.btn_signup.setText(_translate("dialog_start", "Создать новое хранилище"))
         self.key_image.setText(_translate("dialog_start", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_start = QtWidgets.QDialog()
-    ui = Ui_dialog_start()
-    ui.setupUi(dialog_start)
-    dialog_start.show()
-    sys.exit(app.exec())

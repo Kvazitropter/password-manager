@@ -65,7 +65,7 @@ background-color: rgba(205, 205, 205, 0.1);
      <string>Войти в Менеджер Паролей</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_create_new_storage">
+   <widget class="QPushButton" name="btn_signup">
     <property name="geometry">
      <rect>
       <x>75</x>

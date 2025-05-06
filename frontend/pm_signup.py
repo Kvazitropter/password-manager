@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_create_new_storage.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_signup.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -9,16 +9,16 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_dialog_create_new_storage(object):
-    def setupUi(self, dialog_create_new_storage):
-        dialog_create_new_storage.setObjectName("dialog_create_new_storage")
-        dialog_create_new_storage.resize(600, 400)
-        dialog_create_new_storage.setStyleSheet("background-color: #324D64;\n"
+class Ui_dialog_signup(object):
+    def setupUi(self, dialog_signup):
+        dialog_signup.setObjectName("dialog_signup")
+        dialog_signup.resize(600, 400)
+        dialog_signup.setStyleSheet("background-color: #324D64;\n"
 "font: normal bold 12px/15px \'Inter\', sans-serif;\n"
 "color: #000000;\n"
 "\n"
 "")
-        self.widget_container = QtWidgets.QWidget(parent=dialog_create_new_storage)
+        self.widget_container = QtWidgets.QWidget(parent=dialog_signup)
         self.widget_container.setGeometry(QtCore.QRect(100, 80, 400, 240))
         self.widget_container.setStyleSheet("background-color: #747474;\n"
 "border: 1px solid #000;\n"
@@ -60,7 +60,7 @@ class Ui_dialog_create_new_storage(object):
 "border: none;\n"
 "}")
         self.label_feedback_master_key.setText("")
-        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_master_key.setObjectName("label_feedback_master_key")
         self.input_new_login = QtWidgets.QLineEdit(parent=self.widget_container)
         self.input_new_login.setGeometry(QtCore.QRect(35, 30, 330, 40))
@@ -86,9 +86,9 @@ class Ui_dialog_create_new_storage(object):
 "border: none;\n"
 "}")
         self.label_feedback_login.setText("")
-        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_login.setObjectName("label_feedback_login")
-        self.key_image = QtWidgets.QLabel(parent=dialog_create_new_storage)
+        self.key_image = QtWidgets.QLabel(parent=dialog_signup)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"
 "")
@@ -96,23 +96,13 @@ class Ui_dialog_create_new_storage(object):
         self.key_image.raise_()
         self.widget_container.raise_()
 
-        self.retranslateUi(dialog_create_new_storage)
-        QtCore.QMetaObject.connectSlotsByName(dialog_create_new_storage)
+        self.retranslateUi(dialog_signup)
+        QtCore.QMetaObject.connectSlotsByName(dialog_signup)
 
-    def retranslateUi(self, dialog_create_new_storage):
+    def retranslateUi(self, dialog_signup):
         _translate = QtCore.QCoreApplication.translate
-        dialog_create_new_storage.setWindowTitle(_translate("dialog_create_new_storage", "Password Manager"))
-        self.btn_submit_new_master_key.setText(_translate("dialog_create_new_storage", "Создать"))
-        self.input_new_master_key.setPlaceholderText(_translate("dialog_create_new_storage", "Придумайте мастер-пароль..."))
-        self.input_new_login.setPlaceholderText(_translate("dialog_create_new_storage", "Придумайте логин..."))
-        self.key_image.setText(_translate("dialog_create_new_storage", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_create_new_storage = QtWidgets.QDialog()
-    ui = Ui_dialog_create_new_storage()
-    ui.setupUi(dialog_create_new_storage)
-    dialog_create_new_storage.show()
-    sys.exit(app.exec())
+        dialog_signup.setWindowTitle(_translate("dialog_signup", "Password Manager"))
+        self.btn_submit_new_master_key.setText(_translate("dialog_signup", "Создать"))
+        self.input_new_master_key.setPlaceholderText(_translate("dialog_signup", "Придумайте мастер-пароль..."))
+        self.input_new_login.setPlaceholderText(_translate("dialog_signup", "Придумайте логин..."))
+        self.key_image.setText(_translate("dialog_signup", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))

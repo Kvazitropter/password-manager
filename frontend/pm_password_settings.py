@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_generating_settings.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_password_settings.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -9,12 +9,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Ui_generating_settings(object):
-    def setupUi(self, Ui_generating_settings):
-        Ui_generating_settings.setObjectName("Ui_generating_settings")
-        Ui_generating_settings.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-        Ui_generating_settings.resize(300, 300)
-        Ui_generating_settings.setStyleSheet("QDialog {\n"
+class Ui_password_settings(object):
+    def setupUi(self, password_settings):
+        password_settings.setObjectName("password_settings")
+        password_settings.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
+        password_settings.resize(300, 300)
+        password_settings.setStyleSheet("QDialog {\n"
 "background-color: #747474;\n"
 "border: 1px solid #000;\n"
 "}\n"
@@ -31,7 +31,7 @@ class Ui_Ui_generating_settings(object):
 "QPushButton::pressed {\n"
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
-        self.btn_submit_settings = QtWidgets.QPushButton(parent=Ui_generating_settings)
+        self.btn_submit_settings = QtWidgets.QPushButton(parent=password_settings)
         self.btn_submit_settings.setGeometry(QtCore.QRect(185, 250, 100, 30))
         self.btn_submit_settings.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_submit_settings.setStyleSheet("QPushButton {\n"
@@ -49,39 +49,39 @@ class Ui_Ui_generating_settings(object):
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
         self.btn_submit_settings.setObjectName("btn_submit_settings")
-        self.widget = QtWidgets.QWidget(parent=Ui_generating_settings)
-        self.widget.setGeometry(QtCore.QRect(20, 10, 265, 241))
-        self.widget.setObjectName("widget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(parent=password_settings)
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 10, 265, 241))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.label_length = QtWidgets.QLabel(parent=self.widget)
+        self.label_length = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label_length.setObjectName("label_length")
         self.horizontalLayout_2.addWidget(self.label_length)
-        self.spinbox_length = QtWidgets.QSpinBox(parent=self.widget)
+        self.spinbox_length = QtWidgets.QSpinBox(parent=self.layoutWidget)
         self.spinbox_length.setObjectName("spinbox_length")
         self.horizontalLayout_2.addWidget(self.spinbox_length)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
-        self.checkbox_lcase = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_lcase = QtWidgets.QCheckBox(parent=self.layoutWidget)
         self.checkbox_lcase.setObjectName("checkbox_lcase")
         self.verticalLayout.addWidget(self.checkbox_lcase)
-        self.checkbox_upcase = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_upcase = QtWidgets.QCheckBox(parent=self.layoutWidget)
         self.checkbox_upcase.setObjectName("checkbox_upcase")
         self.verticalLayout.addWidget(self.checkbox_upcase)
-        self.checkbox_digits = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_digits = QtWidgets.QCheckBox(parent=self.layoutWidget)
         self.checkbox_digits.setObjectName("checkbox_digits")
         self.verticalLayout.addWidget(self.checkbox_digits)
-        self.checkbox_symbols = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_symbols = QtWidgets.QCheckBox(parent=self.layoutWidget)
         self.checkbox_symbols.setObjectName("checkbox_symbols")
         self.verticalLayout.addWidget(self.checkbox_symbols)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label_text = QtWidgets.QLabel(parent=self.widget)
+        self.label_text = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label_text.setObjectName("label_text")
         self.horizontalLayout.addWidget(self.label_text)
-        self.input_custom = QtWidgets.QLineEdit(parent=self.widget)
+        self.input_custom = QtWidgets.QLineEdit(parent=self.layoutWidget)
         self.input_custom.setMaximumSize(QtCore.QSize(16777215, 30))
         self.input_custom.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
@@ -91,7 +91,7 @@ class Ui_Ui_generating_settings(object):
         self.input_custom.setObjectName("input_custom")
         self.horizontalLayout.addWidget(self.input_custom)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        self.label_feedback = QtWidgets.QLabel(parent=self.widget)
+        self.label_feedback = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label_feedback.setMaximumSize(QtCore.QSize(16777215, 16))
         self.label_feedback.setStyleSheet("QLabel {\n"
 "color: #f54021;\n"
@@ -103,17 +103,17 @@ class Ui_Ui_generating_settings(object):
         self.label_feedback.setObjectName("label_feedback")
         self.verticalLayout.addWidget(self.label_feedback)
 
-        self.retranslateUi(Ui_generating_settings)
-        QtCore.QMetaObject.connectSlotsByName(Ui_generating_settings)
+        self.retranslateUi(password_settings)
+        QtCore.QMetaObject.connectSlotsByName(password_settings)
 
-    def retranslateUi(self, Ui_generating_settings):
+    def retranslateUi(self, password_settings):
         _translate = QtCore.QCoreApplication.translate
-        Ui_generating_settings.setWindowTitle(_translate("Ui_generating_settings", "Password Manager"))
-        self.btn_submit_settings.setText(_translate("Ui_generating_settings", "Применить"))
-        self.label_length.setText(_translate("Ui_generating_settings", "Длина:"))
-        self.checkbox_lcase.setText(_translate("Ui_generating_settings", "Использовать буквы в нижнем регистре"))
-        self.checkbox_upcase.setText(_translate("Ui_generating_settings", "Использовать буквы в верхнем регистре"))
-        self.checkbox_digits.setText(_translate("Ui_generating_settings", "Использовать цифры"))
-        self.checkbox_symbols.setText(_translate("Ui_generating_settings", "Использовать специальные символы"))
-        self.label_text.setText(_translate("Ui_generating_settings", "Добавить символы:"))
-        self.input_custom.setPlaceholderText(_translate("Ui_generating_settings", "Введите символы..."))
+        password_settings.setWindowTitle(_translate("password_settings", "Password Manager"))
+        self.btn_submit_settings.setText(_translate("password_settings", "Применить"))
+        self.label_length.setText(_translate("password_settings", "Длина:"))
+        self.checkbox_lcase.setText(_translate("password_settings", "Использовать буквы в нижнем регистре"))
+        self.checkbox_upcase.setText(_translate("password_settings", "Использовать буквы в верхнем регистре"))
+        self.checkbox_digits.setText(_translate("password_settings", "Использовать цифры"))
+        self.checkbox_symbols.setText(_translate("password_settings", "Использовать специальные символы"))
+        self.label_text.setText(_translate("password_settings", "Добавить символы:"))
+        self.input_custom.setPlaceholderText(_translate("password_settings", "Введите символы..."))

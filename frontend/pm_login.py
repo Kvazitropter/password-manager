@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'frontend/pm_login.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_login.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -66,7 +66,7 @@ class Ui_dialog_login(object):
 "}")
         self.label_feedback_login.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.label_feedback_login.setText("")
-        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_login.setObjectName("label_feedback_login")
         self.input_master_key = QtWidgets.QLineEdit(parent=self.widget_container)
         self.input_master_key.setGeometry(QtCore.QRect(35, 95, 330, 40))
@@ -93,7 +93,7 @@ class Ui_dialog_login(object):
 "border: none;\n"
 "}")
         self.label_feedback_master_key.setText("")
-        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback_master_key.setObjectName("label_feedback_master_key")
         self.key_image = QtWidgets.QLabel(parent=dialog_login)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))

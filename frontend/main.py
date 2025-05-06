@@ -1,6 +1,6 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtGui import QCursor
+from PyQt6.QtGui import QCursor, QPainter, QColor
 from PyQt6.QtWidgets import QApplication, QLineEdit, QMainWindow
 
 from backend.custom_errors import (
@@ -8,9 +8,9 @@ from backend.custom_errors import (
     ExistingEntry,
     NonExistingAccount,
 )
-from frontend.pm_add_new_entry import Ui_dialog_add_new_entry
-from frontend.pm_create_new_storage import Ui_dialog_create_new_storage
-from frontend.pm_generating_settings import Ui_Ui_generating_settings
+from frontend.pm_new_entry import Ui_dialog_new_entry
+from frontend.pm_signup import Ui_dialog_signup
+from frontend.pm_password_settings import Ui_password_settings
 from frontend.pm_login import Ui_dialog_login
 from frontend.pm_main_window import Ui_main_window
 from frontend.pm_start import Ui_dialog_start
@@ -52,7 +52,7 @@ class PasswordManager(QMainWindow):
         self.setCentralWidget(None)
         self.setup_main_window(Ui_dialog_start)
         self.ui.btn_login.clicked.connect(self.open_login_window)
-        self.ui.btn_create_new_storage.clicked.connect(self.open_create_new_storage_window)
+        self.ui.btn_signup.clicked.connect(self.open_signup_window)
 
     def open_login_window(self):
         self.login_window = self.setup_dialog_window(Ui_dialog_login)
@@ -63,21 +63,23 @@ class PasswordManager(QMainWindow):
                               self.ui_window.input_master_key))
 
     def check_inputs(self, success_func, *inputs):
-        for input in inputs:  
+        for input in inputs:
+            base_style = 'font-style: italic; background-color: white; '
             if not input.text():
-                input.setStyleSheet('background-color: red')
+                input.setStyleSheet(base_style + 'border-color: #f54021')
             else:
-                input.setStyleSheet('background-color: white')
+                input.setStyleSheet(base_style + 'border-color: #000')
         if all(input.text() for input in inputs):
             success_func()
         
-    def open_create_new_storage_window(self):
-        self.create_new_storage_window = self.setup_dialog_window(
-            Ui_dialog_create_new_storage
+    def open_signup_window(self):
+        self.signup_window = self.setup_dialog_window(
+            Ui_dialog_signup
         )
-        self.create_new_storage_window.show()
-        self.ui_window.btn_submit_new_master_key.clicked.connect(lambda:
-            self.check_inputs(self.create_new_storage,
+        self.signup_window.show()
+
+        self.ui_window.btn_submit_new_master_key.clicked.connect(
+            lambda: self.check_inputs(self.signup,
                               self.ui_window.input_new_master_key, 
                               self.ui_window.input_new_login))
 
@@ -85,34 +87,37 @@ class PasswordManager(QMainWindow):
         # self.adjustSize()
         self.setup_main_window(Ui_main_window)
         self.view_entries()
+
         self.ui.btn_exit.clicked.connect(self.logout)
-        self.ui.btn_add_new_entry.clicked.connect(self.open_add_new_entry_window)
+        self.ui.btn_new_entry.clicked.connect(self.open_new_entry_window)
             
-    def open_add_new_entry_window(self):
-        self.add_new_entry_window = self.setup_dialog_window(
-            Ui_dialog_add_new_entry
+    def open_new_entry_window(self):
+        self.new_entry_window = self.setup_dialog_window(
+            Ui_dialog_new_entry
         )
-        self.add_new_entry_window.show()
+        self.new_entry_window.show()
 
         self.ui_window.btn_generate_password.clicked.connect(
             self.generate_and_insert_password
-            )
+        )
 
         self.ui_window.btn_submit_entry.clicked.connect(lambda:
-            self.check_inputs(self.add_new_entry,
+            self.check_inputs(self.new_entry,
                               self.ui_window.input_service_name,
                               self.ui_window.input_login,
                               self.ui_window.input_password))
 
-        self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
+        self.ui_window.btn_show.clicked.connect(
+            self.toggle_password_visibility
+        )
         self.ui_window.btn_copy.clicked.connect(self.copy_password)
         self.ui_window.btn_settings.clicked.connect(
-            self.open_generating_settings_window
+            self.open_password_settings_window
         )
 
     def open_edit_entry_window(self, service_name, login, id):
         self.edit_entry_window = self.setup_dialog_window(
-            Ui_dialog_add_new_entry
+            Ui_dialog_new_entry
         )
         password = self.controller.get_entry_password(id, self.master_key)
         self.ui_window.input_service_name.setText(service_name)
@@ -130,14 +135,14 @@ class PasswordManager(QMainWindow):
         self.ui_window.btn_show.clicked.connect(self.toggle_password_visibility)
         self.ui_window.btn_copy.clicked.connect(self.copy_password)
         self.ui_window.btn_settings.clicked.connect(
-            self.open_generating_settings_window
+            self.open_password_settings_window
         )
 
-    def open_generating_settings_window(self):
+    def open_password_settings_window(self):
         window, ui_window = self.setup_extra_window(
-            Ui_Ui_generating_settings
+            Ui_password_settings
         )
-        self.generating_settings_window = window
+        self.password_settings_window = window
         self.ui_window_settings = ui_window
         config = self.generator.get_config()
         self.ui_window_settings.spinbox_length.setValue(config['length'])
@@ -147,11 +152,11 @@ class PasswordManager(QMainWindow):
         self.ui_window_settings.checkbox_symbols.setChecked(config['use_special_symbols'])
         self.ui_window_settings.input_custom.setText(config['custom_symbols'])
         self.ui_window_settings.btn_submit_settings.clicked.connect(
-            self.generating_settings
+            self.password_settings
         )
-        self.generating_settings_window.show()
+        self.password_settings_window.show()
         
-    def generating_settings(self):
+    def password_settings(self):
         length = self.ui_window_settings.spinbox_length.value()
         use_lowercase = self.ui_window_settings.checkbox_lcase.isChecked()
         use_uppercase = self.ui_window_settings.checkbox_upcase.isChecked()
@@ -169,7 +174,7 @@ class PasswordManager(QMainWindow):
         
         try:
             self.generator.set_config(new_config)
-            self.generating_settings_window.close()
+            self.password_settings_window.close()
         except Exception as e:
             self.ui_window_settings.label_feedback.setText(str(e))
             self.ui_window_settings.label_feedback.setToolTip(str(e))
@@ -207,7 +212,7 @@ class PasswordManager(QMainWindow):
         self.user_login = None
         self.open_start_window()
 
-    def create_new_storage(self):
+    def signup(self):
         new_login = self.ui_window.input_new_login.text()
         new_master_key = self.ui_window.input_new_master_key.text()
 
@@ -215,7 +220,7 @@ class PasswordManager(QMainWindow):
             self.controller.create_new_account(new_login, new_master_key)
             self.master_key = new_master_key
             self.user_login = new_login
-            self.create_new_storage_window.close()
+            self.signup_window.close()
             self.open_main_window()
         except ExistingAccount as e:
             self.ui_window.label_feedback_login.setText(str(e))
@@ -224,17 +229,17 @@ class PasswordManager(QMainWindow):
             self.ui_window.label_feedback_master_key.setText(str(e))
             self.ui_window.label_feedback_master_key.setToolTip(str(e))
 
-    def add_new_entry(self):
+    def new_entry(self):
         service_name = self.ui_window.input_service_name.text()
         login = self.ui_window.input_login.text()
         password = self.ui_window.input_password.text()
         
         try:
-            self.controller.add_new_entry(
+            self.controller_new_entry(
                 self.user_login, self.master_key, service_name, login, password
             )
             self.view_entries()
-            self.add_new_entry_window.close()
+            self.new_entry_window.close()
         except ExistingEntry as e:
             self.ui_window.label_feedback_service_name.setText(str(e))
             self.ui_window.label_feedback_service_name.setToolTip(str(e))
@@ -258,7 +263,7 @@ class PasswordManager(QMainWindow):
             self.ui.table_entries.setItem(
                 row_num, 1, QtWidgets.QTableWidgetItem(login))
 
-            edit_entry = QtWidgets.QPushButton('Показать')
+            edit_entry = QtWidgets.QPushButton('Просмотр')
             edit_entry.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
             edit_entry.clicked.connect(
                 lambda: self.open_edit_entry_window(service_name, login, id)

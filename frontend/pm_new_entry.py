@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\frontend\pm_add_new_entry.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_new_entry.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -9,11 +9,11 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_dialog_add_new_entry(object):
-    def setupUi(self, dialog_add_new_entry):
-        dialog_add_new_entry.setObjectName("dialog_add_new_entry")
-        dialog_add_new_entry.resize(600, 400)
-        dialog_add_new_entry.setStyleSheet("QDialog {\n"
+class Ui_dialog_new_entry(object):
+    def setupUi(self, dialog_new_entry):
+        dialog_new_entry.setObjectName("dialog_new_entry")
+        dialog_new_entry.resize(600, 400)
+        dialog_new_entry.setStyleSheet("QDialog {\n"
 "background-color: #324D64;\n"
 "}\n"
 "\n"
@@ -29,7 +29,7 @@ class Ui_dialog_add_new_entry(object):
 "QPushButton::pressed {\n"
 "background-color: rgba(205, 205, 205, 0.1);\n"
 "}")
-        self.widget_container = QtWidgets.QWidget(parent=dialog_add_new_entry)
+        self.widget_container = QtWidgets.QWidget(parent=dialog_new_entry)
         self.widget_container.setGeometry(QtCore.QRect(100, 80, 400, 240))
         self.widget_container.setStyleSheet("background-color: #747474;\n"
 "border: 1px solid #000;\n"
@@ -103,7 +103,7 @@ class Ui_dialog_add_new_entry(object):
 "border: none;\n"
 "}")
         self.feedback_label.setText("")
-        self.feedback_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.feedback_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.feedback_label.setObjectName("feedback_label")
         self.btn_show = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_show.setGeometry(QtCore.QRect(310, 124, 25, 25))
@@ -142,7 +142,7 @@ class Ui_dialog_add_new_entry(object):
         self.btn_settings.setIcon(icon2)
         self.btn_settings.setCheckable(True)
         self.btn_settings.setObjectName("btn_settings")
-        self.key_image = QtWidgets.QLabel(parent=dialog_add_new_entry)
+        self.key_image = QtWidgets.QLabel(parent=dialog_new_entry)
         self.key_image.setGeometry(QtCore.QRect(30, 30, 100, 156))
         self.key_image.setStyleSheet("background-color: none;\n"
 "")
@@ -150,15 +150,15 @@ class Ui_dialog_add_new_entry(object):
         self.key_image.raise_()
         self.widget_container.raise_()
 
-        self.retranslateUi(dialog_add_new_entry)
-        QtCore.QMetaObject.connectSlotsByName(dialog_add_new_entry)
+        self.retranslateUi(dialog_new_entry)
+        QtCore.QMetaObject.connectSlotsByName(dialog_new_entry)
 
-    def retranslateUi(self, dialog_add_new_entry):
+    def retranslateUi(self, dialog_new_entry):
         _translate = QtCore.QCoreApplication.translate
-        dialog_add_new_entry.setWindowTitle(_translate("dialog_add_new_entry", "Password Manager"))
-        self.btn_submit_entry.setText(_translate("dialog_add_new_entry", "Подтвердить"))
-        self.input_service_name.setPlaceholderText(_translate("dialog_add_new_entry", "Введите название сайта..."))
-        self.input_login.setPlaceholderText(_translate("dialog_add_new_entry", "Введите логин..."))
-        self.input_password.setPlaceholderText(_translate("dialog_add_new_entry", "Введите пароль..."))
-        self.btn_generate_password.setText(_translate("dialog_add_new_entry", "Сгенерировать пароль"))
-        self.key_image.setText(_translate("dialog_add_new_entry", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))
+        dialog_new_entry.setWindowTitle(_translate("dialog_new_entry", "Password Manager"))
+        self.btn_submit_entry.setText(_translate("dialog_new_entry", "Подтвердить"))
+        self.input_service_name.setPlaceholderText(_translate("dialog_new_entry", "Введите название сайта..."))
+        self.input_login.setPlaceholderText(_translate("dialog_new_entry", "Введите логин..."))
+        self.input_password.setPlaceholderText(_translate("dialog_new_entry", "Введите пароль..."))
+        self.btn_generate_password.setText(_translate("dialog_new_entry", "Сгенерировать пароль"))
+        self.key_image.setText(_translate("dialog_new_entry", "<html><head/><body><p><img src=\":/key/images/key.png\"/></p></body></html>"))

@@ -25,7 +25,7 @@ class ExistingAccount(Exception):
 class ExistingEntry(Exception):
     def __init__(self, message=None):
         self.message = (message
-            or 'Запись с таким именем сервиса и логином уже существует.')
+            or 'Запись с таким именем сервиса и логином существует.')
     
     def __str__(self):
         return self.message

@@ -1,6 +1,6 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtGui import QCursor, QStandardItemModel, QStandardItem
+from PyQt6.QtGui import QCursor
 from PyQt6.QtWidgets import QApplication, QLineEdit, QMainWindow
 
 from frontend.pm_login import Ui_dialog_login

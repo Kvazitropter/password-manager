@@ -17,7 +17,9 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install dependencies for Qt
+      run: sudo apt update && sudo apt install -y libegl1 xvfb
     - name: Install dependencies
       run: pip install uv && make setup-dev
     - name: Run tests
-      run: make test
+      run: xvfb-run -a make test

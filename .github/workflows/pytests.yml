@@ -20,10 +20,10 @@ jobs:
     - name: Install dependencies for Qt
       run: |
         sudo apt update
-        sudo apt install -y \
+        sudo apt-get install -y --no-install-recommends \
           xvfb \
           libegl1 \
-          libgl1-mesa-glx \
+          libgl1 \
           libxcb-xinerama0 \
           libxcb-cursor0 \
           libxcb-icccm4 \
@@ -43,4 +43,7 @@ jobs:
     - name: Install dependencies
       run: pip install uv && make setup-dev
     - name: Run tests
-      run: xvfb-run -a make test
+      run: |
+        export QT_DEBUG_PLUGINS=1
+        export QT_XCB_GL_INTEGRATION=xcb_egl
+        xvfb-run -a make test

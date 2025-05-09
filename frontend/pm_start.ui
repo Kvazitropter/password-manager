@@ -10,161 +10,202 @@
     <height>350</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Verdana</family>
+    <pointsize>-1</pointsize>
+    <italic>false</italic>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Password Manager</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #324D64;
-font: normal bold 12px/15px 'Inter', sans-serif;
+   <string notr="true">QDialog {
+background-color: #5287A9;
+}
+
+* {
+font: 700 12px/15px &quot;Verdana&quot;;
 color: #000000;
+}
 
 </string>
   </property>
-  <widget class="QLabel" name="key_image">
+  <widget class="QWidget" name="container" native="true">
    <property name="geometry">
     <rect>
-     <x>15</x>
-     <y>18</y>
-     <width>71</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: none;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="res-rc.qrc">:/key/images/key.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QWidget" name="widget_container" native="true">
-   <property name="geometry">
-    <rect>
-     <x>66</x>
-     <y>55</y>
-     <width>400</width>
+     <x>30</x>
+     <y>50</y>
+     <width>450</width>
      <height>240</height>
     </rect>
    </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>400</width>
-     <height>240</height>
-    </size>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #747474;
-border: 1px solid #000;
-border-top-color: #fff;
-border-left-color: #fff;
-</string>
-   </property>
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QLabel" name="key_image">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>401</width>
-      <height>241</height>
+      <y>-3</y>
+      <width>111</width>
+      <height>246</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <property name="leftMargin">
-      <number>4</number>
-     </property>
-     <property name="topMargin">
-      <number>4</number>
-     </property>
-     <property name="rightMargin">
-      <number>4</number>
-     </property>
-     <property name="bottomMargin">
-      <number>4</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="btn_login">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>250</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-background-color: #CDCDCD;
-}
-
-QPushButton::hover {
-background-color: rgba(205, 205, 205, 0.4);
-}
-
-QPushButton::pressed {
-background-color: rgba(205, 205, 205, 0.1);
-}</string>
-       </property>
-       <property name="text">
-        <string>Войти в Менеджер Паролей</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="btn_signup">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>250</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-background-color: #CDCDCD;
-}
-
-QPushButton::hover {
-background-color: rgba(205, 205, 205, 0.4);
-}
-
-QPushButton::pressed {
-background-color: rgba(205, 205, 205, 0.1);
-}</string>
-       </property>
-       <property name="text">
-        <string>Создать новое хранилище</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="styleSheet">
+     <string notr="true">background-color: none;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res-rc.qrc">:/key/images/key.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
+   <widget class="QWidget" name="buttons_container" native="true">
+    <property name="geometry">
+     <rect>
+      <x>45</x>
+      <y>0</y>
+      <width>400</width>
+      <height>240</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>400</width>
+      <height>240</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+background-color:#E9EEF4;
+border-radius: 10%;
+}
+</string>
+    </property>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>401</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="leftMargin">
+       <number>4</number>
+      </property>
+      <property name="topMargin">
+       <number>4</number>
+      </property>
+      <property name="rightMargin">
+       <number>4</number>
+      </property>
+      <property name="bottomMargin">
+       <number>4</number>
+      </property>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="btn_signup">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+background-color: rgb(199, 219, 234);
+}
+
+QPushButton::hover {
+background-color: rgba(82, 135, 169, 70);
+}
+
+QPushButton::pressed {
+background-color: rgba(82, 135, 169, 150);
+}</string>
+        </property>
+        <property name="text">
+         <string>Создать новое хранилище</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="btn_login">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+background-color: rgb(199, 219, 234);
+}
+
+QPushButton::hover {
+background-color: rgba(82, 135, 169, 70);
+}
+
+QPushButton::pressed {
+background-color: rgba(82, 135, 169, 150);
+}</string>
+        </property>
+        <property name="text">
+         <string>Войти в Менеджер Паролей</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <zorder>buttons_container</zorder>
+   <zorder>key_image</zorder>
   </widget>
  </widget>
  <resources>

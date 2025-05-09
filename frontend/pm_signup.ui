@@ -10,148 +10,201 @@
     <height>350</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Verdana</family>
+    <pointsize>-1</pointsize>
+    <italic>false</italic>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Password Manager</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #324D64;
-font: normal bold 12px/15px 'Inter', sans-serif;
-color: #000000;
+   <string notr="true">QDialog {
+background-color: #5287A9;
+}
 
+* {
+font: 700 12px/15px &quot;Verdana&quot;;
+color: #000000;
+}
 </string>
   </property>
-  <widget class="QWidget" name="widget_container" native="true">
+  <widget class="QWidget" name="container" native="true">
    <property name="geometry">
     <rect>
-     <x>66</x>
-     <y>55</y>
-     <width>400</width>
-     <height>240</height>
+     <x>30</x>
+     <y>50</y>
+     <width>450</width>
+     <height>241</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #747474;
-border: 1px solid #000;
-border-top-color: #fff;
-border-left-color: #fff;
-</string>
-   </property>
-   <widget class="QPushButton" name="btn_submit_new_master_key">
-    <property name="geometry">
-     <rect>
-      <x>215</x>
-      <y>180</y>
-      <width>150</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-background-color: #CDCDCD;
-}
-
-QPushButton::hover {
-background-color: rgba(205, 205, 205, 0.4);
-}
-
-QPushButton::pressed {
-background-color: rgba(205, 205, 205, 0.1);
-}</string>
-    </property>
-    <property name="text">
-     <string>Создать</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="input_new_master_key">
-    <property name="geometry">
-     <rect>
-      <x>35</x>
-      <y>95</y>
-      <width>330</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit {
-background-color: #fff;
-border: 1px solid #000;
-font-style: italic;
-}</string>
-    </property>
-    <property name="placeholderText">
-     <string>Придумайте мастер-пароль...</string>
-    </property>
-    <property name="clearButtonEnabled">
+   <widget class="QLabel" name="key_image">
+    <property name="enabled">
      <bool>true</bool>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_feedback_master_key">
     <property name="geometry">
      <rect>
-      <x>35</x>
-      <y>135</y>
-      <width>330</width>
-      <height>16</height>
+      <x>0</x>
+      <y>-3</y>
+      <width>111</width>
+      <height>246</height>
      </rect>
     </property>
-    <property name="cursor">
-     <cursorShape>IBeamCursor</cursorShape>
-    </property>
     <property name="styleSheet">
-     <string notr="true">QLabel {
-color: #f54021;
-font-size: 12px;
-font-weight: light;
-border: none;
-}</string>
+     <string notr="true">background-color: none;
+</string>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="textInteractionFlags">
-     <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+    <property name="pixmap">
+     <pixmap resource="res-rc.qrc">:/key/images/key.png</pixmap>
     </property>
-   </widget>
-   <widget class="QLineEdit" name="input_new_login">
-    <property name="geometry">
-     <rect>
-      <x>35</x>
-      <y>30</y>
-      <width>330</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit {
-background-color: #fff;
-border: 1px solid #000;
-font-style: italic;
-}</string>
-    </property>
-    <property name="placeholderText">
-     <string>Придумайте логин...</string>
-    </property>
-    <property name="clearButtonEnabled">
+    <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_feedback_login">
+   <widget class="QWidget" name="form_container_2" native="true">
     <property name="geometry">
      <rect>
-      <x>35</x>
-      <y>70</y>
-      <width>330</width>
-      <height>16</height>
+      <x>45</x>
+      <y>0</y>
+      <width>400</width>
+      <height>240</height>
      </rect>
     </property>
-    <property name="cursor">
-     <cursorShape>IBeamCursor</cursorShape>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>400</width>
+      <height>240</height>
+     </size>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">QLabel {
+     <string notr="true">QWidget {
+background-color:#E9EEF4;
+border-radius: 10%;
+}
+</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>0</y>
+       <width>311</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>5</number>
+      </property>
+      <property name="topMargin">
+       <number>30</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>20</number>
+      </property>
+      <item>
+       <widget class="QLineEdit" name="input_new_login">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="sizeIncrement">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+background-color: #fff;
+border-style: solid;
+border-width: 1px;
+border-color: rgb(82, 135, 169);
+font-style: italic;
+padding-left: 5px;
+}</string>
+        </property>
+        <property name="cursorPosition">
+         <number>0</number>
+        </property>
+        <property name="placeholderText">
+         <string>Придумайте логин...</string>
+        </property>
+        <property name="cursorMoveStyle">
+         <enum>Qt::VisualMoveStyle</enum>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_feedback_login">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
 color: #f54021;
 font-size: 12px;
 font-weight: light;
@@ -162,40 +215,172 @@ QToolTip {
 background-color: #CDCDCD;
 border: none;
 }</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="textInteractionFlags">
-     <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
-    </property>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::NoTextInteraction</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="input_new_master_key">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+background-color: #fff;
+border-style: solid;
+border-width: 1px;
+border-color: rgb(82, 135, 169);
+font-style: italic;
+padding-left: 5px;
+}</string>
+        </property>
+        <property name="placeholderText">
+         <string>Придумайте мастер-пароль...</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_feedback_master_key">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+color: #f54021;
+font-size: 12px;
+font-weight: light;
+border: none;
+}
+
+QToolTip {
+background-color: #CDCDCD;
+border: none;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::NoTextInteraction</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_submit_signup">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+background-color: rgb(199, 219, 234);
+}
+
+QPushButton::hover {
+background-color: rgba(82, 135, 169, 70);
+}
+
+QPushButton::pressed {
+background-color: rgba(82, 135, 169, 150);
+}</string>
+        </property>
+        <property name="text">
+         <string>Войти</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
+   <zorder>form_container_2</zorder>
+   <zorder>key_image</zorder>
   </widget>
-  <widget class="QLabel" name="key_image">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>18</y>
-     <width>71</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: none;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="res-rc.qrc">:/key/images/key.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <zorder>key_image</zorder>
-  <zorder>widget_container</zorder>
  </widget>
  <resources>
   <include location="res-rc.qrc"/>

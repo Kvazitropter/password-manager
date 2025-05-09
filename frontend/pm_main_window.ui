@@ -14,58 +14,75 @@
    <string>Password Manager</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #324D64;
-font: normal bold 12px/15px 'Inter', sans-serif;
-color: #000000;
+   <string notr="true">QWidget {
+background-color: #5287A9;
+}
 
-</string>
+* {
+font: 700 12px/15px &quot;Verdana&quot;;
+color: #000000;
+border: none;
+border-radius: 10px;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">
+</string>
+   </property>
    <widget class="QWidget" name="widget_container" native="true">
     <property name="geometry">
      <rect>
-      <x>66</x>
-      <y>55</y>
-      <width>489</width>
-      <height>593</height>
+      <x>65</x>
+      <y>60</y>
+      <width>490</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #747474;
-border: 1px solid #000;
-border-top-color: #fff;
-border-left-color: #fff;
+     <string notr="true">QWidget {
+	
+	background-color: rgb(199, 219, 234);
+}
 </string>
     </property>
     <widget class="QPushButton" name="btn_new_entry">
      <property name="geometry">
       <rect>
        <x>333</x>
-       <y>548</y>
+       <y>550</y>
        <width>140</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Verdana</family>
+       <pointsize>-1</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::FocusPolicy::NoFocus</enum>
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+      <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-background-color: #fff;
+	background-color: rgb(233, 238, 244);
 }
 
 QPushButton::hover {
-background-color: rgba(255, 255, 255, 0.8);
+background-color: rgba(233, 238, 244, 200)
 }
 
 QPushButton::pressed {
-background-color: rgba(255, 255, 255, 0.45);
+background-color:rgba(233, 238, 244, 150)
 }</string>
      </property>
      <property name="text">
@@ -75,10 +92,10 @@ background-color: rgba(255, 255, 255, 0.45);
     <widget class="QTableWidget" name="table_entries">
      <property name="geometry">
       <rect>
-       <x>19</x>
-       <y>21</y>
-       <width>453</width>
-       <height>507</height>
+       <x>20</x>
+       <y>20</y>
+       <width>450</width>
+       <height>500</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -87,41 +104,91 @@ background-color: rgba(255, 255, 255, 0.45);
        <height>0</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>Verdana</family>
+       <pointsize>-1</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">QTableView {
-background-color: #CDCDCD;
+background-color: rgb(233, 238, 244);
 font-weight: normal;
-}
-
-QTableView::section {
-background-color: #fff;
-height: 35px;
+padding: 15px;
+outline: 0;
 }
 
 QTableView::item {
-border-style: none;
-border-bottom: #9A9A9A;
-width: 415px;
+font: inherit;
+font-weight: normal;
+background-color: #fff;
+border-bottom: 1px solid rgb(199, 219, 234);
+padding: 5px 10px;
 }
 
 QTableView::item:selected {
-border: none;
-background-color: rgba(50, 77, 100, 50);
+color: inherit;
+background-color: rgba(199, 219, 234, 30);
+}
+
+QPushButton {
+background-color: rgb(199, 219, 234);
 }
 
 QPushButton::hover {
-background-color: rgba(205, 205, 205, 0.4);
+background-color: rgba(82, 135, 169, 70);
 }
 
 QPushButton::pressed {
-background-color: rgba(205, 205, 205, 0.1);
+background-color: rgba(82, 135, 169, 150);
 }</string>
      </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
      <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="autoScrollMargin">
+      <number>14</number>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="tabKeyNavigation">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideRight</enum>
+     </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerItem</enum>
      </property>
      <property name="showGrid">
-      <bool>true</bool>
+      <bool>false</bool>
+     </property>
+     <property name="cornerButtonEnabled">
+      <bool>false</bool>
      </property>
      <property name="rowCount">
       <number>0</number>
@@ -129,44 +196,52 @@ background-color: rgba(205, 205, 205, 0.1);
      <property name="columnCount">
       <number>4</number>
      </property>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>112</number>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
      </attribute>
-     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>39</number>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>105</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
       <bool>false</bool>
      </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
-     <column>
-      <property name="text">
-       <string>Сервис</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Логин</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Пароль</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string/>
-      </property>
-     </column>
+     <attribute name="verticalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>30</number>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>35</number>
+     </attribute>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
     </widget>
    </widget>
    <widget class="QLabel" name="key_image">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>18</y>
-      <width>71</width>
-      <height>111</height>
+      <x>5</x>
+      <y>5</y>
+      <width>111</width>
+      <height>246</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -186,18 +261,27 @@ background-color: rgba(205, 205, 205, 0.1);
    <widget class="QPushButton" name="btn_exit">
     <property name="geometry">
      <rect>
-      <x>562</x>
+      <x>555</x>
       <y>18</y>
-      <width>34</width>
-      <height>30</height>
+      <width>35</width>
+      <height>35</height>
      </rect>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-border: none;</string>
+     <string notr="true">QPushButton {
+background-color: 0;
+}
+
+QPushButton::hover {
+background-color: rgba(205, 205, 205, 80);
+}
+
+QPushButton::pressed {
+background-color: rgba(205, 205, 205, 130);
+}</string>
     </property>
     <property name="text">
      <string/>

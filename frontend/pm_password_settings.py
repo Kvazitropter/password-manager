@@ -16,7 +16,6 @@ class Ui_password_settings(object):
         password_settings.resize(360, 320)
         font = QtGui.QFont()
         font.setFamily("Verdana")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         password_settings.setFont(font)

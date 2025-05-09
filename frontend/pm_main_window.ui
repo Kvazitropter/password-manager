@@ -23,15 +23,18 @@ font: 700 12px/15px &quot;Verdana&quot;;
 color: #000000;
 border: none;
 border-radius: 10px;
-}
-</string>
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">
+</string>
+   </property>
    <widget class="QWidget" name="widget_container" native="true">
     <property name="geometry">
      <rect>
-      <x>66</x>
-      <y>55</y>
+      <x>65</x>
+      <y>60</y>
       <width>490</width>
       <height>600</height>
      </rect>
@@ -51,6 +54,14 @@ border-radius: 10px;
        <width>140</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Verdana</family>
+       <pointsize>-1</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -93,6 +104,14 @@ background-color:rgba(233, 238, 244, 150)
        <height>0</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>Verdana</family>
+       <pointsize>-1</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">QTableView {
 background-color: rgb(233, 238, 244);
@@ -115,7 +134,6 @@ background-color: rgba(199, 219, 234, 30);
 }
 
 QPushButton {
-font-weight: normal;
 background-color: rgb(199, 219, 234);
 }
 
@@ -215,10 +233,13 @@ background-color: rgba(82, 135, 169, 150);
     </widget>
    </widget>
    <widget class="QLabel" name="key_image">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>5</x>
+      <y>5</y>
       <width>111</width>
       <height>246</height>
      </rect>
@@ -250,7 +271,11 @@ background-color: rgba(82, 135, 169, 150);
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton::hover {
+     <string notr="true">QPushButton {
+background-color: 0;
+}
+
+QPushButton::hover {
 background-color: rgba(205, 205, 205, 80);
 }
 

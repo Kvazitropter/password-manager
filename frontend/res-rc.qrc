@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="key">
+    <file>images/pattern_100x100.png</file>
     <file>images/key.png</file>
   </qresource>
   <qresource prefix="icons">

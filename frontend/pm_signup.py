@@ -15,7 +15,6 @@ class Ui_dialog_signup(object):
         dialog_signup.resize(530, 350)
         font = QtGui.QFont()
         font.setFamily("Verdana")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         dialog_signup.setFont(font)
@@ -56,13 +55,11 @@ class Ui_dialog_signup(object):
 "")
         self.form_container_2.setObjectName("form_container_2")
         self.layoutWidget_2 = QtWidgets.QWidget(parent=self.form_container_2)
-        self.layoutWidget_2.setGeometry(QtCore.QRect(0, 0, 401, 241))
+        self.layoutWidget_2.setGeometry(QtCore.QRect(70, 0, 311, 241))
         self.layoutWidget_2.setObjectName("layoutWidget_2")
-        self.formLayout_2 = QtWidgets.QFormLayout(self.layoutWidget_2)
-        self.formLayout_2.setLabelAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.formLayout_2.setFormAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.formLayout_2.setContentsMargins(0, 20, 30, 20)
-        self.formLayout_2.setObjectName("formLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget_2)
+        self.verticalLayout.setContentsMargins(5, 30, 0, 20)
+        self.verticalLayout.setObjectName("verticalLayout")
         self.input_new_login = QtWidgets.QLineEdit(parent=self.layoutWidget_2)
         self.input_new_login.setMinimumSize(QtCore.QSize(300, 40))
         self.input_new_login.setMaximumSize(QtCore.QSize(330, 40))
@@ -70,7 +67,6 @@ class Ui_dialog_signup(object):
         self.input_new_login.setBaseSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("Verdana")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(True)
         self.input_new_login.setFont(font)
@@ -86,13 +82,36 @@ class Ui_dialog_signup(object):
         self.input_new_login.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.VisualMoveStyle)
         self.input_new_login.setClearButtonEnabled(True)
         self.input_new_login.setObjectName("input_new_login")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.input_new_login)
+        self.verticalLayout.addWidget(self.input_new_login)
+        self.label_feedback_login = QtWidgets.QLabel(parent=self.layoutWidget_2)
+        self.label_feedback_login.setMinimumSize(QtCore.QSize(300, 16))
+        self.label_feedback_login.setMaximumSize(QtCore.QSize(330, 16))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setItalic(False)
+        self.label_feedback_login.setFont(font)
+        self.label_feedback_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
+        self.label_feedback_login.setStyleSheet("QLabel {\n"
+"color: #f54021;\n"
+"font-size: 12px;\n"
+"font-weight: light;\n"
+"border: none;\n"
+"}\n"
+"\n"
+"QToolTip {\n"
+"background-color: #CDCDCD;\n"
+"border: none;\n"
+"}")
+        self.label_feedback_login.setText("")
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
+        self.label_feedback_login.setObjectName("label_feedback_login")
+        self.verticalLayout.addWidget(self.label_feedback_login)
         self.input_new_master_key = QtWidgets.QLineEdit(parent=self.layoutWidget_2)
         self.input_new_master_key.setMinimumSize(QtCore.QSize(300, 40))
         self.input_new_master_key.setMaximumSize(QtCore.QSize(330, 40))
         font = QtGui.QFont()
         font.setFamily("Verdana")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(True)
         self.input_new_master_key.setFont(font)
@@ -106,13 +125,12 @@ class Ui_dialog_signup(object):
 "}")
         self.input_new_master_key.setClearButtonEnabled(True)
         self.input_new_master_key.setObjectName("input_new_master_key")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.input_new_master_key)
+        self.verticalLayout.addWidget(self.input_new_master_key)
         self.label_feedback_master_key = QtWidgets.QLabel(parent=self.layoutWidget_2)
         self.label_feedback_master_key.setMinimumSize(QtCore.QSize(300, 16))
         self.label_feedback_master_key.setMaximumSize(QtCore.QSize(330, 16))
         font = QtGui.QFont()
         font.setFamily("Verdana")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         self.label_feedback_master_key.setFont(font)
@@ -132,17 +150,19 @@ class Ui_dialog_signup(object):
         self.label_feedback_master_key.setText("")
         self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
         self.label_feedback_master_key.setObjectName("label_feedback_master_key")
-        self.formLayout_2.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_feedback_master_key)
+        self.verticalLayout.addWidget(self.label_feedback_master_key)
+        spacerItem = QtWidgets.QSpacerItem(0, 10, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.verticalLayout.addItem(spacerItem)
         self.btn_submit_signup = QtWidgets.QPushButton(parent=self.layoutWidget_2)
         self.btn_submit_signup.setMinimumSize(QtCore.QSize(150, 30))
         self.btn_submit_signup.setMaximumSize(QtCore.QSize(150, 30))
         font = QtGui.QFont()
         font.setFamily("Verdana")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         self.btn_submit_signup.setFont(font)
         self.btn_submit_signup.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_submit_signup.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.btn_submit_signup.setStyleSheet("QPushButton {\n"
 "background-color: rgb(199, 219, 234);\n"
 "}\n"
@@ -155,32 +175,7 @@ class Ui_dialog_signup(object):
 "background-color: rgba(82, 135, 169, 150);\n"
 "}")
         self.btn_submit_signup.setObjectName("btn_submit_signup")
-        self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.btn_submit_signup)
-        self.label_feedback_login = QtWidgets.QLabel(parent=self.layoutWidget_2)
-        self.label_feedback_login.setMinimumSize(QtCore.QSize(300, 16))
-        self.label_feedback_login.setMaximumSize(QtCore.QSize(330, 16))
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        font.setPointSize(-1)
-        font.setBold(True)
-        font.setItalic(False)
-        self.label_feedback_login.setFont(font)
-        self.label_feedback_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
-        self.label_feedback_login.setStyleSheet("QLabel {\n"
-"color: #f54021;\n"
-"font-size: 12px;\n"
-"font-weight: light;\n"
-"border: none;\n"
-"}\n"
-"\n"
-"QToolTip {\n"
-"background-color: #CDCDCD;\n"
-"border: none;\n"
-"}")
-        self.label_feedback_login.setText("")
-        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
-        self.label_feedback_login.setObjectName("label_feedback_login")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_feedback_login)
+        self.verticalLayout.addWidget(self.btn_submit_signup)
         self.form_container_2.raise_()
         self.key_image.raise_()
 

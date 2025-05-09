@@ -101,32 +101,26 @@ border-radius: 10%;
     <widget class="QWidget" name="layoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>70</x>
        <y>0</y>
-       <width>401</width>
+       <width>311</width>
        <height>241</height>
       </rect>
      </property>
-     <layout class="QFormLayout" name="formLayout_2">
-      <property name="labelAlignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="formAlignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">
-       <number>0</number>
+       <number>5</number>
       </property>
       <property name="topMargin">
-       <number>20</number>
+       <number>30</number>
       </property>
       <property name="rightMargin">
-       <number>30</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
        <number>20</number>
       </property>
-      <item row="0" column="0">
+      <item>
        <widget class="QLineEdit" name="input_new_login">
         <property name="minimumSize">
          <size>
@@ -184,7 +178,53 @@ padding-left: 5px;
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item>
+       <widget class="QLabel" name="label_feedback_login">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Verdana</family>
+          <pointsize>-1</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+color: #f54021;
+font-size: 12px;
+font-weight: light;
+border: none;
+}
+
+QToolTip {
+background-color: #CDCDCD;
+border: none;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::NoTextInteraction</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLineEdit" name="input_new_master_key">
         <property name="minimumSize">
          <size>
@@ -224,7 +264,7 @@ padding-left: 5px;
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item>
        <widget class="QLabel" name="label_feedback_master_key">
         <property name="minimumSize">
          <size>
@@ -273,7 +313,23 @@ border: none;
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QPushButton" name="btn_submit_signup">
         <property name="minimumSize">
          <size>
@@ -298,6 +354,9 @@ border: none;
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
 background-color: rgb(199, 219, 234);
@@ -313,52 +372,6 @@ background-color: rgba(82, 135, 169, 150);
         </property>
         <property name="text">
          <string>Войти</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_feedback_login">
-        <property name="minimumSize">
-         <size>
-          <width>300</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>330</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Verdana</family>
-          <pointsize>-1</pointsize>
-          <italic>false</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>IBeamCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel {
-color: #f54021;
-font-size: 12px;
-font-weight: light;
-border: none;
-}
-
-QToolTip {
-background-color: #CDCDCD;
-border: none;
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::NoTextInteraction</set>
         </property>
        </widget>
       </item>

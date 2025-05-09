@@ -22,12 +22,13 @@ class Ui_main_window(object):
 "color: #000000;\n"
 "border: none;\n"
 "border-radius: 10px;\n"
-"}\n"
-"")
+"}")
         self.centralwidget = QtWidgets.QWidget(parent=main_window)
+        self.centralwidget.setStyleSheet("\n"
+"")
         self.centralwidget.setObjectName("centralwidget")
         self.widget_container = QtWidgets.QWidget(parent=self.centralwidget)
-        self.widget_container.setGeometry(QtCore.QRect(66, 55, 490, 600))
+        self.widget_container.setGeometry(QtCore.QRect(65, 60, 490, 600))
         self.widget_container.setStyleSheet("QWidget {\n"
 "    \n"
 "    background-color: rgb(199, 219, 234);\n"
@@ -36,6 +37,11 @@ class Ui_main_window(object):
         self.widget_container.setObjectName("widget_container")
         self.btn_new_entry = QtWidgets.QPushButton(parent=self.widget_container)
         self.btn_new_entry.setGeometry(QtCore.QRect(333, 550, 140, 30))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setItalic(False)
+        self.btn_new_entry.setFont(font)
         self.btn_new_entry.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_new_entry.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.btn_new_entry.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)
@@ -54,6 +60,11 @@ class Ui_main_window(object):
         self.table_entries = QtWidgets.QTableWidget(parent=self.widget_container)
         self.table_entries.setGeometry(QtCore.QRect(20, 20, 450, 500))
         self.table_entries.setMinimumSize(QtCore.QSize(450, 0))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(False)
+        font.setItalic(False)
+        self.table_entries.setFont(font)
         self.table_entries.setStyleSheet("QTableView {\n"
 "background-color: rgb(233, 238, 244);\n"
 "font-weight: normal;\n"
@@ -75,7 +86,6 @@ class Ui_main_window(object):
 "}\n"
 "\n"
 "QPushButton {\n"
-"font-weight: normal;\n"
 "background-color: rgb(199, 219, 234);\n"
 "}\n"
 "\n"
@@ -115,7 +125,8 @@ class Ui_main_window(object):
         self.table_entries.verticalHeader().setDefaultSectionSize(35)
         self.table_entries.verticalHeader().setMinimumSectionSize(30)
         self.key_image = QtWidgets.QLabel(parent=self.centralwidget)
-        self.key_image.setGeometry(QtCore.QRect(10, 10, 111, 246))
+        self.key_image.setEnabled(True)
+        self.key_image.setGeometry(QtCore.QRect(5, 5, 111, 246))
         self.key_image.setStyleSheet("background-color: none;\n"
 "")
         self.key_image.setText("")
@@ -125,7 +136,11 @@ class Ui_main_window(object):
         self.btn_exit = QtWidgets.QPushButton(parent=self.centralwidget)
         self.btn_exit.setGeometry(QtCore.QRect(555, 18, 35, 35))
         self.btn_exit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_exit.setStyleSheet("QPushButton::hover {\n"
+        self.btn_exit.setStyleSheet("QPushButton {\n"
+"background-color: 0;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
 "background-color: rgba(205, 205, 205, 80);\n"
 "}\n"
 "\n"

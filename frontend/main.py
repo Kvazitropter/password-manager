@@ -75,10 +75,10 @@ class PasswordManager:
             self.edit_entry(id))
         self.view.ui_entry.btn_show.clicked.connect(
             lambda is_checked, *_: self.toggle_password_visibility(
-                is_checked, self.view.ui_new_entry.input_password))
+                is_checked, self.view.ui_entry.input_password))
         self.view.ui_entry.btn_copy.clicked.connect(
             lambda: self.copy_password(
-                self.view.ui_new_entry.input_password))
+                self.view.ui_entry.input_password))
         self.view.ui_entry.btn_settings.clicked.connect(
             self.open_password_settings_window)
 

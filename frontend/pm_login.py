@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'frontend/pm_login.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_login.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -13,45 +13,61 @@ class Ui_dialog_login(object):
     def setupUi(self, dialog_login):
         dialog_login.setObjectName("dialog_login")
         dialog_login.resize(530, 350)
-        dialog_login.setStyleSheet("background-color: #324D64;\n"
-"font: normal bold 12px/15px \'Segoe\', sans-serif;\n"
+        dialog_login.setStyleSheet("QDialog {\n"
+"background-color: #5287A9;\n"
+"}\n"
+"\n"
+"* {\n"
+"font: 700 12px/15px \"Verdana\";\n"
 "color: #000000;\n"
-"\n"
-"")
-        self.widget_container = QtWidgets.QWidget(parent=dialog_login)
-        self.widget_container.setGeometry(QtCore.QRect(66, 55, 400, 240))
-        self.widget_container.setStyleSheet("background-color: #747474;\n"
-"border: 1px solid #000;\n"
-"border-top-color: #fff;\n"
-"border-left-color: #fff;\n"
-"")
-        self.widget_container.setObjectName("widget_container")
-        self.btn_submit_master_key = QtWidgets.QPushButton(parent=self.widget_container)
-        self.btn_submit_master_key.setGeometry(QtCore.QRect(215, 180, 150, 30))
-        self.btn_submit_master_key.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_submit_master_key.setStyleSheet("QPushButton {\n"
-"background-color: #CDCDCD;\n"
 "}\n"
 "\n"
-"QPushButton::hover {\n"
-"background-color: rgba(205, 205, 205, 0.4);\n"
-"}\n"
 "\n"
-"QPushButton::pressed {\n"
-"background-color: rgba(205, 205, 205, 0.1);\n"
-"}")
-        self.btn_submit_master_key.setObjectName("btn_submit_master_key")
-        self.input_login = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_login.setGeometry(QtCore.QRect(35, 30, 330, 40))
-        self.input_login.setStyleSheet("QLineEdit {\n"
-"background-color: #fff;\n"
-"border: 1px solid #000;\n"
-"font-style: italic;\n"
-"}")
-        self.input_login.setClearButtonEnabled(True)
-        self.input_login.setObjectName("input_login")
-        self.label_feedback_login = QtWidgets.QLabel(parent=self.widget_container)
-        self.label_feedback_login.setGeometry(QtCore.QRect(35, 70, 330, 16))
+"")
+        self.container = QtWidgets.QWidget(parent=dialog_login)
+        self.container.setGeometry(QtCore.QRect(30, 50, 450, 240))
+        self.container.setObjectName("container")
+        self.key_image = QtWidgets.QLabel(parent=self.container)
+        self.key_image.setEnabled(True)
+        self.key_image.setGeometry(QtCore.QRect(0, -3, 111, 246))
+        self.key_image.setStyleSheet("background-color: none;\n"
+"")
+        self.key_image.setText("")
+        self.key_image.setPixmap(QtGui.QPixmap(":/key/images/key.png"))
+        self.key_image.setScaledContents(True)
+        self.key_image.setObjectName("key_image")
+        self.form_container = QtWidgets.QWidget(parent=self.container)
+        self.form_container.setGeometry(QtCore.QRect(45, 0, 400, 240))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.form_container.sizePolicy().hasHeightForWidth())
+        self.form_container.setSizePolicy(sizePolicy)
+        self.form_container.setMinimumSize(QtCore.QSize(400, 240))
+        self.form_container.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.form_container.setStyleSheet("QWidget {\n"
+"background-color:#E9EEF4;\n"
+"border-radius: 10%;\n"
+"}\n"
+"")
+        self.form_container.setObjectName("form_container")
+        self.layoutWidget = QtWidgets.QWidget(parent=self.form_container)
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 401, 241))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.formLayout = QtWidgets.QFormLayout(self.layoutWidget)
+        self.formLayout.setLabelAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.formLayout.setFormAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.formLayout.setContentsMargins(0, 20, 30, 20)
+        self.formLayout.setObjectName("formLayout")
+        self.label_feedback_login = QtWidgets.QLabel(parent=self.layoutWidget)
+        self.label_feedback_login.setMinimumSize(QtCore.QSize(300, 16))
+        self.label_feedback_login.setMaximumSize(QtCore.QSize(330, 16))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        self.label_feedback_login.setFont(font)
         self.label_feedback_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
         self.label_feedback_login.setStyleSheet("QLabel {\n"
 "color: #f54021;\n"
@@ -64,21 +80,40 @@ class Ui_dialog_login(object):
 "background-color: #CDCDCD;\n"
 "border: none;\n"
 "}")
-        self.label_feedback_login.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.label_feedback_login.setText("")
-        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_login.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
         self.label_feedback_login.setObjectName("label_feedback_login")
-        self.input_master_key = QtWidgets.QLineEdit(parent=self.widget_container)
-        self.input_master_key.setGeometry(QtCore.QRect(35, 95, 330, 40))
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_feedback_login)
+        self.input_master_key = QtWidgets.QLineEdit(parent=self.layoutWidget)
+        self.input_master_key.setMinimumSize(QtCore.QSize(300, 40))
+        self.input_master_key.setMaximumSize(QtCore.QSize(330, 40))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(True)
+        self.input_master_key.setFont(font)
+        self.input_master_key.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
         self.input_master_key.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
-"border: 1px solid #000;\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"border-color: rgb(82, 135, 169);\n"
 "font-style: italic;\n"
+"padding-left: 5px;\n"
 "}")
         self.input_master_key.setClearButtonEnabled(True)
         self.input_master_key.setObjectName("input_master_key")
-        self.label_feedback_master_key = QtWidgets.QLabel(parent=self.widget_container)
-        self.label_feedback_master_key.setGeometry(QtCore.QRect(35, 135, 330, 16))
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.input_master_key)
+        self.label_feedback_master_key = QtWidgets.QLabel(parent=self.layoutWidget)
+        self.label_feedback_master_key.setMinimumSize(QtCore.QSize(300, 16))
+        self.label_feedback_master_key.setMaximumSize(QtCore.QSize(330, 16))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        self.label_feedback_master_key.setFont(font)
         self.label_feedback_master_key.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
         self.label_feedback_master_key.setToolTip("")
         self.label_feedback_master_key.setStyleSheet("QLabel {\n"
@@ -93,25 +128,78 @@ class Ui_dialog_login(object):
 "border: none;\n"
 "}")
         self.label_feedback_master_key.setText("")
-        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label_feedback_master_key.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
         self.label_feedback_master_key.setObjectName("label_feedback_master_key")
-        self.key_image = QtWidgets.QLabel(parent=dialog_login)
-        self.key_image.setGeometry(QtCore.QRect(15, 18, 71, 111))
-        self.key_image.setStyleSheet("background-color: none;\n"
-"")
-        self.key_image.setText("")
-        self.key_image.setPixmap(QtGui.QPixmap(":/key/images/key.png"))
-        self.key_image.setScaledContents(True)
-        self.key_image.setObjectName("key_image")
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_feedback_master_key)
+        self.btn_submit_login = QtWidgets.QPushButton(parent=self.layoutWidget)
+        self.btn_submit_login.setMinimumSize(QtCore.QSize(150, 30))
+        self.btn_submit_login.setMaximumSize(QtCore.QSize(150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        self.btn_submit_login.setFont(font)
+        self.btn_submit_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_submit_login.setStyleSheet("QPushButton {\n"
+"background-color: rgb(199, 219, 234);\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(82, 135, 169, 70);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(82, 135, 169, 150);\n"
+"}")
+        self.btn_submit_login.setObjectName("btn_submit_login")
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.ItemRole.LabelRole, self.btn_submit_login)
+        self.input_login = QtWidgets.QLineEdit(parent=self.layoutWidget)
+        self.input_login.setMinimumSize(QtCore.QSize(300, 40))
+        self.input_login.setMaximumSize(QtCore.QSize(330, 40))
+        self.input_login.setSizeIncrement(QtCore.QSize(0, 0))
+        self.input_login.setBaseSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(True)
+        self.input_login.setFont(font)
+        self.input_login.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.DefaultContextMenu)
+        self.input_login.setStyleSheet("QLineEdit {\n"
+"background-color: #fff;\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"border-color: rgb(82, 135, 169);\n"
+"font-style: italic;\n"
+"padding-left: 5px;\n"
+"}")
+        self.input_login.setCursorPosition(0)
+        self.input_login.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
+        self.input_login.setClearButtonEnabled(True)
+        self.input_login.setObjectName("input_login")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.input_login)
+        self.form_container.raise_()
         self.key_image.raise_()
-        self.widget_container.raise_()
 
         self.retranslateUi(dialog_login)
         QtCore.QMetaObject.connectSlotsByName(dialog_login)
+        dialog_login.setTabOrder(self.input_login, self.input_master_key)
+        dialog_login.setTabOrder(self.input_master_key, self.btn_submit_login)
 
     def retranslateUi(self, dialog_login):
         _translate = QtCore.QCoreApplication.translate
         dialog_login.setWindowTitle(_translate("dialog_login", "Password Manager"))
-        self.btn_submit_master_key.setText(_translate("dialog_login", "Войти"))
-        self.input_login.setPlaceholderText(_translate("dialog_login", "Введите логин..."))
         self.input_master_key.setPlaceholderText(_translate("dialog_login", "Введите мастер-пароль..."))
+        self.btn_submit_login.setText(_translate("dialog_login", "Войти"))
+        self.input_login.setPlaceholderText(_translate("dialog_login", "Введите логин..."))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    dialog_login = QtWidgets.QDialog()
+    ui = Ui_dialog_login()
+    ui.setupUi(dialog_login)
+    dialog_login.show()
+    sys.exit(app.exec())

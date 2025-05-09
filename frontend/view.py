@@ -1,6 +1,6 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import QPoint, Qt
-from PyQt6.QtGui import QCursor
+from PyQt6.QtGui import QCursor, QStandardItemModel, QStandardItem
 from PyQt6.QtWidgets import QApplication, QLineEdit, QMainWindow
 
 from frontend.pm_login import Ui_dialog_login
@@ -107,7 +107,7 @@ class PasswordManagerView(QMainWindow):
             self.ui_main.table_entries.setCellWidget(row_num, 3, delete_entry_button)
 
     def set_input_text(self, input, text):
-        input.setText(input, text)
+        input.setText(text)
 
     def show_invalid_input(self, input, label, text):
         self.show_red_frame(input)
@@ -119,16 +119,16 @@ class PasswordManagerView(QMainWindow):
 
     def show_red_frame(self, input):
         original_ss = input.styleSheet()
-        black = 'border: 1px solid #000;'
-        red = 'border: 1px solid #f54021;'
-        invalid_ss = original_ss.replace(black, red)
+        original_border = 'border-color: rgb(82, 135, 169);'
+        red = 'border-color: #f54021;'
+        invalid_ss = original_ss.replace(original_border, red)
         input.setStyleSheet(invalid_ss)
     
     def remove_red_frame(self, input):
         invalid_ss = input.styleSheet()
-        red = 'border: 1px solid #f54021;'
-        black = 'border: 1px solid #000;'
-        input.setStyleSheet(invalid_ss.replace(red, black))
+        red = 'border-color: #f54021;'
+        original_border = 'border-color: rgb(82, 135, 169);'
+        input.setStyleSheet(invalid_ss.replace(red, original_border))
 
     def set_feedback_message(self, label, text):
         label.setText(text)

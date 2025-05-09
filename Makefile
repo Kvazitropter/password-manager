@@ -10,5 +10,5 @@ test:
 	uv run pytest -s
 test-coverage:
 	uv run pytest --cov=backend --cov=scripts --cov-report=xml:coverage.xml
-run:
+start:
 	uv run app.py

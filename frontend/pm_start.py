@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'frontend/pm_start.ui'
+# Form implementation generated from reading ui file '.\frontend\pm_start.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -13,60 +13,47 @@ class Ui_dialog_start(object):
     def setupUi(self, dialog_start):
         dialog_start.setObjectName("dialog_start")
         dialog_start.resize(530, 350)
-        dialog_start.setStyleSheet("background-color: #324D64;\n"
+        dialog_start.setStyleSheet("QDialog {\n"
+"background-color: #5287A9;\n"
+"}\n"
+"\n"
+"* {\n"
 "font: normal bold 12px/15px \'Inter\', sans-serif;\n"
 "color: #000000;\n"
+"}\n"
 "\n"
 "")
-        self.key_image = QtWidgets.QLabel(parent=dialog_start)
-        self.key_image.setGeometry(QtCore.QRect(15, 18, 71, 111))
+        self.container = QtWidgets.QWidget(parent=dialog_start)
+        self.container.setGeometry(QtCore.QRect(30, 50, 450, 240))
+        self.container.setObjectName("container")
+        self.key_image = QtWidgets.QLabel(parent=self.container)
+        self.key_image.setGeometry(QtCore.QRect(0, -3, 111, 246))
         self.key_image.setStyleSheet("background-color: none;\n"
 "")
         self.key_image.setText("")
         self.key_image.setPixmap(QtGui.QPixmap(":/key/images/key.png"))
         self.key_image.setScaledContents(True)
         self.key_image.setObjectName("key_image")
-        self.widget_container = QtWidgets.QWidget(parent=dialog_start)
-        self.widget_container.setGeometry(QtCore.QRect(66, 55, 400, 240))
+        self.buttons_container = QtWidgets.QWidget(parent=self.container)
+        self.buttons_container.setGeometry(QtCore.QRect(45, 0, 400, 240))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.widget_container.sizePolicy().hasHeightForWidth())
-        self.widget_container.setSizePolicy(sizePolicy)
-        self.widget_container.setMinimumSize(QtCore.QSize(400, 240))
-        self.widget_container.setStyleSheet("background-color: #747474;\n"
-"border: 1px solid #000;\n"
-"border-top-color: #fff;\n"
-"border-left-color: #fff;\n"
+        sizePolicy.setHeightForWidth(self.buttons_container.sizePolicy().hasHeightForWidth())
+        self.buttons_container.setSizePolicy(sizePolicy)
+        self.buttons_container.setMinimumSize(QtCore.QSize(400, 240))
+        self.buttons_container.setStyleSheet("QWidget {\n"
+"background-color:#E9EEF4;\n"
+"border-radius: 10%;\n"
+"}\n"
 "")
-        self.widget_container.setObjectName("widget_container")
-        self.gridLayoutWidget = QtWidgets.QWidget(parent=self.widget_container)
+        self.buttons_container.setObjectName("buttons_container")
+        self.gridLayoutWidget = QtWidgets.QWidget(parent=self.buttons_container)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 401, 241))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout_2.setContentsMargins(4, 4, 4, 4)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.btn_login = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.btn_login.sizePolicy().hasHeightForWidth())
-        self.btn_login.setSizePolicy(sizePolicy)
-        self.btn_login.setMinimumSize(QtCore.QSize(250, 40))
-        self.btn_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_login.setStyleSheet("QPushButton {\n"
-"background-color: #CDCDCD;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"background-color: rgba(205, 205, 205, 0.4);\n"
-"}\n"
-"\n"
-"QPushButton::pressed {\n"
-"background-color: rgba(205, 205, 205, 0.1);\n"
-"}")
-        self.btn_login.setObjectName("btn_login")
-        self.gridLayout_2.addWidget(self.btn_login, 0, 0, 1, 1)
         self.btn_signup = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -74,20 +61,55 @@ class Ui_dialog_start(object):
         sizePolicy.setHeightForWidth(self.btn_signup.sizePolicy().hasHeightForWidth())
         self.btn_signup.setSizePolicy(sizePolicy)
         self.btn_signup.setMinimumSize(QtCore.QSize(250, 40))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        self.btn_signup.setFont(font)
         self.btn_signup.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btn_signup.setStyleSheet("QPushButton {\n"
-"background-color: #CDCDCD;\n"
+"background-color: rgb(199, 219, 234);\n"
 "}\n"
 "\n"
 "QPushButton::hover {\n"
-"background-color: rgba(205, 205, 205, 0.4);\n"
+"background-color: rgba(82, 135, 169, 70);\n"
 "}\n"
 "\n"
 "QPushButton::pressed {\n"
-"background-color: rgba(205, 205, 205, 0.1);\n"
+"background-color: rgba(82, 135, 169, 150);\n"
 "}")
         self.btn_signup.setObjectName("btn_signup")
         self.gridLayout_2.addWidget(self.btn_signup, 1, 0, 1, 1)
+        self.btn_login = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_login.sizePolicy().hasHeightForWidth())
+        self.btn_login.setSizePolicy(sizePolicy)
+        self.btn_login.setMinimumSize(QtCore.QSize(250, 40))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        self.btn_login.setFont(font)
+        self.btn_login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_login.setStyleSheet("QPushButton {\n"
+"background-color: rgb(199, 219, 234);\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(82, 135, 169, 70);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(82, 135, 169, 150);\n"
+"}")
+        self.btn_login.setObjectName("btn_login")
+        self.gridLayout_2.addWidget(self.btn_login, 0, 0, 1, 1)
+        self.buttons_container.raise_()
+        self.key_image.raise_()
 
         self.retranslateUi(dialog_start)
         QtCore.QMetaObject.connectSlotsByName(dialog_start)
@@ -95,5 +117,15 @@ class Ui_dialog_start(object):
     def retranslateUi(self, dialog_start):
         _translate = QtCore.QCoreApplication.translate
         dialog_start.setWindowTitle(_translate("dialog_start", "Password Manager"))
-        self.btn_login.setText(_translate("dialog_start", "Войти в Менеджер Паролей"))
         self.btn_signup.setText(_translate("dialog_start", "Создать новое хранилище"))
+        self.btn_login.setText(_translate("dialog_start", "Войти в Менеджер Паролей"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    dialog_start = QtWidgets.QDialog()
+    ui = Ui_dialog_start()
+    ui.setupUi(dialog_start)
+    dialog_start.show()
+    sys.exit(app.exec())

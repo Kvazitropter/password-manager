@@ -27,16 +27,12 @@ class PasswordManager:
     def open_login_window(self):
         self.view.setup_login_window()
         self.view.login_window.show()
-        self.view.ui_login.btn_submit_master_key.clicked.connect(
-            self.login
-        )
+        self.view.ui_login.btn_submit_login.clicked.connect(self.login)
 
     def open_signup_window(self):
         self.view.setup_signup_window()
         self.view.signup_window.show()
-        self.view.ui_signup.btn_submit_new_master_key.clicked.connect(
-            self.signup    
-        )
+        self.view.ui_signup.btn_submit_signup.clicked.connect(self.signup)
 
     def open_main_window(self):
         self.view.setup_main_window()
@@ -91,6 +87,8 @@ class PasswordManager:
         self.view.setup_password_settings_window(config)
         self.view.ui_settings.btn_submit_settings.clicked.connect(
             self.password_settings)
+        self.view.ui_settings.btn_reset.clicked.connect(
+            self.reset_generating_config)
         self.view.password_settings_window.show()
 
     def login(self):
@@ -258,3 +256,9 @@ class PasswordManager:
     def generate_and_insert_password(self, input):
         generated_password = self.generator.generate()
         self.view.set_input_text(input, generated_password)
+    
+    def reset_generating_config(self):
+        self.generator.reset_default_config()
+        default_config = self.generator.get_config()
+        self.view.setup_password_settings_window(default_config)
+        self.open_password_settings_window()

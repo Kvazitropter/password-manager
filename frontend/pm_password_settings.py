@@ -13,95 +13,131 @@ class Ui_password_settings(object):
     def setupUi(self, password_settings):
         password_settings.setObjectName("password_settings")
         password_settings.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
-        password_settings.resize(300, 300)
+        password_settings.resize(360, 320)
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        password_settings.setFont(font)
         password_settings.setStyleSheet("QDialog {\n"
-"background-color: #747474;\n"
-"border: 1px solid #000;\n"
+"background-color: #5287A9;\n"
 "}\n"
 "\n"
 "* {\n"
-"font: normal bold 12px/15px \'Inter\', sans-serif;\n"
+"font: 700 12px \"Verdana\";\n"
 "color: #000000;\n"
 "}\n"
-"\n"
-"QPushButton::hover {\n"
-"background-color: rgba(205, 205, 205, 0.4);\n"
-"}\n"
-"\n"
-"QPushButton::pressed {\n"
-"background-color: rgba(205, 205, 205, 0.1);\n"
+"")
+        self.widget = QtWidgets.QWidget(parent=password_settings)
+        self.widget.setGeometry(QtCore.QRect(20, 20, 320, 280))
+        self.widget.setStyleSheet("QWidget {\n"
+"background-color:#E9EEF4;\n"
+"border-radius: 10%;\n"
 "}")
-        self.btn_submit_settings = QtWidgets.QPushButton(parent=password_settings)
-        self.btn_submit_settings.setGeometry(QtCore.QRect(185, 250, 100, 30))
-        self.btn_submit_settings.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btn_submit_settings.setStyleSheet("QPushButton {\n"
-"background-color: #CDCDCD;\n"
-"border: 1px solid #000;\n"
-"border-top-color: #fff;\n"
-"border-left-color: #fff;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"background-color: rgba(205, 205, 205, 0.4);\n"
-"}\n"
-"\n"
-"QPushButton::pressed {\n"
-"background-color: rgba(205, 205, 205, 0.1);\n"
-"}")
-        self.btn_submit_settings.setObjectName("btn_submit_settings")
-        self.layoutWidget = QtWidgets.QWidget(parent=password_settings)
-        self.layoutWidget.setGeometry(QtCore.QRect(20, 10, 265, 241))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.widget.setObjectName("widget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout.setContentsMargins(15, 10, 15, 10)
+        self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.label_length = QtWidgets.QLabel(parent=self.layoutWidget)
+        self.length_container = QtWidgets.QHBoxLayout()
+        self.length_container.setObjectName("length_container")
+        self.label_length = QtWidgets.QLabel(parent=self.widget)
         self.label_length.setObjectName("label_length")
-        self.horizontalLayout_2.addWidget(self.label_length)
-        self.spinbox_length = QtWidgets.QSpinBox(parent=self.layoutWidget)
+        self.length_container.addWidget(self.label_length)
+        self.spinbox_length = QtWidgets.QSpinBox(parent=self.widget)
+        self.spinbox_length.setMinimumSize(QtCore.QSize(0, 30))
+        self.spinbox_length.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.spinbox_length.setStyleSheet("background-color: rgb(199, 219, 234);\n"
+"padding-left: 5px;\n"
+"")
+        self.spinbox_length.setPrefix("")
         self.spinbox_length.setObjectName("spinbox_length")
-        self.horizontalLayout_2.addWidget(self.spinbox_length)
-        self.verticalLayout.addLayout(self.horizontalLayout_2)
-        self.checkbox_lcase = QtWidgets.QCheckBox(parent=self.layoutWidget)
+        self.length_container.addWidget(self.spinbox_length)
+        self.verticalLayout.addLayout(self.length_container)
+        self.checkbox_lcase = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_lcase.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkbox_lcase.setObjectName("checkbox_lcase")
         self.verticalLayout.addWidget(self.checkbox_lcase)
-        self.checkbox_upcase = QtWidgets.QCheckBox(parent=self.layoutWidget)
+        self.checkbox_upcase = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_upcase.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkbox_upcase.setObjectName("checkbox_upcase")
         self.verticalLayout.addWidget(self.checkbox_upcase)
-        self.checkbox_digits = QtWidgets.QCheckBox(parent=self.layoutWidget)
+        self.checkbox_digits = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_digits.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkbox_digits.setObjectName("checkbox_digits")
         self.verticalLayout.addWidget(self.checkbox_digits)
-        self.checkbox_symbols = QtWidgets.QCheckBox(parent=self.layoutWidget)
+        self.checkbox_symbols = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkbox_symbols.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.checkbox_symbols.setObjectName("checkbox_symbols")
         self.verticalLayout.addWidget(self.checkbox_symbols)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label_text = QtWidgets.QLabel(parent=self.layoutWidget)
+        self.custom_container = QtWidgets.QHBoxLayout()
+        self.custom_container.setObjectName("custom_container")
+        self.label_text = QtWidgets.QLabel(parent=self.widget)
         self.label_text.setObjectName("label_text")
-        self.horizontalLayout.addWidget(self.label_text)
-        self.input_custom = QtWidgets.QLineEdit(parent=self.layoutWidget)
+        self.custom_container.addWidget(self.label_text)
+        self.input_custom = QtWidgets.QLineEdit(parent=self.widget)
         self.input_custom.setMaximumSize(QtCore.QSize(16777215, 30))
         self.input_custom.setStyleSheet("QLineEdit {\n"
 "background-color: #fff;\n"
-"border: 1px solid #000;\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"border-color: rgb(82, 135, 169);\n"
 "font-style: italic;\n"
+"padding-left: 5px;\n"
 "}")
         self.input_custom.setObjectName("input_custom")
-        self.horizontalLayout.addWidget(self.input_custom)
-        self.verticalLayout.addLayout(self.horizontalLayout)
-        self.label_feedback = QtWidgets.QLabel(parent=self.layoutWidget)
+        self.custom_container.addWidget(self.input_custom)
+        self.verticalLayout.addLayout(self.custom_container)
+        self.label_feedback = QtWidgets.QLabel(parent=self.widget)
         self.label_feedback.setMaximumSize(QtCore.QSize(16777215, 16))
         self.label_feedback.setStyleSheet("QLabel {\n"
 "color: #f54021;\n"
 "font-size: 12px;\n"
 "font-weight: light;\n"
-"border: none;\n"
 "}")
         self.label_feedback.setText("")
+        self.label_feedback.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_feedback.setObjectName("label_feedback")
         self.verticalLayout.addWidget(self.label_feedback)
+        self.buttons = QtWidgets.QHBoxLayout()
+        self.buttons.setSpacing(60)
+        self.buttons.setObjectName("buttons")
+        self.btn_reset = QtWidgets.QPushButton(parent=self.widget)
+        self.btn_reset.setMinimumSize(QtCore.QSize(100, 30))
+        self.btn_reset.setMaximumSize(QtCore.QSize(130, 30))
+        self.btn_reset.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_reset.setStyleSheet("QPushButton {\n"
+"background-color: rgb(199, 219, 234);\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(82, 135, 169, 70);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(82, 135, 169, 150);\n"
+"}")
+        self.btn_reset.setObjectName("btn_reset")
+        self.buttons.addWidget(self.btn_reset)
+        self.btn_submit_settings = QtWidgets.QPushButton(parent=self.widget)
+        self.btn_submit_settings.setMinimumSize(QtCore.QSize(100, 30))
+        self.btn_submit_settings.setMaximumSize(QtCore.QSize(130, 30))
+        self.btn_submit_settings.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btn_submit_settings.setStyleSheet("QPushButton {\n"
+"background-color: rgb(199, 219, 234);\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"background-color: rgba(82, 135, 169, 70);\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"background-color: rgba(82, 135, 169, 150);\n"
+"}")
+        self.btn_submit_settings.setObjectName("btn_submit_settings")
+        self.buttons.addWidget(self.btn_submit_settings)
+        self.verticalLayout.addLayout(self.buttons)
 
         self.retranslateUi(password_settings)
         QtCore.QMetaObject.connectSlotsByName(password_settings)
@@ -109,11 +145,22 @@ class Ui_password_settings(object):
     def retranslateUi(self, password_settings):
         _translate = QtCore.QCoreApplication.translate
         password_settings.setWindowTitle(_translate("password_settings", "Password Manager"))
-        self.btn_submit_settings.setText(_translate("password_settings", "Применить"))
         self.label_length.setText(_translate("password_settings", "Длина:"))
-        self.checkbox_lcase.setText(_translate("password_settings", "Использовать буквы в нижнем регистре"))
-        self.checkbox_upcase.setText(_translate("password_settings", "Использовать буквы в верхнем регистре"))
-        self.checkbox_digits.setText(_translate("password_settings", "Использовать цифры"))
-        self.checkbox_symbols.setText(_translate("password_settings", "Использовать специальные символы"))
+        self.checkbox_lcase.setText(_translate("password_settings", "Латинские буквы в нижнем регистре"))
+        self.checkbox_upcase.setText(_translate("password_settings", "Латинские буквы в верхнем регистре"))
+        self.checkbox_digits.setText(_translate("password_settings", "Цифры"))
+        self.checkbox_symbols.setText(_translate("password_settings", "Специальные символы !@#$%^*?&&"))
         self.label_text.setText(_translate("password_settings", "Добавить символы:"))
         self.input_custom.setPlaceholderText(_translate("password_settings", "Введите символы..."))
+        self.btn_reset.setText(_translate("password_settings", "Сбросить"))
+        self.btn_submit_settings.setText(_translate("password_settings", "Применить"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    password_settings = QtWidgets.QDialog()
+    ui = Ui_password_settings()
+    ui.setupUi(password_settings)
+    password_settings.show()
+    sys.exit(app.exec())

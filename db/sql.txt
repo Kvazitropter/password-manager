@@ -1,14 +1,11 @@
-DROP TABLE IF EXISTS account;
-DROP TABLE IF EXISTS entry;
-
-CREATE TABLE account(
+CREATE TABLE IF NOT EXISTS account(
 	id SERIAL PRIMARY KEY,
 	login TEXT UNIQUE,
 	encrypted_control_string BYTEA,
 	salt BYTEA
 );
 
-CREATE TABLE entry(
+CREATE TABLE IF NOT EXISTS entry(
 	id SERIAL PRIMARY KEY,
 	user_login TEXT REFERENCES account(login),
 	service_name TEXT,

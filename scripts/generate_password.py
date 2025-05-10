@@ -3,11 +3,14 @@ import re
 import secrets
 
 from scripts.custom_errors import NonExistingRule, NoSymbolsToGenerateFrom
+from scripts.path_helper import get_base_config_path
 
 
 class PasswordGenerator():
     def __init__(self):
-        with open('scripts/default_password_config.json', 'r') as file:
+        json_config_path = get_base_config_path(
+            'scripts/default_password_config.json')
+        with open(json_config_path, 'r') as file:
             self.default_config = json.loads(file.read())
         self.config = self.default_config.copy()
         self.__setup_for_generating()

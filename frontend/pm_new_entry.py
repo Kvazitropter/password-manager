@@ -360,13 +360,3 @@ class Ui_dialog_new_entry(object):
         self.input_password.setPlaceholderText(_translate("dialog_new_entry", "Введите пароль..."))
         self.btn_generate_password.setText(_translate("dialog_new_entry", "Сгенерировать"))
         self.btn_submit_entry.setText(_translate("dialog_new_entry", "Подтвердить"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_new_entry = QtWidgets.QDialog()
-    ui = Ui_dialog_new_entry()
-    ui.setupUi(dialog_new_entry)
-    dialog_new_entry.show()
-    sys.exit(app.exec())

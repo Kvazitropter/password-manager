@@ -165,13 +165,3 @@ class Ui_main_window(object):
         _translate = QtCore.QCoreApplication.translate
         main_window.setWindowTitle(_translate("main_window", "Password Manager"))
         self.btn_new_entry.setText(_translate("main_window", "Добавить"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    main_window = QtWidgets.QMainWindow()
-    ui = Ui_main_window()
-    ui.setupUi(main_window)
-    main_window.show()
-    sys.exit(app.exec())

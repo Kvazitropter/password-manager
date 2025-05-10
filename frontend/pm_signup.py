@@ -188,13 +188,3 @@ class Ui_dialog_signup(object):
         self.input_new_login.setPlaceholderText(_translate("dialog_signup", "Придумайте логин..."))
         self.input_new_master_key.setPlaceholderText(_translate("dialog_signup", "Придумайте мастер-пароль..."))
         self.btn_submit_signup.setText(_translate("dialog_signup", "Войти"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_signup = QtWidgets.QDialog()
-    ui = Ui_dialog_signup()
-    ui.setupUi(dialog_signup)
-    dialog_signup.show()
-    sys.exit(app.exec())

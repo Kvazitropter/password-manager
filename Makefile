@@ -7,9 +7,9 @@ lint:
 lint-fix:
 	uv run ruff check . --fix
 test:
-	uv run pytest -s
+	uv run pytest -s -W ignore::DeprecationWarning
 test-coverage:
-	uv run pytest --cov=backend --cov=scripts --cov=frontend --cov-report=xml:coverage.xml
+	uv run pytest -W ignore::DeprecationWarning --cov=backend --cov=scripts --cov=frontend --cov-report=xml:coverage.xml
 run:
 	uv run app.py
 build:

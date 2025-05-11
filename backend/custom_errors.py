@@ -1,3 +1,11 @@
+class ConnectionError(Exception):
+    def __init__(self, message=None):
+        self.message = message or 'Ошибка соединения с базой данных.'
+    
+    def __str__(self):
+        return self.message
+
+
 class IncorrectMasterKey(Exception):
     def __init__(self, message=None):
         self.message = message or 'Введённый мастер пароль неверный.'

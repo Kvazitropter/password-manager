@@ -6,9 +6,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from unittest.mock import MagicMock, patch
 
 import pytest
+from psycopg2 import ProgrammingError
 
 from backend.controller import Controller
 from backend.custom_errors import (
+    ConnectionError,
     ExistingAccount,
     ExistingEntry,
     IncorrectMasterKey,
@@ -153,6 +155,96 @@ def test_update_entry(controller, mock_repo):
     )
 
 
+def test_update_non_existing_entry(controller, mock_repo):
+    mock_repo.update_entry_query.side_effect = ProgrammingError
+    with patch('backend.controller.encrypt', return_value=(b'encrypted', b'salt')):
+        with pytest.raises(ProgrammingError):
+            controller.update_entry('master_key', 1, 'new_password')
+
+
 def test_delete_entry(controller, mock_repo):
     controller.delete_entry(1)
     mock_repo.delete_entry_query.assert_called_once_with(1)
+
+
+def test_delete_nonexistent_entry(controller, mock_repo):
+    mock_repo.delete_entry_query.return_value = None
+    controller.delete_entry(999)
+
+
+def test_no_connection(controller, mock_repo):
+    mock_repo.has_account_query.side_effect = ConnectionError
+
+    with pytest.raises(ConnectionError):
+        controller.is_existing_account('test_user')
+
+    with pytest.raises(ConnectionError):
+        controller.login('test_user', 'master_key')
+
+    with pytest.raises(ConnectionError):
+        controller.create_new_account('test_user', 'master_key')
+        
+
+def test_no_connection_memory_mk_and_salt(controller, mock_repo):
+    mock_repo.get_memory_mk_and_salt_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.login('test_user', 'master_key')
+
+
+def test_no_connection_add_new_account_query(controller, mock_repo):
+    mock_repo.has_account_query.return_value = False
+    mock_repo.add_new_account_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.create_new_account('test_user', 'master_key')
+
+
+def test_no_connection_get_all_entries_query(controller, mock_repo):
+    mock_repo.get_all_entries_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.get_entries('test_user')
+
+
+def test_no_connection_get_entry_password_query(controller, mock_repo):
+    mock_repo.get_entry_password_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.get_entry_password(1, 'master_key')
+
+
+def test_no_connection_has_entry_query(controller, mock_repo):
+    mock_repo.has_entry_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.is_existing_entry('user_login', 's_name', 'login')
+        
+    with pytest.raises(ConnectionError):
+        controller.add_new_entry(
+            'user_login', 'master_key', 's_name', 'login', 'password'
+        )
+
+
+def test_no_connection_add_new_entry_query(controller, mock_repo):
+    mock_repo.has_entry_query.return_value = False
+    mock_repo.add_new_entry_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.add_new_entry(
+            'user_login', 'master_key', 's_name', 'login', 'password'
+        )
+
+
+def test_no_connection_update_entry_query(controller, mock_repo):
+    mock_repo.update_entry_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.update_entry('user_login', 1, 'password')
+
+
+def test_no_connection_delete_entry_query(controller, mock_repo):
+    mock_repo.delete_entry_query.side_effect = ConnectionError
+    
+    with pytest.raises(ConnectionError):
+        controller.delete_entry(1)

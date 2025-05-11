@@ -32,7 +32,7 @@ def test_has_account_query_true(repository, mock_cursor):
 
     assert repository.has_account_query('test_user')
     mock_cursor.execute.assert_called_once_with(
-        'SELECT EXISTS(SELECT 1 FROM account WHERE login = (%s))',
+        'SELECT EXISTS(SELECT 1 FROM "user" WHERE login = (%s))',
         ('test_user',)
     )
 
@@ -44,7 +44,7 @@ def test_get_memory_mk_and_salt_query(repository, mock_cursor):
 
     assert result == expected
     mock_cursor.execute.assert_called_once_with(
-        'SELECT encrypted_control_string, salt FROM account WHERE login = (%s)',
+        'SELECT encrypted_control_string, salt FROM "user" WHERE login = (%s)',
         ('test_user',)
     )
 
@@ -52,7 +52,7 @@ def test_get_memory_mk_and_salt_query(repository, mock_cursor):
 def test_add_new_account_query(repository, mock_conn, mock_cursor):
     repository.add_new_account_query('new_user', b'encrypted', b'salt')
     mock_cursor.execute.assert_called_once_with(
-        'INSERT INTO account (login, encrypted_control_string, '
+        'INSERT INTO "user" (login, encrypted_control_string, '
         'salt) '
         'VALUES (%s, %s, %s)',
         ('new_user', b'encrypted', b'salt')
@@ -67,7 +67,7 @@ def test_get_all_entries_query(repository, mock_cursor):
 
     assert result == expected
     mock_cursor.execute.assert_called_once_with(
-        'SELECT id, service_name, login FROM entry WHERE user_login = %s',
+        'SELECT id, service_name, login FROM account WHERE user_login = %s',
         ('test_user',)
     )
 
@@ -79,7 +79,7 @@ def test_get_entry_password_query(repository, mock_cursor):
 
     assert result == expected
     mock_cursor.execute.assert_called_once_with(
-        'SELECT encrypted_password, salt FROM entry WHERE id = %s',
+        'SELECT encrypted_password, salt FROM account WHERE id = %s',
         (1,)
     )
 
@@ -89,7 +89,7 @@ def test_has_entry_query(repository, mock_cursor):
 
     assert repository.has_entry_query('test_user', 's_name', 'login')
     mock_cursor.execute.assert_called_once_with(
-        'SELECT EXISTS(SELECT 1 FROM entry '
+        'SELECT EXISTS(SELECT 1 FROM account '
         'WHERE (user_login, service_name, login) = (%s, %s, %s))',
         ('test_user', 's_name', 'login')
     )
@@ -100,7 +100,7 @@ def test_add_new_entry_query(repository, mock_conn, mock_cursor):
         'user_login', 's_name', 'login', b'encrypted', b'salt'
     )
     mock_cursor.execute.assert_called_once_with(
-        'INSERT INTO entry (user_login, service_name, login, '
+        'INSERT INTO account (user_login, service_name, login, '
         'encrypted_password, salt) '
         'VALUES (%s, %s, %s, %s, %s)',
         ('user_login', 's_name', 'login', b'encrypted', b'salt')
@@ -111,7 +111,7 @@ def test_add_new_entry_query(repository, mock_conn, mock_cursor):
 def test_update_entry_query(repository, mock_conn, mock_cursor):
     repository.update_entry_query(1, b'encrypted', b'salt')
     mock_cursor.execute.assert_called_once_with(
-        'UPDATE entry SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
+        'UPDATE account SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
         (b'encrypted', b'salt', 1)
     )
     mock_conn.commit.assert_called_once()
@@ -120,7 +120,7 @@ def test_update_entry_query(repository, mock_conn, mock_cursor):
 def test_delete_entry_query(repository, mock_conn, mock_cursor):
     repository.delete_entry_query(1)
     mock_cursor.execute.assert_called_once_with(
-        'DELETE FROM entry WHERE id = %s',
+        'DELETE FROM account WHERE id = %s',
         (1,)
     )
     mock_conn.commit.assert_called_once()

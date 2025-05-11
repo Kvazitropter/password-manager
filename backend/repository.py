@@ -123,7 +123,8 @@ class Repository:
         cur = con.cursor()
         
         cur.execute(
-            'UPDATE account SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
+            'UPDATE account SET (encrypted_password, salt) '
+            '= (%s, %s) WHERE id = (%s)',
             (encrypted_password, salt, id)
         )
         con.commit()

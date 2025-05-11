@@ -117,13 +117,3 @@ class Ui_dialog_start(object):
         dialog_start.setWindowTitle(_translate("dialog_start", "Password Manager"))
         self.btn_signup.setText(_translate("dialog_start", "Создать новое хранилище"))
         self.btn_login.setText(_translate("dialog_start", "Войти в Менеджер Паролей"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    dialog_start = QtWidgets.QDialog()
-    ui = Ui_dialog_start()
-    ui.setupUi(dialog_start)
-    dialog_start.show()
-    sys.exit(app.exec())

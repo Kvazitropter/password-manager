@@ -153,13 +153,3 @@ class Ui_password_settings(object):
         self.input_custom.setPlaceholderText(_translate("password_settings", "Введите символы..."))
         self.btn_reset.setText(_translate("password_settings", "Сбросить"))
         self.btn_submit_settings.setText(_translate("password_settings", "Применить"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    password_settings = QtWidgets.QDialog()
-    ui = Ui_password_settings()
-    ui.setupUi(password_settings)
-    password_settings.show()
-    sys.exit(app.exec())

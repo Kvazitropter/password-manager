@@ -1,17 +1,22 @@
 import psycopg2
 
+from backend.custom_errors import ConnectionError
+
 
 class Repository:
     def __get_connection(self):
-        connection = psycopg2.connect(
-            port=5432,
-            host='localhost',
-            database='password_manager',
-            user='postgres',
-            password='xxXX1234'
-        )
+        try:
+            connection = psycopg2.connect(
+                port=5432,
+                host='localhost',
+                database='password_manager',
+                user='postgres',
+                password='xxXX1234'
+            )
 
-        return connection
+            return connection
+        except psycopg2.OperationalError:
+            raise ConnectionError
 
     def __close_connection(self, connection, cur):
         connection.close()

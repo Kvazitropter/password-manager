@@ -1,7 +1,9 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
+from psycopg2 import OperationalError
 
+from backend.custom_errors import ConnectionError
 from backend.repository import Repository
 
 
@@ -122,3 +124,10 @@ def test_delete_entry_query(repository, mock_conn, mock_cursor):
         (1,)
     )
     mock_conn.commit.assert_called_once()
+
+
+def test_no_connection():
+    with patch('psycopg2.connect', side_effect=OperationalError('No connection')):
+        repository = Repository()
+        with pytest.raises(ConnectionError):
+            repository.has_account_query('test_user')

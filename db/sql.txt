@@ -1,13 +1,13 @@
-CREATE TABLE IF NOT EXISTS account(
+CREATE TABLE IF NOT EXISTS "user"(
 	id SERIAL PRIMARY KEY,
 	login TEXT UNIQUE,
 	encrypted_control_string BYTEA,
 	salt BYTEA
 );
 
-CREATE TABLE IF NOT EXISTS entry(
+CREATE TABLE IF NOT EXISTS account(
 	id SERIAL PRIMARY KEY,
-	user_login TEXT REFERENCES account(login),
+	user_login TEXT REFERENCES "user"(login),
 	service_name TEXT,
 	login TEXT,
 	encrypted_password BYTEA,

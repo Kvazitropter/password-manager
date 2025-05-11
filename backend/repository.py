@@ -27,7 +27,7 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'SELECT EXISTS(SELECT 1 FROM account WHERE login = (%s))',
+            'SELECT EXISTS(SELECT 1 FROM "user" WHERE login = (%s))',
             (login,)
         )
         result = cur.fetchone()[0]
@@ -40,7 +40,7 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'SELECT encrypted_control_string, salt FROM account WHERE login = (%s)',
+            'SELECT encrypted_control_string, salt FROM "user" WHERE login = (%s)',
             (login,)
         )
         result = cur.fetchone()
@@ -53,7 +53,7 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'INSERT INTO account (login, encrypted_control_string, salt) '
+            'INSERT INTO "user" (login, encrypted_control_string, salt) '
             'VALUES (%s, %s, %s)',
             (login, encrypted_control_string, salt)
         )
@@ -66,7 +66,7 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'SELECT id, service_name, login FROM entry WHERE user_login = %s',
+            'SELECT id, service_name, login FROM account WHERE user_login = %s',
             (user_login,)
         )
         result = cur.fetchall()
@@ -79,7 +79,7 @@ class Repository:
         cur = con.cursor()
         
         cur.execute(
-            'SELECT encrypted_password, salt FROM entry WHERE id = %s',
+            'SELECT encrypted_password, salt FROM account WHERE id = %s',
             (id,)
         )
         result = cur.fetchone()
@@ -92,7 +92,7 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'SELECT EXISTS(SELECT 1 FROM entry '
+            'SELECT EXISTS(SELECT 1 FROM account '
             'WHERE (user_login, service_name, login) = (%s, %s, %s))',
             (user_login, service_name, login)
         )
@@ -108,7 +108,7 @@ class Repository:
         cur = con.cursor()
 
         cur.execute(
-            'INSERT INTO entry (user_login, service_name, login, '
+            'INSERT INTO account (user_login, service_name, login, '
             'encrypted_password, salt) VALUES (%s, %s, %s, %s, %s)',
             (user_login, service_name, login, encrypted_password, salt)
         )
@@ -123,7 +123,7 @@ class Repository:
         cur = con.cursor()
         
         cur.execute(
-            'UPDATE entry SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
+            'UPDATE account SET (encrypted_password, salt) = (%s, %s) WHERE id = (%s)',
             (encrypted_password, salt, id)
         )
         con.commit()
@@ -134,7 +134,7 @@ class Repository:
         con = self.__get_connection()
         cur = con.cursor()
 
-        cur.execute('DELETE FROM entry WHERE id = %s', (entry_id,))
+        cur.execute('DELETE FROM account WHERE id = %s', (entry_id,))
         con.commit()
 
         self.__close_connection(con, cur)

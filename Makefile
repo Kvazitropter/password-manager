@@ -1,6 +1,6 @@
-make setup:
+setup:
 	uv sync --no-dev
-make setup-dev:
+setup-dev:
 	uv sync
 lint:
 	uv run ruff check .
@@ -12,3 +12,9 @@ test-coverage:
 	uv run pytest --cov=backend --cov=scripts --cov=frontend --cov-report=xml:coverage.xml
 run:
 	uv run app.py
+build:
+	pyinstaller password-manager.spec
+run-linux:
+	./dist/password-manager/password-manager
+remove-linux:
+	rm -rf build dist

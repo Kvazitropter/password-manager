@@ -22,15 +22,21 @@
 
 ---
 
-![Старт](https://i.imgur.com/PGpUdNP.png)
-
-![Вход](https://i.imgur.com/tIXjXan.png)
-
-![Хранилище](https://i.imgur.com/iERI1sw.png)
-
-![Настройки генерации пароля](https://i.imgur.com/R8ke44C.png)
-
-![Просмотр записи](https://i.imgur.com/RENwEQ6.png)
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <div style="flex: 1; min-width: 300px;">
+    <img src="https://i.imgur.com/huciKPu.png" alt="Старт" width="300"/> 
+  </div>
+  <div style="flex: 1; min-width: 300px;">
+    <img src="https://i.imgur.com/nLh2Glb.png" alt="Вход" width="300"/>
+  </div>
+  <div style="flex: 1; min-width: 300px;">
+    <img src="https://i.imgur.com/XlwPSCb.png" alt="Хранилище" width="300"/>
+  </div>
+  <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+    <img src="https://i.imgur.com/K8x3WUK.png" alt="Просмотр записи" width="300"/>
+    <img src="https://i.imgur.com/R8ke44C.png" alt="Настройки генерации пароля" width="175"/>
+  </div>
+</div>
 
 ---
 

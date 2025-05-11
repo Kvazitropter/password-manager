@@ -20,11 +20,28 @@ jobs:
         run: pip install uv && make setup-dev
       - name: Create Build for Linux
         run: make build
+      - name: Download linuxdeploy
+        run: |
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -O linuxdeploy
+          chmod +x linuxdeploy
+      - name: Install AppImage
+        run: |
+          mkdir -p AppDir/usr/bin
+          cp dist/password-manager/password-manager AppDir/usr/bin/
+          chmod +x AppDir/usr/bin/password-manager
+          cp password-manager.desktop AppDir/
+          cp frontend/images/password_manager_icon.png AppDir/
+          ./linuxdeploy \
+            --appdir AppDir \
+            --desktop-file AppDir/password-manager.desktop \
+            --icon-file AppDir/password-manager_icon.png \
+            --output appimage \
+            --plugin python
       - name: Upload Linux Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: linux-build-${{ matrix.python-version }}
-          path: dist/password-manager/password-manager 
+          name: password-manager-linux-appimage-${{ matrix.python-version }}
+          path: ./*.AppImage
 
   build-windows:
     runs-on: windows-latest
@@ -62,8 +79,10 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           files: |
-            dist/linux/**/password-manager
-            dist/windows/**/password-manager.exe
+            dist/linux/**/*.AppImage
+            dist/windows/**/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

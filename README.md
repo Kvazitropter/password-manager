@@ -22,21 +22,20 @@
 
 ---
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <div style="flex: 1; min-width: 300px;">
-    <img src="https://i.imgur.com/huciKPu.png" alt="Старт" width="300"/> 
-  </div>
-  <div style="flex: 1; min-width: 300px;">
-    <img src="https://i.imgur.com/nLh2Glb.png" alt="Вход" width="300"/>
-  </div>
-  <div style="flex: 1; min-width: 300px;">
-    <img src="https://i.imgur.com/XlwPSCb.png" alt="Хранилище" width="300"/>
-  </div>
-  <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
-    <img src="https://i.imgur.com/K8x3WUK.png" alt="Просмотр записи" width="300"/>
-    <img src="https://i.imgur.com/R8ke44C.png" alt="Настройки генерации пароля" width="175"/>
-  </div>
-</div>
+<table>
+  <tr>
+    <td><img src="https://i.imgur.com/huciKPu.png" alt="Старт" width="300"/></td>
+    <td><img src="https://i.imgur.com/nLh2Glb.png" alt="Вход" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://i.imgur.com/XlwPSCb.png" alt="Хранилище" width="300"/></td>
+    <td>
+      <img src="https://i.imgur.com/K8x3WUK.png" alt="Просмотр записи" width="300"/>
+      <div style="height: 10px;"></div>
+      <img src="https://i.imgur.com/R8ke44C.png" alt="Настройки генерации пароля" width="175"/>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -50,7 +49,6 @@
 ```
 git clone https://github.com/Kvazitropter/password-manager.git
 make setup
-make run
 make build
 ```
 

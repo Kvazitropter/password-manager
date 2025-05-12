@@ -7,16 +7,51 @@
 
 ---
 
-Приложение для генерации и хранения паролей, зашифрованных с помощью мастер-ключа.
+Приложение для хранения паролей в зашифрованном виде.
+- Мастер пароль хранится только в рамках одной сессии и нигде не сохраняется.
+- Все пароли зашифрованы и хранятся в одном месте.
+- Есть встроенная генерация паролей с настройкой параметров.
+
+---
+
+## Как работает шифрование
+1. Из мастер-пароля и случайной соли формируется криптографический ключ.
+2. Ключ передаётся в симметричный алгоритм шифрования.
+4. Каждый пароль шифруется отдельно, с использованием уникальной соли.
+5. Зашифрованное значение и соль сохраняются в базе.
+
+---
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <div style="flex: 1; min-width: 300px;">
+    <img src="https://i.imgur.com/huciKPu.png" alt="Старт" width="300"/> 
+  </div>
+  <div style="flex: 1; min-width: 300px;">
+    <img src="https://i.imgur.com/nLh2Glb.png" alt="Вход" width="300"/>
+  </div>
+  <div style="flex: 1; min-width: 300px;">
+    <img src="https://i.imgur.com/XlwPSCb.png" alt="Хранилище" width="300"/>
+  </div>
+  <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+    <img src="https://i.imgur.com/K8x3WUK.png" alt="Просмотр записи" width="300"/>
+    <img src="https://i.imgur.com/R8ke44C.png" alt="Настройки генерации пароля" width="175"/>
+  </div>
+</div>
 
 ---
 
 # Установка:
 
+1. Установите PostgreSQL
+2. Создайте сервер с настройками по умолчанию и паролем xxXX1234
+3. Создайте базу данных password-manager
+4. Выполните запрос из файла db/sql.txt
+
 ```
 git clone https://github.com/Kvazitropter/password-manager.git
 make setup
 make run
+make build
 ```
 
 ---

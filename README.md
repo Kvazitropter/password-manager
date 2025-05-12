@@ -42,6 +42,11 @@
 
 # Установка:
 
+1. Установите PostgreSQL
+2. Создайте сервер с настройками по умолчанию и паролем xxXX1234
+3. Создайте базу данных password-manager
+4. Выполните запрос из файла db/sql.txt
+
 ```
 git clone https://github.com/Kvazitropter/password-manager.git
 make setup
